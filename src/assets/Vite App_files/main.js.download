@@ -1,0 +1,11 @@
+import "/src/assets/tailwind.css?t=1692809074118";
+
+import { createApp } from "/node_modules/.vite/deps/vue.js?v=e009c334";
+import App from "/src/App.vue?t=1692734983967";
+import router from "/src/router/index.js?t=1692809074118";
+
+const app = createApp(App);
+
+app.use(router);
+
+app.mount("#app");

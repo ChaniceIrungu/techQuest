@@ -1,0 +1,115 @@
+<template>
+  <div class="text-center">
+    <div class="w-full p-2">
+      <div class="pb-2">
+        <div>Progress</div>
+
+        <div
+          class="p-1 border-1 border-yellow-700 rounded-full bg-yellow-600 text-white"
+        >
+          {{ currentIndex + 1 }}/{{ surveys.length }}
+        </div>
+      </div>
+
+      <!-- Survey goes here -->
+      <div id="surv" class="bg-[#F3F3F3] border border-rounded-md my-4">
+        <div class="p-4" v-if="currentQuestion">
+          <p class="font-bold md:text-2xl text-xl">
+            {{ currentQuestion.attributes.question }}
+          </p>
+          <div class="p-4" v-if="currentQuestion.attributes.type === 'input'">
+            <input
+              type="text"
+              class="input p-2"
+              name=""
+              placeholder="Enter preferred name"
+              v-model="userInput"
+            />
+          </div>
+          <div v-else>
+            <div
+              class="py-2 text-left"
+              v-for="(choice, key) in currentQuestion.attributes.choices"
+              :key="key"
+            >
+              <input
+                type="checkbox"
+                :id="key"
+                :value="choice"
+                v-model="selectedChoices"
+              />
+              <label class="px-2" :for="key">{{ choice }}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end survey -->
+      <div class="mt-4 inline">
+        <button
+          class="bg-yellow-500 hover:bg-yellow-700 p-2 rounded-full"
+          @click="nextQuestion"
+        >
+          {{ nextQuestionText }}
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
+
+import axios from "axios";
+
+const surveys = ref([]);
+const currentIndex = ref(0);
+const userInput = ref("");
+const currentQuestion = ref(null);
+const nextQuestionText = ref("Next Question");
+const selectedChoices = ref([]);
+const router = useRouter();
+
+// Fetch the survey data
+onMounted(async () => {
+  const res = await axios.get("http://localhost:1337/api/surveys?populate=*");
+  surveys.value = res.data.data;
+  currentQuestion.value = surveys.value[currentIndex.value];
+});
+
+// Next and previous question handlers
+const nextQuestion = () => {
+  if (currentIndex.value <= surveys.value.length - 1) {
+    currentIndex.value++;
+    currentQuestion.value = surveys.value[currentIndex.value];
+  }
+
+  if (currentIndex.value === surveys.value.length - 1) {
+    nextQuestionText.value = "Finish Survey";
+  }
+  if (currentIndex.value === surveys.value.length) {
+    finishSurvey();
+  }
+};
+
+const finishSurvey = () => {
+  // Perform any actions needed when finishing the survey
+  // For example, save the survey responses or navigate to another page
+  // In this case, we navigate to the "riddles" page
+  router.push({ name: "riddles" });
+};
+
+const prevQuestion = () => {
+  if (currentIndex.value > 0) {
+    currentIndex.value--;
+    currentQuestion.value = surveys.value[currentIndex.value];
+  }
+};
+</script>
+
+<style>
+#surv {
+  /* max-width: 40rem; */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+</style>
