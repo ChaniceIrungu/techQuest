@@ -17,6 +17,11 @@ const router = createRouter({
     {
       path: "/riddles",
       name: "riddles",
+      component: () => import("../views/RiddleView.vue"),
+    },
+    {
+      path: "/riddles-1",
+      name: "riddles-1",
       component: () => import("../components/Riddles.vue"),
     },
     {

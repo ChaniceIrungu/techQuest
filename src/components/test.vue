@@ -1,11 +1,15 @@
 <template class="text-black font-bold">
-  <ul class="text-black font-bold">
-    <li v-for="item in items" :key="item.message">{{ item.message }}</li>
-    <li
-      class="divider border-separate border-blue-700"
-      role="presentation"
-    ></li>
-  </ul>
+  <!-- Flex box -->
+  <div
+    className="flex items-center min-h-screen p-4 bg-red-100 lg:justify-center"
+  >
+    <div
+      className="flex flex-col overflow-hidden bg-white rounded-md shadow-lg max md:flex-row md:flex-1 lg:max-w-screen-md"
+    >
+      Hello you
+    </div>
+  </div>
+
   <!-- todo -->
   <h1><mark>My todo task list</mark></h1>
   <div v-for="todo in todos">

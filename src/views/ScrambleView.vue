@@ -143,7 +143,7 @@ const gameData = ref({});
 const isGameStarted = ref(false);
 const hideMenu = ref(false);
 const alertBox = ref({
-  title: "Time's Up!",
+  title: "",
   message: "",
 });
 const showTimeUpModal = ref(false);
