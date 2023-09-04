@@ -1,16 +1,27 @@
 <template>
-  <div className=" min-h-screen  ">
-    <p v-if="flipCardAlert" class="text-red-600 font-semibold text-lg">
+  <div
+    className="min-h-screen box-border 2xl:bg-white	md:flex md:flex-col items-center text-base md:text-lg"
+  >
+    <p
+      v-if="flipCardAlert"
+      class="text-red-600 font-semibold text-base md:text-lg"
+    >
       Alert! Flip The Card to begin!
     </p>
-    <div className="flex flex-cols-2 gap-8 text-center" v-if="currentRiddle">
-      <div>
-        <h1 class="font-extrabold text-purple-700 my-8">Find the RIDDLE</h1>
-        <div class="flip-card w-64 h-5/6 hover:scale-110" @click="flipCard">
+    <div
+      className="grid md:flex md:flex-cols-2 flex-wrap md:justify-center gap-4 text-center"
+      v-if="currentRiddle"
+    >
+      <div class="">
+        <h1 class="font-extrabold text-purple-700 my-4">Find the RIDDLE</h1>
+        <div
+          class="flip-card md:w-64 h-[250px] md:h-5/6 hover:scale-110"
+          @click="flipCard"
+        >
           <transition name="flip" mode="out-in">
             <div
               :key="isFlipped"
-              class="card p-4 text-white"
+              class="card p-4 text-white h-full"
               :class="{ front: !isFlipped, back: isFlipped }"
             >
               <div v-if="!isFlipped" class="card-front">
@@ -26,27 +37,30 @@
         </div>
       </div>
 
-      <div>
-        <h1 class="font-extrabold text-purple-700 my-8">
+      <div class="mt-2 md:mt-2">
+        <h1 class="font-extrabold text-purple-700 md:my-4 my-2">
           Click any of the choice you think is right
         </h1>
         <!-- Answer Choices -->
         <ul
           :class="{
-            'grid-cols-3': numColumns === 3,
+            'md:grid-cols-3': numColumns === 3,
+
             'grid-cols-2': numColumns === 2,
           }"
-          class="options grid gap-2"
+          class="options grid gap-2 grid-cols-2"
         >
           <li
             :class="{ 'hover:scale-110': isFlipped }"
-            class="options-card"
+            class="options-card w-[150px] h-[120px] md:w-[200px] md:h-[280px]"
             v-for="(option, idx) in currentOptions"
             @click="checkAnswer(option.attributes.correct)"
           >
-            <div class="card p-4">
+            <div class="card p-4 text-left">
               <div>
-                <h2>Option : {{ getAnswerLetter(idx) }}</h2>
+                <h2 class="text-purple-600">
+                  Option {{ getAnswerLetter(idx) }}:
+                </h2>
                 <p v-if="isFlipped">{{ option.attributes.choice }}</p>
               </div>
             </div>
@@ -185,14 +199,10 @@ const getAnswerLetter = (idx) => {
 
 <style>
 .flip-card {
-  /* width: 200px;
-  height: 300px; */
   perspective: 1000px;
   cursor: pointer;
 }
 .options-card {
-  width: 200px;
-  height: 300px;
   perspective: 1000px;
   cursor: pointer;
 }
@@ -205,7 +215,7 @@ const getAnswerLetter = (idx) => {
   border-radius: 7px;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0.4, 0, 0, 0.2);
   will-change: transform;

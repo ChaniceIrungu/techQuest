@@ -48,6 +48,8 @@
         <button
           class="bg-yellow-500 hover:bg-yellow-700 p-2 rounded-full"
           @click="nextQuestion"
+          :disabled="shouldDisableNextButton"
+          :class="{ 'bg-gray-300': shouldDisableNextButton }"
         >
           {{ nextQuestionText }}
         </button>
@@ -57,7 +59,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useRouter } from "vue-router";
 
 import axios from "axios";
@@ -77,8 +79,22 @@ onMounted(async () => {
   currentQuestion.value = surveys.value[currentIndex.value];
 });
 
+// Add a computed property to check if userInput is empty
+const shouldDisableNextButton = computed(() => {
+  // Check if userInput is empty and the question type is 'input'
+  return userInput.value.trim() === "";
+});
+
 // Next and previous question handlers
 const nextQuestion = () => {
+  localStorage.setItem("name", userInput.value);
+
+  // Check if userInput is empty for input type questions
+  if (shouldDisableNextButton.value) {
+    // You can display an error message or handle it as needed
+    return;
+  }
+
   if (currentIndex.value <= surveys.value.length - 1) {
     currentIndex.value++;
     currentQuestion.value = surveys.value[currentIndex.value];

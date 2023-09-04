@@ -4,7 +4,7 @@
       class="pb-2 text-2xl text-center font-extrabold font-serif text-yellow-600"
     >
       Thanks you for your reponses
-      <strong class="text-black">Chanice.</strong>
+      <strong class="text-black">{{ userName }}.</strong>
     </h1>
     <h1
       class="p-2 text-xl text-center font-extrabold font-serif text-yellow-600"
@@ -18,7 +18,7 @@
       Riddle Challenge:
     </h1>
 
-    <div class="grid grid-cols-2 place-items-center">
+    <div class="grid md:grid-cols-2 gap-4 place-items-center">
       <div class="">
         <img src="../assets/riddle.jpg" />
       </div>
@@ -39,10 +39,17 @@
   </div>
 </template>
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 const imageSrc = ref("/src/assets/riddle.jpg");
 const router = useRouter();
 import { useRouter } from "vue-router";
+
+const userName = ref("Human");
+
+onMounted(async () => {
+  userName.value = localStorage.getItem("name");
+  console.log(userName.value);
+});
 
 const showNextGame = () => {
   // Perform any actions needed when finishing the survey

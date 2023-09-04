@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center">
+  <div class="md:flex justify-center">
     <div class="p-4">
       <img :src="imageSrc" />
     </div>

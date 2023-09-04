@@ -1,11 +1,25 @@
 <template>
-  <div id="controls">
-    <button class="sub-btn" @click="submitAction" :disabled="!enableSubmit">
+  <div id="controls" class="m-auto">
+    <button
+      class="sub-btn px-1 py-1 md:px-4 md:py-3 mr-1 md:mr-4"
+      @click="submitAction"
+      :disabled="!enableSubmit"
+    >
       Submit
     </button>
-    <button class="shuffle-btn" @click="shuffleQuestion">Shuffle</button>
+    <button
+      class="shuffle-btn px-1 py-1 md:px-4 md:py-3 mr-1 md:mr-4"
+      @click="shuffleQuestion"
+    >
+      Shuffle
+    </button>
 
-    <button class="clear-btn" @click="clearAction">Clear</button>
+    <button
+      class="clear-btn px-1 py-1 md:px-4 md:py-3 mr-1 md:mr-4"
+      @click="clearAction"
+    >
+      Clear
+    </button>
   </div>
 </template>
 
@@ -84,8 +98,7 @@ const clearAction = () => {
 #controls button {
   position: relative;
   cursor: pointer;
-  padding: 12px 16px;
-  margin-right: 10px;
+
   overflow: hidden;
   outline: none;
   border: 0 solid rgba(0, 0, 0, 1);

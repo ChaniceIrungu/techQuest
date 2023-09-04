@@ -4,8 +4,10 @@
     v-if="showFeedBackModal"
     @after-leave="handleModalHidden"
   >
-    <div class="modal">
-      <p class="text-green-400">{{ message }}</p>
+    <div class="modal rounded">
+      <div class="w-[120px] h-[80px] flex items-center">
+        <p class="text-green-400">{{ message }}</p>
+      </div>
     </div>
   </transition>
 </template>
