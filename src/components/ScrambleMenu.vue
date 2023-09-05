@@ -4,11 +4,7 @@
       Word Scramble!
     </h2>
     <div class="text-center p-4">
-      <img
-        class="h-72 w-72 m-auto"
-        src="../assets/word_scramble_logo.jpg"
-        alt="logo"
-      />
+      <img class="h-72 w-72 m-auto" src="/word_scramble_logo.jpg" alt="logo" />
     </div>
 
     <ol class="options">

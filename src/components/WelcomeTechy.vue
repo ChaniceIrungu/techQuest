@@ -37,7 +37,7 @@ const state = reactive({
 });
 
 const imageSrc = computed(() => {
-  return `/src/assets/${state.image}.jpg`;
+  return `/${state.image}.jpg`;
 });
 
 const router = useRouter();

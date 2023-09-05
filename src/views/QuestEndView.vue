@@ -17,7 +17,7 @@
         loop
         muted
       >
-        <source src="../assets/congratulations.mp4" type="video/mp4" />
+        <source src="/congratulations.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
@@ -35,7 +35,7 @@
 </template>
 <script setup>
 import { ref, computed, onMounted } from "vue";
-const imageSrc = ref("/src/assets/riddle.jpg");
+const imageSrc = ref("/riddle.jpg");
 const router = useRouter();
 import { useRouter } from "vue-router";
 

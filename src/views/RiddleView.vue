@@ -20,7 +20,7 @@
 
     <div class="grid md:grid-cols-2 gap-4 place-items-center">
       <div class="">
-        <img src="../assets/riddle.jpg" />
+        <img src="/riddle.jpg" />
       </div>
 
       <div class="">
@@ -44,7 +44,7 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const userName = ref("Human");
-const imageSrc = ref("/src/assets/riddle.jpg");
+const imageSrc = ref("/riddle.jpg");
 
 onMounted(async () => {
   userName.value = localStorage.getItem("name");
