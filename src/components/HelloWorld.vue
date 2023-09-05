@@ -37,7 +37,7 @@ export default {
   methods: {
     async getsurvey(value) {
       let Tasks = await axios.get(
-        "http://localhost:1337/api/surveys?locale=" + value
+        `${import.meta.env.VITE_API_ENDPOINT}/api/surveys?locale=` + value
       );
       this.question1 = Tasks.data.data[0]["attributes"];
       this.question2 = Tasks.data.data[this.QuestionNum1]["attributes"];
@@ -67,13 +67,16 @@ export default {
       }
     },
     async addTask(quest, valu) {
-      let res = await axios.post("http://localhost:1337/api/responses/", {
-        data: {
-          Email: this.email,
-          surveyQuestion: quest,
-          surveyResponse: valu,
-        },
-      });
+      let res = await axios.post(
+        `${import.meta.env.VITE_API_ENDPOINT}/api/responses/`,
+        {
+          data: {
+            Email: this.email,
+            surveyQuestion: quest,
+            surveyResponse: valu,
+          },
+        }
+      );
     },
     next() {
       if (this.page === 0) {

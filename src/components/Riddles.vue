@@ -100,7 +100,7 @@ const selectedChoices = ref([]);
 // Fetch the survey data
 onMounted(async () => {
   const res = await axios.get(
-    "http://localhost:1337/api/riddle-questions?populate=*"
+    `${import.meta.env.VITE_API_ENDPOINT}/api/riddle-questions?populate=*`
   );
 
   riddles.value = res.data.data;

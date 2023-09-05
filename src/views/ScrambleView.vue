@@ -162,7 +162,9 @@ let timerInterval;
 // Fetch the scramble data
 onMounted(async () => {
   // fetch data from
-  const res = await axios.get("http://localhost:1337/api/scrambles");
+  const res = await axios.get(
+    `${import.meta.env.VITE_API_ENDPOINT}/api/scrambles`
+  );
   getData.value = shuffle([...res.data.data]);
 
   console.log("currentQuestion", currentQuestion.value);
