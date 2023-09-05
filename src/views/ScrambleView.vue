@@ -105,7 +105,7 @@
           <p style="text-align: center" class="py-4">
             <button
               class="start-btn bg-yellow-500 hover:bg-yellow-700 rounded py-2 px-20 text-white text-lg font-bold"
-              @click="showHowToPlayModal = !showHowToPlayModal"
+              @click="generateQuestion"
             >
               Start
             </button>
@@ -120,107 +120,112 @@
 import { computed, defineAsyncComponent, ref, onMounted } from "vue";
 import Velocity from "velocity-animate";
 import Scores from "../components/Score.vue";
-import Store from "../store/index.js";
+import { useRouter } from "vue-router";
 import words from "../store/questions.js";
 import controls from "../components/scramble/controls.vue";
 import AlertModal from "../components/AlertModal.vue";
+import axios from "axios";
 
 // Load the tutorial components as lazy-loaded components since they appear in the view later (after user interaction).
 const ScrambleMenu = defineAsyncComponent(() =>
   import("../components/ScrambleMenu.vue")
 );
+const router = useRouter();
 
-const errorMessage = ref("");
-const setError = () => {
-  errorMessage = message;
-  setTimeout(() => {
-    errorMessage.value = "";
-  }, 2000);
-};
-const wordsRef = ref([]);
-wordsRef.value = words;
+const getData = ref([]);
+const currentQuestion = ref({});
+
 const gameData = ref({});
+const dropAreaData = ref([]);
+const correctWord = ref("");
+const clickedqAreaLetters = ref([]);
+const qAreaIdxHolder = ref(null);
+const questionIdx = ref(0);
+const isActive = ref(false);
+
 const isGameStarted = ref(false);
+const isGamePaused = ref(false);
+const showHowToPlayModal = ref(false);
+const showTimeUpModal = ref(false);
 const hideMenu = ref(false);
+
+const level = ref(0);
+const timerText = ref(10);
+const score = ref(0);
 const alertBox = ref({
   title: "",
   message: "",
 });
-const showTimeUpModal = ref(false);
-const isGamePaused = ref(false);
-const showHowToPlayModal = ref(false);
-const showNextLevel = ref(false);
-const bonusScore = ref(2000);
-const level = ref(0);
-const timerText = ref(10);
-const score = ref(0);
-const error = ref({ exist: "Already Found", invalid: "Not a word" });
-const dropAreaData = ref([]);
-const isActive = ref(false);
-const correctWord = ref("");
-
-const clickedqAreaLetters = ref([]);
-const qAreaIdxHolder = ref(null);
-
-// const increaseScore = computed(() => {
-//   score.value = score.value += 10;
-//   generateQuestion();
-// });
-const increaseScore = computed(() => {
-  score.value = score.value += 10;
-});
 
 let timerInterval;
+
+// Fetch the scramble data
+onMounted(async () => {
+  // fetch data from
+  const res = await axios.get("http://localhost:1337/api/scrambles");
+  getData.value = shuffle([...res.data.data]);
+
+  console.log("currentQuestion", currentQuestion.value);
+});
 
 const initGame = () => {
   isGameStarted.value = true;
   hideMenu.value = true;
-  generateQuestion();
+  showHowToPlayModal.value = true;
 };
 
 const generateQuestion = () => {
   if (isGameStarted.value && hideMenu.value) {
+    // Hide show how to play modal
+    clearInterval(timerInterval);
+    if (showHowToPlayModal.value) {
+      showHowToPlayModal.value = false;
+    }
+
     initTimer(10);
     clearAction();
 
-    // Randomly select a question
-    var questionIdx = getRandomNumber(0, words.length - 1);
-    const currentQuestion = words[questionIdx];
+    if (questionIdx.value <= getData.value.length - 1) {
+      questionIdx.value++;
 
-    // Store the correct word separately
-    correctWord.value = currentQuestion.word;
+      // go to next game once all questions are done
+      if (questionIdx.value > getData.value.length - 1) {
+        router.push({ name: "tech-quest-end" });
+        console.log("gameFinished");
+        return;
+      }
 
-    // Create a shuffled version of the word
-    const shuffledWord = shuffle([...currentQuestion.word]);
+      // generate next question
+      currentQuestion.value = getData.value[questionIdx.value].attributes;
+      console.log("currentQuestion after next", currentQuestion.value);
+      // Store the correct word separately
+      correctWord.value = currentQuestion.value.correctWord;
 
-    // Create an array to store the letters in drop area
-    dropAreaData.value = Array.from(
-      { length: currentQuestion.word.length },
-      () => ({
-        letter: "",
-        isActive: isActive.value,
-        qAreaIdxHolder: qAreaIdxHolder.value,
-      })
-    );
+      // Create a shuffled version of the word
+      const shuffledWord = shuffle([...currentQuestion.value.word]);
 
-    // Set the game data for the current question
-    gameData.value = {
-      word: shuffledWord,
-      userAnswers: [],
-      hint: currentQuestion.hint,
-      correctWord: correctWord.value,
-    };
+      // Create an array to store the letters in drop area
+      dropAreaData.value = Array.from(
+        { length: currentQuestion.value.word.length },
+        () => ({
+          letter: "",
+          isActive: isActive.value,
+          qAreaIdxHolder: qAreaIdxHolder.value,
+        })
+      );
 
-    nextQuestion();
+      // Set the game data for the current question
+      gameData.value = {
+        word: shuffledWord,
+        userAnswers: [],
+        hint: currentQuestion.value.hint,
+        correctWord: correctWord.value,
+      };
+
+      level.value = level.value + 1;
+      // showHowToPlayModal.value = level.value <= 1;
+    }
   }
-};
-
-const nextQuestion = () => {
-  level.value = level.value + 1;
-
-  showHowToPlayModal.value = level.value <= 1;
-  showNextLevel.value = false;
-  console.log("NEW correctWord.value", correctWord.value);
 };
 
 const updateScore = () => {
@@ -376,7 +381,7 @@ const pauseGame = () => {
 };
 
 const checkAnswer = () => {
-  console.log("userss Answer", gameData.value.userAnswers.join(""));
+  // console.log("userss Answer", gameData.value.userAnswers.join(""));
 
   let correctWord = gameData.value.correctWord;
   //  if array convert to string
@@ -435,14 +440,6 @@ const initTimer = (maxTime) => {
     }, 1400);
   }
 };
-
-// Fetch the scramble data
-onMounted(async () => {
-  clearInterval(timerInterval);
-  // const res = await axios.get("");
-  // const wordsRef = ref([]);
-  // wordsRef.value = [...words];
-});
 </script>
 
 <style>

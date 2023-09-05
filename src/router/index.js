@@ -35,6 +35,11 @@ const router = createRouter({
       component: () => import("../views/ScrambleView.vue"),
     },
     {
+      path: "/tech-quest-end",
+      name: "tech-quest-end",
+      component: () => import("../views/QuestEndView.vue"),
+    },
+    {
       path: "/test",
       name: "test",
       component: () => import("../components/test.vue"),

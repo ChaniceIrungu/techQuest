@@ -40,11 +40,11 @@
 </template>
 <script setup>
 import { ref, computed, onMounted } from "vue";
-const imageSrc = ref("/src/assets/riddle.jpg");
-const router = useRouter();
 import { useRouter } from "vue-router";
 
+const router = useRouter();
 const userName = ref("Human");
+const imageSrc = ref("/src/assets/riddle.jpg");
 
 onMounted(async () => {
   userName.value = localStorage.getItem("name");
