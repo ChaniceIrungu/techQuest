@@ -9,7 +9,7 @@
 body {
   background-color: hsla(251, 13%, 49%, 0.2);
   max-width: 1280px;
-  padding: 0.5rem;
+
   font-weight: normal;
   margin: 0 auto;
   /* display: flex;
@@ -19,6 +19,7 @@ body {
 @media (min-width: 1024px) {
   body {
     background-color: hsla(251, 13%, 49%, 0.2);
+    padding: 0.5rem;
     /* display: flex;
     place-items: center; */
   }
