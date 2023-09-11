@@ -1,13 +1,11 @@
 <template>
   <div class="flex flex-col items-center p-4 tracking-wider">
-    <h1
-      class="pb-2 text-2xl text-center font-extrabold font-serif text-yellow-600"
-    >
+    <h1 class="pb-2 text-2xl text-center font-extrabold font-serif text-black">
       Thanks you for your reponses
-      <strong class="text-black capitalize">{{ userName }}.</strong>
+      <strong class="text-yellow-600 capitalize">{{ userName }}.</strong>
     </h1>
     <h1
-      class="p-2 text-xl text-center font-extrabold font-serif text-yellow-600"
+      class="p-2 text-xl text-center font-extrabold font-serif text-black-600"
     >
       Let the Games Begin!
     </h1>
