@@ -13,7 +13,9 @@
       v-if="currentRiddle"
     >
       <div class="">
-        <h1 class="font-extrabold text-purple-700 my-4">Find the RIDDLE</h1>
+        <h1 class="font-extrabold text-purple-700 my-1 md:my-4">
+          Find the RIDDLE
+        </h1>
         <div
           class="flip-card md:w-64 h-[250px] md:h-5/6 hover:scale-110 shadow-xl"
           @click="flipCard"
