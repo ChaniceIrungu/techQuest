@@ -33,7 +33,7 @@
             <li
               v-for="(item, Idx) in dropAreaData"
               :key="Idx"
-              class="character-box bg-yellow-400"
+              class="character-box h-12 w-12 md:h-20 md:w-20 bg-yellow-400"
               :class="[
                 'character-box',
                 { inactive: !item.isActive, active: item.isActive },
@@ -49,7 +49,7 @@
             <li
               v-for="(question, idx) in gameData.word"
               :key="idx"
-              class="character-box"
+              class="character-box h-12 w-12 md:h-20 md:w-20"
               :class="[
                 'character-box',
                 isLetterIndexClicked(question, idx) ? 'inactive' : 'active',
@@ -453,8 +453,6 @@ const initTimer = (maxTime) => {
   align-items: center;
   justify-content: center;
   padding: 5px;
-  width: 80px;
-  height: 80px;
   opacity: 1;
   font-weight: bold;
   font-size: 3em;
