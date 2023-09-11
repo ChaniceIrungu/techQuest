@@ -4,7 +4,7 @@
   >
     <p
       v-if="flipCardAlert"
-      class="text-red-600 font-semibold text-base md:text-lg"
+      class="text-red-600 font-semibold text-base md:text-lg text-center"
     >
       Alert! Flip The Card to begin!
     </p>
