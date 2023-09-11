@@ -227,7 +227,7 @@ const getAnswerLetter = (idx) => {
 }
 
 .back {
-  background-color: #a15353;
+  background-color: #800e80;
   /* backface-visibility: visible; */
 }
 
