@@ -52,7 +52,7 @@
         >
           <li
             :class="{ 'hover:scale-110': isFlipped }"
-            class="options-card w-[150px] h-[120px] md:w-[200px] md:h-[280px]"
+            class="options-card w-[170px] h-[120px] md:w-[200px] md:h-[280px]"
             v-for="(option, idx) in currentOptions"
             @click="checkAnswer(option.attributes.correct)"
           >
