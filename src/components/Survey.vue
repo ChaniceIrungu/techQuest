@@ -75,7 +75,7 @@ const router = useRouter();
 // Fetch the survey data
 onMounted(async () => {
   const res = await axios.get(
-    `${import.meta.env.VITE_API_ENDPOINT}/api/surveys?populate=*`
+    `${import.meta.env.VITE_API_ENDPOINT}/surveys?populate=*`
   );
   surveys.value = res.data.data;
   currentQuestion.value = surveys.value[currentIndex.value];
