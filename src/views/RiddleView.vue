@@ -4,7 +4,7 @@
       class="pb-2 text-2xl text-center font-extrabold font-serif text-yellow-600"
     >
       Thanks you for your reponses
-      <strong class="text-black">{{ userName }}.</strong>
+      <strong class="text-black capitalize">{{ userName }}.</strong>
     </h1>
     <h1
       class="p-2 text-xl text-center font-extrabold font-serif text-yellow-600"
