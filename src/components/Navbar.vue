@@ -9,6 +9,7 @@
             class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             aria-controls="mobile-menu"
             aria-expanded="false"
+            @click="toggleMobileMenu"
           >
             <span class="absolute -inset-0.5"></span>
             <span class="sr-only">Open main menu</span>
@@ -101,7 +102,11 @@
     </div>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div class="sm:hidden" id="mobile-menu">
+    <div
+      class="sm:hidden"
+      id="mobile-menu"
+      :class="{ hidden: !mobileMenuOpen }"
+    >
       <div class="space-y-1 px-2 pb-3 pt-2">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
 
@@ -118,6 +123,13 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+
+const mobileMenuOpen = ref(false);
+const toggleMobileMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value;
+};
+
 const navigation = [
   { name: "Team", href: "#", current: false },
   { name: "Projects", href: "#", current: false },
