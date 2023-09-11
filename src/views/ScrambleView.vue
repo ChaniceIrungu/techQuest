@@ -9,13 +9,6 @@
         class="game-container absolute top-0 z-40 w-full p-2 md:flex md:flex-col md:p-8 h-[520px] bg-[#ffffffde] border rounded-lg box-border tracking-wide"
         v-if="isGameStarted && hideMenu"
       >
-        <button
-          class="main-menu-btn float-right text-blue-400"
-          @click="pauseGame"
-        >
-          Main Menu
-        </button>
-
         <div class="float-center text-red-400 text-2xl">
           Time Left: {{ timerText }}
         </div>
@@ -28,6 +21,12 @@
         />
 
         <Scores :level="level" :score="score" />
+        <div
+          class="main-menu-btn float-right text-blue-400 text-sm"
+          @click="toggleHint"
+        >
+          <span class="text-black"> Hint:</span> {{ currentQuestion.hint }}
+        </div>
         <div class="game-area mt-8 m-auto">
           <ul id="drop-area " class="word-box">
             <li
@@ -144,7 +143,7 @@ const questionIdx = ref(0);
 const isActive = ref(false);
 
 const isGameStarted = ref(false);
-const isGamePaused = ref(false);
+const showHint = ref(false);
 const showHowToPlayModal = ref(false);
 const showTimeUpModal = ref(false);
 const hideMenu = ref(false);
@@ -213,7 +212,7 @@ const generateQuestion = () => {
           qAreaIdxHolder: qAreaIdxHolder.value,
         })
       );
-
+      console.log("dropAreaData after next", dropAreaData.value);
       // Set the game data for the current question
       gameData.value = {
         word: shuffledWord,
@@ -375,11 +374,6 @@ const clearAction = () => {
   });
 };
 
-const pauseGame = () => {
-  isGamePaused.value = true;
-  hideMenu.value = true;
-};
-
 const checkAnswer = () => {
   // console.log("userss Answer", gameData.value.userAnswers.join(""));
 
@@ -439,6 +433,10 @@ const initTimer = (maxTime) => {
       }
     }, 1400);
   }
+};
+
+const toggleHint = () => {
+  showHint.value = !showHint.value;
 };
 </script>
 
