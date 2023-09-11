@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center border-box text-center">
+  <div class="flex flex-col justify-center border-box text-center md:py-8 py-2">
     <div class="mx-auto max-w-full mb-8">
       <p class="text-2xl font-extrabold text-yellow-600">
         Thank you for your participation

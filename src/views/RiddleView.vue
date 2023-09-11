@@ -23,7 +23,7 @@
         <img src="/riddle.jpg" />
       </div>
 
-      <div class="">
+      <div class="flex flex-col items-center">
         <p class="text-xl text-left font-extrabold font-serif text-black-600">
           For this challenge you will receive a bunch of cards. You must solve
           the riddle on the card before time runs out. Flip the card to reveal
