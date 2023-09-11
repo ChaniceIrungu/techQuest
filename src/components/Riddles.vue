@@ -41,7 +41,7 @@
 
       <div class="mt-2 md:mt-2">
         <h1 class="font-extrabold text-purple-700 md:my-4 my-2">
-          Click any of the choice you think is right
+          Click any of the choices you think are correct
         </h1>
         <!-- Answer Choices -->
         <ul
