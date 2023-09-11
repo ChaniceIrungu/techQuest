@@ -1,6 +1,6 @@
 <template>
   <div
-    className="min-h-screen box-border 2xl:bg-white	md:flex md:flex-col items-center text-base md:text-lg"
+    className="min-h-screen box-border 2xl:bg-white	md:flex md:flex-col items-center text-sm md:text-lg"
   >
     <p
       v-if="flipCardAlert"
@@ -48,7 +48,7 @@
 
             'grid-cols-2': numColumns === 2,
           }"
-          class="options grid gap-2 grid-cols-2"
+          class="options grid gap-2 grid-cols-2 place-items-center"
         >
           <li
             :class="{ 'hover:scale-110': isFlipped }"

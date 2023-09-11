@@ -19,13 +19,13 @@
     </h1>
 
     <div class="grid md:grid-cols-2 gap-4 place-items-center">
-      <div class="">
-        <img src="/riddle.jpg" />
+      <div class="m-auto flex justify-center">
+        <img class="w-1/2 md:w-full" src="/riddle.jpg" />
       </div>
 
       <div class="flex flex-col items-center">
         <p
-          class="text-lg md:text-xl text-center md:text-left font-extrabold font-serif text-black-600"
+          class="text-base md:text-xl text-center md:text-left font-extrabold font-serif text-black-600"
         >
           For this challenge you will receive a bunch of cards. You must solve
           the riddle on the card before time runs out. Flip the card to reveal
