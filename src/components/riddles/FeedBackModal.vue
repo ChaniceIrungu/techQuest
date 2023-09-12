@@ -4,9 +4,11 @@
     v-if="showFeedBackModal"
     @after-leave="handleModalHidden"
   >
-    <div class="modal rounded">
+    <div class="modal rounded border-box">
       <div class="w-[120px] h-[80px] flex items-center">
-        <p class="text-green-400">{{ message }}</p>
+        <p class="text-xl font-semibold" :class="messageTextColor">
+          {{ message }}
+        </p>
       </div>
     </div>
   </transition>
@@ -15,9 +17,10 @@
 <script setup>
 import { ref, defineProps } from "vue";
 
-const { message, showFeedBackModal } = defineProps([
+const { message, showFeedBackModal, messageTextColor } = defineProps([
   "message",
   "showFeedBackModal",
+  "messageTextColor",
 ]);
 
 const emit = defineEmits(["close"]);

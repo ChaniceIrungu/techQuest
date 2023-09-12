@@ -2,7 +2,7 @@
   <transition name="fade" v-if="showTimeUpModal">
     <div class="modal">
       <h2>{{ title }}</h2>
-      <p>{{ message }}</p>
+      <p :class="messageTextColor">{{ message }}</p>
       <button class="rounded bg-blue-300 p-2" @click="handleModalOk">OK</button>
     </div>
   </transition>

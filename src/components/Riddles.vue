@@ -1,6 +1,6 @@
 <template>
   <div
-    className="min-h-screen box-border 2xl:bg-white	md:flex md:flex-col items-center text-sm md:text-lg"
+    className="min-h-screen box-border pb-2  2xl:bg-white	md:flex md:flex-col items-center text-sm md:text-lg"
   >
     <p
       v-if="flipCardAlert"
@@ -17,7 +17,7 @@
           Find the RIDDLE
         </h1>
         <div
-          class="flip-card md:w-64 h-[250px] md:h-5/6 md:hover:scale-110 shadow-xl"
+          class="flip-card md:w-72 h-[250px] md:h-5/6 md:hover:scale-110 shadow-xl"
           @click="flipCard"
         >
           <transition name="flip" mode="out-in">
@@ -54,7 +54,7 @@
         >
           <li
             :class="{ 'hover:scale-110': isFlipped }"
-            class="options-card w-[170px] h-[120px] md:w-[200px] md:h-[280px]"
+            class="options-card w-[170px] h-[120px] md:w-[220px] md:h-[240px]"
             v-for="(option, idx) in currentOptions"
             @click="checkAnswer(option.attributes.correct)"
           >
@@ -76,6 +76,7 @@
     <FeedBackModal
       :message="feedbackMessage"
       :showFeedBackModal="showFeedback"
+      :messageTextColor="feedbackColor"
     />
   </div>
 </template>
@@ -97,6 +98,8 @@ const isFlipped = ref(false);
 const flipCardAlert = ref(false);
 const showFeedback = ref(false);
 const feedbackMessage = ref("");
+
+const feedbackColor = ref("");
 const selectedChoices = ref([]);
 
 // Fetch the survey data
@@ -166,8 +169,10 @@ const handleFeedBackModal = (type) => {
 
   if (type === "correct") {
     feedbackMessage.value = "Correct! Well done!";
+    feedbackColor.value = "text-green-400";
   } else {
     feedbackMessage.value = "Oops! That's not correct.";
+    feedbackColor.value = "text-red-400";
   }
 
   // Hide the modal after a delay
