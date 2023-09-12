@@ -51,7 +51,7 @@
       <!-- end survey -->
       <div class="mt-4 inline">
         <button
-          class="bg-yellow-500 hover:bg-yellow-700 p-2 rounded-full"
+          class="bg-yellow-500 hover:bg-yellow-700 p-3 rounded-full"
           @click="nextQuestion"
           :disabled="shouldDisableNextButton"
           :class="{ 'bg-gray-300': shouldDisableNextButton }"
