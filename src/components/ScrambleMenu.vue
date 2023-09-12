@@ -1,12 +1,19 @@
 <template>
-  <div class="game-container h-screen max-w-md mx-auto text-center">
-    <h2 class="menu-title font-bold text-2xl pt-2 text-yellow-600">
-      Word Scramble!
-    </h2>
-    <div class="text-center p-4">
+  <div class="game-container max-w-md mx-auto text-center p-2">
+    <p class="font-semibold pt-4 md:text-lg">
+      Well done, Riddle Master!
+      <strong class="text-yellow-600 capitalize">{{ userName }}.</strong> Your
+      intellect shines brightly. Now, embrace the Word Scramble challenge and
+      unravel hidden words in the next thrilling challenge. Onward to the
+      adventure!
+    </p>
+
+    <div class="text-center p-2">
       <img class="h-72 w-72 m-auto" src="/word_scramble_logo.jpg" alt="logo" />
     </div>
-
+    <h2 class="menu-title font-bold text-2xl py-2 text-yellow-600">
+      Word Scramble!
+    </h2>
     <ol class="options">
       <li>
         <button
@@ -28,7 +35,14 @@
   </div>
 </template>
 <script setup>
-import Store from "../store/index.js";
+import { ref, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
+
+const userName = ref("Human");
+
+onMounted(async () => {
+  userName.value = localStorage.getItem("name");
+});
 </script>
 <style>
 .menu-title {
