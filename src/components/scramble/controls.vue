@@ -1,5 +1,5 @@
 <template>
-  <div id="controls" class="m-auto">
+  <div id="controls" class="mx-auto pt-4">
     <button
       class="sub-btn px-1 py-1 md:px-4 md:py-3 mr-1 md:mr-4"
       @click="submitAction"
@@ -98,7 +98,6 @@ const clearAction = () => {
 #controls button {
   position: relative;
   cursor: pointer;
-
   overflow: hidden;
   outline: none;
   border: 0 solid rgba(0, 0, 0, 1);

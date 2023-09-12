@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center">
+  <div class="h-full text-center md:pb-2 pb-12">
     <div class="w-full p-2">
       <div class="pb-2">
         <div>Progress</div>

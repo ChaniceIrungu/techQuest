@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col items-center p-4 tracking-wider">
+  <div
+    class="flex flex-col items-center md:p-0.5 p-4 md:justify-center tracking-wider"
+  >
     <h1 class="pb-2 text-2xl text-center font-extrabold font-serif text-black">
       Thanks you for your reponses
       <strong class="text-yellow-600 capitalize">{{ userName }}.</strong>

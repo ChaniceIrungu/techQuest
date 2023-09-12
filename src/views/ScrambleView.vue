@@ -1,12 +1,12 @@
 <template>
-  <div id="gameApp " class="relative">
+  <div id="gameApp " class="relative flex flex-col">
     <section class="">
       <!-- game has not started and hideMenu is false -->
       <ScrambleMenu @init-game="initGame" v-if="!isGameStarted && !hideMenu" />
 
       <!-- render when game is started and hideMenu is true -->
       <div
-        class="game-container absolute top-0 z-40 w-full p-2 md:flex md:flex-col md:p-8 h-[520px] bg-[#ffffffde] border rounded-lg box-border tracking-wide"
+        class="absolute top-0 z-40 w-full p-2 md:flex md:flex-col md:p-8 h-screen bg-[#ffffffde] border rounded-lg box-border tracking-wide"
         v-if="isGameStarted && hideMenu"
       >
         <div class="float-center text-red-400 text-2xl">
@@ -27,7 +27,7 @@
         >
           <span class="text-black"> Hint:</span> {{ currentQuestion.hint }}
         </div>
-        <div class="game-area mt-8 m-auto">
+        <div class="game-area mt-8 mx-auto">
           <ul id="drop-area " class="word-box">
             <li
               v-for="(item, Idx) in dropAreaData"
@@ -66,7 +66,7 @@
           @clearAction="clearAction()"
           @checkAnswer="checkAnswer()"
         ></controls>
-        <transition name="slide-fade" class="mt-4 m-auto"
+        <transition name="slide-fade" class="pt-8 mx-auto"
           ><p class="next-level-button">
             Skip this level
             <button
@@ -181,7 +181,7 @@ const generateQuestion = () => {
       showHowToPlayModal.value = false;
     }
 
-    initTimer(10);
+    initTimer(15);
     clearAction();
 
     if (questionIdx.value <= getData.value.length - 1) {
@@ -453,7 +453,7 @@ const toggleHint = () => {
   padding: 5px;
   opacity: 1;
   font-weight: bold;
-  font-size: 3em;
+  font-size: 2em;
   border: 1px solid #aab7ad;
   border-radius: 30%;
   margin-right: 5px;

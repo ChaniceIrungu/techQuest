@@ -17,7 +17,7 @@
           Find the RIDDLE
         </h1>
         <div
-          class="flip-card md:w-72 h-[250px] md:h-5/6 md:hover:scale-110 shadow-xl"
+          class="flip-card md:w-72 h-[250px] md:h-5/6 md:hover:scale-100 shadow-xl"
           @click="flipCard"
         >
           <transition name="flip" mode="out-in">
@@ -50,7 +50,7 @@
 
             'grid-cols-2': numColumns === 2,
           }"
-          class="options grid gap-2 grid-cols-2 place-items-center"
+          class="options grid md:gap-4 gap-2 grid-cols-2 place-items-center"
         >
           <li
             :class="{ 'hover:scale-110': isFlipped }"

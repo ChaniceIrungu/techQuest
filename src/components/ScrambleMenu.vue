@@ -1,5 +1,5 @@
 <template>
-  <div class="game-container max-w-md mx-auto text-center p-2">
+  <div class="game-container max-w-md mx-auto text-center p-2 h-full pb-4">
     <p class="font-semibold pt-4 md:text-lg">
       Well done, Riddle Master
       <strong class="text-yellow-600 capitalize">{{ userName }}!</strong> Your
@@ -14,7 +14,7 @@
     <h2 class="menu-title font-bold text-2xl py-2 text-yellow-600">
       Word Scramble!
     </h2>
-    <ol class="options">
+    <ol class="options b4-2">
       <li>
         <button
           class="check-word bg-yellow-500 hover:bg-yellow-700 rounded py-4 px-20 text-white text-lg font-bold capitalize"

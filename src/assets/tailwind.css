@@ -2,10 +2,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-#app {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
 body {
   background-color: hsla(251, 13%, 49%, 0.2);
   max-width: 1280px;
@@ -22,8 +23,4 @@ body {
     /* display: flex;
     place-items: center; */
   }
-}
-
-\* {
-  box-sizing: border-box;
 }
