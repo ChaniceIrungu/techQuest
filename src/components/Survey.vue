@@ -11,7 +11,7 @@
         </div>
       </div>
 
-      <mark>Checked items: {{ selectedChoices }}</mark>
+      <!-- <mark>Checked items: {{ selectedChoices }}</mark> -->
       <!-- Survey goes here -->
       <div id="surv" class="bg-[#F3F3F3] border border-rounded-md my-4">
         <div class="p-4" v-if="currentQuestion">
@@ -102,23 +102,6 @@ onMounted(async () => {
   currentQuestion.value = surveys.value[currentIndex.value];
 });
 
-// Watch the currentIndex to ensure that selectedChoices is initialized for each question
-// watch(currentIndex, () => {
-//   // Initialize selectedChoices for the current question
-//   // if (currentIndex.value < surveys.value.length) {
-//   //   selectedChoices.value[currentIndex.value] = [];
-//   // }
-// });
-
-// Listen for changes in selectedChoices and save them for analysis
-// watch(selectedChoices, (newSelectedChoices) => {
-//   const question = currentQuestion.value.attributes.question;
-//   const selections = newSelectedChoices;
-
-//   // Perform analysis or save the question and selections as needed
-//   console.log("Question:", question);
-//   console.log("Selections:", selections);
-// });
 // Function to check if a choice is selected
 const isSelected = (index) => {
   if (selectedChoices.value.length) {
@@ -134,9 +117,11 @@ const updateSelectedChoices = (index) => {
   // If it's a multiple-choice question, toggle selection
   if (currentQuestion.value.attributes.multiple) {
     const choiceIndex = choices.indexOf(index);
+    // If the choice is not already selected (not found in the array)
     if (choiceIndex === -1) {
       choices.push(index);
     } else {
+      // If the choice is already selected (found in the array)
       choices.splice(choiceIndex, 1);
     }
   } else {
