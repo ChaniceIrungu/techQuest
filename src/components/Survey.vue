@@ -33,30 +33,18 @@
               v-for="(choice, key, index) in currentQuestion.attributes.choices"
               :key="index"
             >
-              <!-- <div
-                class="flex items-center space-x-2 border-2 rounded p-2 hover:bg-yellow-200 cursor-pointer"
+              <label
+                class="flex items-center space-x-4 border-2 rounded p-2 hover:bg-yellow-200 cursor-pointer"
               >
-                <input
-                  :type="
-                    currentQuestion.attributes.multiple ? 'checkbox' : 'radio'
-                  "
-                  :id="choice"
-                  :value="choice"
-                  v-model="selectedChoices"
-                  class="rounded-full h-4 w-4"
-                />
-                <label :for="choice" class="text-gray-800">{{ choice }}</label>
-              </div> -->
-
-              <label>
                 <input
                   :type="
                     currentQuestion.attributes.multiple ? 'checkbox' : 'radio'
                   "
                   :checked="isSelected(index)"
                   @change="updateSelectedChoices(index)"
+                  class="rounded-full h-4 w-4"
                 />
-                {{ choice }}
+                <span class="p-0.5 md:p-2">{{ choice }}</span>
               </label>
             </div>
           </div>
