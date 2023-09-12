@@ -32,13 +32,18 @@
               v-for="(choice, key) in currentQuestion.attributes.choices"
               :key="key"
             >
-              <input
-                type="checkbox"
-                :id="key"
-                :value="choice"
-                v-model="selectedChoices"
-              />
-              <label class="px-2" :for="key">{{ choice }}</label>
+              <div
+                class="flex items-center space-x-2 border-2 rounded p-2 hover:bg-yellow-200"
+              >
+                <input
+                  type="checkbox"
+                  :id="key"
+                  :value="choice"
+                  v-model="selectedChoices"
+                  class="rounded-full text-blue-600 focus:ring-blue-400 h-4 w-4"
+                />
+                <label :for="key" class="text-gray-800">{{ choice }}</label>
+              </div>
             </div>
           </div>
         </div>
