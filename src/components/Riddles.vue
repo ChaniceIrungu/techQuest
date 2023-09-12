@@ -1,6 +1,6 @@
 <template>
   <div
-    className="min-h-screen box-border pb-2  2xl:bg-white	md:flex md:flex-col items-center text-sm md:text-lg"
+    className="box-border h-screen  2xl:bg-white	md:flex md:flex-col items-center text-sm md:text-lg"
   >
     <p
       v-if="flipCardAlert"
@@ -9,7 +9,7 @@
       Alert! Flip The Card to begin!
     </p>
     <div
-      className="grid md:flex md:flex-cols-2 flex-wrap md:justify-center gap-4 text-center"
+      className="grid md:flex md:flex-cols-2 flex-wrap  md:justify-center gap-4 md:gap-10 text-center md:pb-12"
       v-if="currentRiddle"
     >
       <div class="">

@@ -1,8 +1,8 @@
 <template>
   <div class="game-container max-w-md mx-auto text-center p-2">
     <p class="font-semibold pt-4 md:text-lg">
-      Well done, Riddle Master!
-      <strong class="text-yellow-600 capitalize">{{ userName }}.</strong> Your
+      Well done, Riddle Master
+      <strong class="text-yellow-600 capitalize">{{ userName }}!</strong> Your
       intellect shines brightly. Now, embrace the Word Scramble challenge and
       unravel hidden words in the next thrilling challenge. Onward to the
       adventure!
