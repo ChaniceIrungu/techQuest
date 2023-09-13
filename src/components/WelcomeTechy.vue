@@ -4,7 +4,7 @@
       <div class="p-4 md:p-0.5">
         <img :src="imageSrc" />
       </div>
-      <div class="text-left place-self-center">
+      <div class="text-center md:text-left place-self-center">
         <h1
           class="md:pb-10 pb-4 md:text-2xl text-lg text-center md:text-left font-extrabold font-serif text-yellow-600"
         >
