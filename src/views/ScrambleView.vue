@@ -181,7 +181,7 @@ const generateQuestion = () => {
       showHowToPlayModal.value = false;
     }
 
-    initTimer(15);
+    initTimer(50);
     clearAction();
 
     if (questionIdx.value <= getData.value.length - 1) {
