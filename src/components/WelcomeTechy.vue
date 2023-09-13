@@ -74,8 +74,8 @@ function onContinueClick() {
     state.image = "plainLogo";
     message.value = extractedText;
     HighlightMsg.value = "Your journey will take place in 3 phases ";
-    state.buttonText = "Proceed";
-  } else if (state.buttonText === "Start") {
+    state.buttonText = "Begin Survey";
+  } else if (state.buttonText === "Begin Survey") {
     router.push("/survey");
   }
 }

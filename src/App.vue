@@ -7,7 +7,7 @@ import contacts from "./components/Footer.vue";
 <template
   class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 relative min-h-screen flex flex-col"
 >
-  <div class="md:h-screen">
+  <div class="md:h-screen z-40">
     <header class="sticky top-0 left-0 w-full">
       <div class="wrapper"><Navbar /></div>
     </header>
