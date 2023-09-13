@@ -28,6 +28,7 @@ const handleModalOk = () => {
 /* Add your modal styling here */
 .modal {
   position: fixed;
+  z-index: 1000;
   top: 30%;
   left: 40%;
   transform: translate(-50%, -50%);
