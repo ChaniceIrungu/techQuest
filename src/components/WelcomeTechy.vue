@@ -4,14 +4,14 @@
       <div class="p-4 md:p-0.5">
         <img :src="imageSrc" />
       </div>
-      <div class="text-center place-self-center">
+      <div class="text-left place-self-center">
         <h1
-          class="md:pb-10 pb-4 md:text-2xl text-lg text-center font-extrabold font-serif text-yellow-600"
+          class="md:pb-10 pb-4 md:text-2xl text-lg text-center md:text-left font-extrabold font-serif text-yellow-600"
         >
           {{ HighlightMsg }}
         </h1>
         <h3
-          class="md:pb-10 pb-4 md:text-xl text-sm text-center font-extrabold font-serif text-yellow-600"
+          class="md:pb-10 pb-4 md:text-xl text-sm text-center md:text-left font-extrabold font-serif text-yellow-600 text-wrap"
         >
           {{ message }}
         </h3>
@@ -49,18 +49,48 @@ const imageSrc = computed(() => {
 
 const router = useRouter();
 
+// Your original HTML string
+const htmlString =
+  '<ol type="1">' +
+  "<li>Fill in A Survey</li>" +
+  "<li>Play Some games</li>" +
+  "<li>Receive your total Score with an analysis of your skills and get recommendation</li>" +
+  "</ol>";
+
+// Create a temporary element to parse the HTML
+const tempElement = document.createElement("div");
+tempElement.innerHTML = htmlString;
+
+// Get all the text content from the list items and number them
+const listItems = tempElement.querySelectorAll("li");
+let extractedText = "";
+
+listItems.forEach((li, index) => {
+  extractedText += `${index + 1}. ${li.textContent}\r\n`;
+});
+
 function onContinueClick() {
   if (state.buttonText === "CONTINUE") {
     state.image = "plainLogo";
-    message.value =
-      "Complete the 2-minute Survey, Play Some Games, and Begin Your Journey!";
+    message.value = extractedText;
+    HighlightMsg.value = "Your journey will take place in 3 phases ";
     state.buttonText = "Proceed";
-  } else if (state.buttonText === "Proceed") {
+  } else if (state.buttonText === "Start") {
     router.push("/survey");
   }
 }
 </script>
 
 <style>
-/* Add your styles here */
+h3 {
+  white-space: pre;
+  text-wrap: wrap;
+  list-style-type: none;
+}
+
+li::before {
+  content: counter(item);
+  counter-increment: item;
+  border: 1px solid black;
+}
 </style>
