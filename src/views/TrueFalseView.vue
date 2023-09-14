@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flex flex-col justify-center mx-auto px-4 md:px-8 py-2 md:py-8 text-center"
-  >
+  <div class="flex flex-col mx-auto px-4 md:px-8 py-2 md:py-8 text-center">
     <div
       v-if="!menuOpen"
       class="flex flex-col justify-center items-center mx-auto"
