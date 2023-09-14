@@ -54,7 +54,7 @@ const htmlString =
   '<ol type="1">' +
   "<li>Fill in A Survey</li>" +
   "<li>Play Some games</li>" +
-  "<li>Receive your total Score with an analysis of your skills and get recommendation</li>" +
+  "<li>Receive yout total Score, an analysis of your skills and a tech career recommendations</li>" +
   "</ol>";
 
 // Create a temporary element to parse the HTML
