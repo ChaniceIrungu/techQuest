@@ -87,10 +87,4 @@ h3 {
   text-wrap: wrap;
   list-style-type: none;
 }
-
-li::before {
-  content: counter(item);
-  counter-increment: item;
-  border: 1px solid black;
-}
 </style>
