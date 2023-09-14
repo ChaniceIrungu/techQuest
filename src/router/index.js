@@ -40,6 +40,11 @@ const router = createRouter({
       component: () => import("../views/QuestEndView.vue"),
     },
     {
+      path: "/true-false",
+      name: "true-false",
+      component: () => import("../views/TrueFalseView.vue"),
+    },
+    {
       path: "/test",
       name: "test",
       component: () => import("../components/test.vue"),

@@ -181,7 +181,7 @@ const generateQuestion = () => {
       showHowToPlayModal.value = false;
     }
 
-    initTimer(50);
+    initTimer(20);
     clearAction();
 
     if (questionIdx.value <= getData.value.length - 1) {
@@ -189,8 +189,8 @@ const generateQuestion = () => {
 
       // go to next game once all questions are done
       if (questionIdx.value > getData.value.length - 1) {
-        router.push({ name: "tech-quest-end" });
-        console.log("gameFinished");
+        router.push({ name: "true-false" });
+        // console.log("gameFinished");
         return;
       }
 
