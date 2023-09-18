@@ -21,7 +21,7 @@
           <div class="p-4" v-if="currentQuestion.attributes.type === 'input'">
             <input
               type="text"
-              class="input p-2"
+              class="input p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               name=""
               placeholder="Enter preferred name"
               v-model="userInput"
