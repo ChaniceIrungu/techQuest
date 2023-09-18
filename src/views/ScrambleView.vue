@@ -21,12 +21,14 @@
         />
 
         <Scores :level="level" :score="score" />
-        <div
-          class="main-menu-btn float-right text-blue-400 text-sm"
-          @click="toggleHint"
-        >
-          <span class="text-black"> Hint:</span> {{ currentQuestion.hint }}
+        <div class="main-menu-btn float-right text-blue-400 text-sm">
+          <span class="text-black"> Hint:</span>
+          <span v-if="showHint">{{ currentQuestion.hint }}</span>
+          <button v-if="!showHint" @click="toggleHint">
+            <img src="/question-min.png" alt="Question Mark" />
+          </button>
         </div>
+
         <div class="game-area mt-8 mx-auto">
           <ul id="drop-area " class="word-box">
             <li
@@ -177,6 +179,7 @@ const generateQuestion = () => {
   if (isGameStarted.value && hideMenu.value) {
     // Hide show how to play modal
     clearInterval(timerInterval);
+    showHint.value = false;
     if (showHowToPlayModal.value) {
       showHowToPlayModal.value = false;
     }
