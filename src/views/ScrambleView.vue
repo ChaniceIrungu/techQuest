@@ -392,6 +392,10 @@ const checkAnswer = () => {
     handleModalOk("wrong");
   } else {
     updateScore();
+    if (!hintClicked.value) {
+      // Increase the score if the hint was not clicked
+      score.value += 10;
+    }
     handleModalOk("correct");
   }
 };
