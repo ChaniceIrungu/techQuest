@@ -167,8 +167,8 @@ onMounted(async () => {
   // fetch data from
   const res = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/scrambles`);
   getData.value = shuffle([...res.data.data]);
-
-  console.log("currentQuestion", currentQuestion.value);
+  getData.value.slice(0, 4);
+  // console.log("currentQuestion", currentQuestion.value);
 });
 
 const initGame = () => {
@@ -201,7 +201,7 @@ const generateQuestion = () => {
 
       // generate next question
       currentQuestion.value = getData.value[questionIdx.value].attributes;
-      console.log("currentQuestion after next", currentQuestion.value);
+      // console.log("currentQuestion after next", currentQuestion.value);
       // Store the correct word separately
       correctWord.value = currentQuestion.value.correctWord;
 
@@ -217,7 +217,7 @@ const generateQuestion = () => {
           qAreaIdxHolder: qAreaIdxHolder.value,
         })
       );
-      console.log("dropAreaData after next", dropAreaData.value);
+      // console.log("dropAreaData after next", dropAreaData.value);
       // Set the game data for the current question
       gameData.value = {
         word: shuffledWord,
@@ -297,7 +297,7 @@ const updateDropArea = (currElem, letter, qAreaIndex) => {
   const allSlotsFilled = dropAreaData.value.every((slot) => slot.letter !== "");
   const lettersOnly = dropAreaData.value.map((item) => item.letter);
   if (allSlotsFilled) {
-    console.log("all slots filled");
+    // console.log("all slots filled");
     gameData.value.userAnswers = [...lettersOnly];
   }
 };
@@ -392,7 +392,7 @@ const checkAnswer = () => {
     handleModalOk("wrong");
   } else {
     updateScore();
-    if (!hintClicked.value) {
+    if (!showHint.value) {
       // Increase the score if the hint was not clicked
       score.value += 10;
     }
