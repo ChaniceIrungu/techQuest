@@ -63,6 +63,7 @@
           </ul>
         </div>
         <controls
+          v-if="!showHowToPlayModal"
           :current-question="gameData"
           :drop-area-data="dropAreaData"
           @clearAction="clearAction()"
@@ -72,6 +73,7 @@
           ><p class="next-level-button">
             Skip this level
             <button
+              v-if="!showHowToPlayModal"
               class="btn bg-green-500 hover:bg-green-700 rounded py-2 px-18"
               @click="generateQuestion"
             >
