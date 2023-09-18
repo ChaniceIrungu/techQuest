@@ -42,6 +42,6 @@ const { score, correct, wrong, feebackMessage } = defineProps([
 ]);
 
 const goToOtherPage = () => {
-  router.push({ name: "tech-quest-end" });
+  router.push({ name: "guess-number" });
 };
 </script>
