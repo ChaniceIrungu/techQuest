@@ -1,6 +1,15 @@
 <template>
   <div class="flex items-center justify-center">
     <div class="wrapper px-8 bg-blue-300 md:p-8 p-6 border rounded-md">
+      <h1
+        class="text-lg md:text-xl font-semibold text-center mb-4"
+        v-if="round === 2"
+      >
+        Round
+        <span class="text-black text-2xl border-4 rounded-lg p-1">{{
+          round
+        }}</span>
+      </h1>
       <header class="text-lg md:text-xl font-semibold">
         Guess a number from 1 to 100
       </header>
@@ -22,7 +31,7 @@
           :class="buttonColor"
           class="border-4 p-2 rounded-md text-white text-lg bg-blue-400"
           @click="checkGuess"
-          :disabled="gameOver"
+          :disabled="gameOver || !inputValue"
         >
           {{ buttonText }}
         </button>
@@ -44,6 +53,7 @@ const router = useRouter();
 
 const randomNum = ref(Math.floor(Math.random() * 100));
 const chances = ref(5);
+const round = ref(1);
 const inputValue = ref("");
 const guessText = ref("");
 const buttonText = ref("Check");
@@ -53,21 +63,38 @@ const handleInput = () => {
   guessText.value = "";
 };
 
+const resetGame = () => {
+  round.value = 2;
+  buttonText.value = "Check";
+  chances.value = 7;
+  gameOver.value = false;
+  randomNum.value = Math.floor(Math.random() * 100);
+  inputValue.value = "";
+  guessText.value = "";
+};
+
 // onMounted(() => {});
 const checkGuess = () => {
   if (gameOver.value) return;
-  console.log("number", randomNum.value);
-  chances.value--;
+
+  if (chances.value !== 0) chances.value--;
 
   if (inputValue.value == randomNum.value) {
     // If the guess is correct
     guessText.value = "Congratulations!!";
-    buttonText.value = "Replay";
-    gameOver.value = true;
-    // Navigate to the game-over page after a delay
-    setTimeout(() => {
-      router.push({ name: "tech-quest-end" });
-    }, 3000); // Delay in milliseconds (3 seconds)
+    if (round.value < 2) {
+      // If the game is over, and less than 2 games have been played, reset the game
+      setTimeout(() => {
+        resetGame();
+      }, 1000); // Delay in milliseconds (3 seconds)
+    } else {
+      gameOver.value = true;
+      buttonText.value = "Game Over";
+      // If two games have been played, redirect to the "tech-quest-end" page
+      setTimeout(() => {
+        router.push({ name: "tech-quest-end" });
+      }, 2000); // Delay in milliseconds (3 seconds)
+    }
   } else if (inputValue.value > randomNum.value && inputValue.value < 100) {
     // If the guess is too high
     guessText.value = "Your guess is high";
@@ -75,22 +102,24 @@ const checkGuess = () => {
     guessText.value = "Your guess is low";
   } else {
     guessText.value = "Your number is invalid";
-    // guessText.value = "#DE0611";
   }
 
   if (chances.value === 0) {
-    buttonText.value = "Game Over";
-    gameOver.value = true;
     guessText.value = "You lost the game";
-    // Navigate to the game-over page after a delay
-    setTimeout(() => {
-      router.push({ name: "tech-quest-end" });
-    }, 3000); // Delay in milliseconds (3 seconds)
+    if (round.value < 2) {
+      // If the game is over, and less than 2 games have been played, reset the game
+      setTimeout(() => {
+        resetGame();
+      }, 1800); // Delay in milliseconds (3 seconds)
+    } else {
+      gameOver.value = true;
+      buttonText.value = "Game Over";
+      // If two games have been played, redirect to the "tech-quest-end" page
+      setTimeout(() => {
+        router.push({ name: "tech-quest-end" });
+      }, 2000); // Delay in milliseconds (3 seconds)
+    }
   }
-
-  //   if (chances.value < 0) {
-  //     window.location.reload();
-  //   }
 };
 
 // Computed property to determine the dynamic button class
@@ -117,6 +146,14 @@ const guessTextColorClass = computed(() => {
   justify-content: center;
   gap: 20px;
   margin: 25px 0;
+}
+
+.scale-up-once {
+  transition: transform 1s; /* Adjust the duration as needed */
+}
+
+.scale-up-once.scale-up {
+  transform: scale(1.2); /* Adjust the scale factor as needed */
 }
 .input-field input,
 .input-field button {
