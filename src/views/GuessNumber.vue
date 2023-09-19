@@ -43,7 +43,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const randomNum = ref(Math.floor(Math.random() * 100));
-const chances = ref(10);
+const chances = ref(5);
 const inputValue = ref("");
 const guessText = ref("");
 const buttonText = ref("Check");
