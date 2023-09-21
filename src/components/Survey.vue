@@ -53,10 +53,10 @@
       <!-- end survey -->
       <div class="mt-4 inline">
         <button
-          class="bg-yellow-500 hover:bg-yellow-700 p-3 rounded-full"
+          class="hover:bg-yellow-700 p-3 rounded-full"
           @click="nextQuestion"
-          :disabled="shouldDisableNextButton"
-          :class="{ 'bg-gray-300': shouldDisableNextButton }"
+          :disabled="!userInput"
+          :class="[!userInput ? 'cursor-not-allowed' : '', buttonColor]"
         >
           {{ nextQuestionText }}
         </button>
@@ -122,6 +122,13 @@ const updateSelectedChoices = (index) => {
 const shouldDisableNextButton = computed(() => {
   // Check if userInput is empty and the question type is 'input'
   return userInput.value.trim() === "";
+});
+
+// Computed property to determine the dynamic button class
+const buttonColor = computed(() => {
+  return userInput.value.trim() === ""
+    ? " bg-gray-400 text-gray-600/75 pointer-events-none"
+    : "bg-yellow-500";
 });
 
 const saveResponse = () => {
