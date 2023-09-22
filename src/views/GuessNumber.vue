@@ -116,7 +116,7 @@ const checkGuess = () => {
       buttonText.value = "Game Over";
       // If two games have been played, redirect to the "tech-quest-end" page
       setTimeout(() => {
-        router.push({ name: "tech-quest-end" });
+        router.push({ name: "palette-game" });
       }, 2000); // Delay in milliseconds (3 seconds)
     }
   }

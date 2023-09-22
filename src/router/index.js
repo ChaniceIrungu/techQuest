@@ -50,6 +50,11 @@ const router = createRouter({
       component: () => import("../views/GuessNumber.vue"),
     },
     {
+      path: "/palette-game",
+      name: "palette-game",
+      component: () => import("../views/PaletteView.vue"),
+    },
+    {
       path: "/test",
       name: "test",
       component: () => import("../components/test.vue"),

@@ -1,96 +1,82 @@
-const words = [
+const themes = [
   {
-    word: "addition",
-    hint: "The process of adding numbers",
+    name: "An Artisan Bakery",
+    targetColor: "#E5B76E",
+    correctPaletteOptions: [
+      "#E5B76E",
+      "#785D45",
+      "#D9BF77",
+      "#A98B5F",
+      "#F2D6A3",
+      "#B38D4A",
+    ],
+    incorrectPaletteOptions: ["#FF0000", "#00FF00", "#0000FF", "#FFFF00"],
   },
   {
-    word: "meeting",
-    hint: "Event in which people come together",
+    name: "A Travel Blog",
+    targetColor: "#FF4500",
+    correctPaletteOptions: [
+      "#FF4500",
+      "#FFA07A",
+      "#87CEEB",
+      "#1E90FF",
+      "#F0E68C",
+      "#32CD32",
+    ],
+    incorrectPaletteOptions: ["#000000", "#FFFFFF", "#808080", "#FFD700"],
+  },
+
+  {
+    name: "A Fashion Boutique",
+    targetColor: "#FF69B4",
+    correctPaletteOptions: [
+      "#FF69B4",
+      "#FFC0CB",
+      "#9370DB",
+      "#E6E6FA",
+      "#FFB6C1",
+      "#DDA0DD",
+    ],
+    incorrectPaletteOptions: ["#00FFFF", "#00CED1", "#20B2AA", "#008080"],
   },
   {
-    word: "number",
-    hint: "Math symbol used for counting",
+    name: "Sustainable Living",
+    targetColor: "#008000",
+    correctPaletteOptions: [
+      "#008000",
+      "#32CD32",
+      "#3CB371",
+      "#7FFF00",
+      "#228B22",
+      "#00FF7F",
+    ],
+    incorrectPaletteOptions: ["#FF0000", "#FF6347", "#FF4500", "#FF8C00"],
   },
   {
-    word: "exchange",
-    hint: "The act of trading",
+    name: "A Coffee Shop",
+    targetColor: "#A0522D",
+    correctPaletteOptions: [
+      "#A0522D",
+      "#8B4513",
+      "#D2B48C",
+      "#CD853F",
+      "#F4A460",
+      "#DEB887",
+    ],
+    incorrectPaletteOptions: ["#FF00FF", "#800080", "#FF1493", "#C71585"],
   },
   {
-    word: "canvas",
-    hint: "Piece of fabric for oil painting",
-  },
-  {
-    word: "garden",
-    hint: "Space for planting flower and plant",
-  },
-  {
-    word: "position",
-    hint: "Location of someone or something",
-  },
-  {
-    word: "feather",
-    hint: "Hair like outer covering of bird",
-  },
-  {
-    word: "comfort",
-    hint: "A pleasant feeling of relaxation",
-  },
-  {
-    word: "tongue",
-    hint: "The muscular organ of mouth",
-  },
-  {
-    word: "expansion",
-    hint: "The process of increase or grow",
-  },
-  {
-    word: "country",
-    hint: "A politically identified region",
-  },
-  {
-    word: "group",
-    hint: "A number of objects or persons",
-  },
-  {
-    word: "taste",
-    hint: "Ability of tongue to detect flavour",
-  },
-  {
-    word: "store",
-    hint: "Large shop where goods are traded",
-  },
-  {
-    word: "field",
-    hint: "Area of land for farming activities",
-  },
-  {
-    word: "friend",
-    hint: "Person other than a family member",
-  },
-  {
-    word: "pocket",
-    hint: "A bag for carrying small items",
-  },
-  {
-    word: "needle",
-    hint: "A thin and sharp metal pin",
-  },
-  {
-    word: "expert",
-    hint: "Person with extensive knowledge",
-  },
-  {
-    word: "statement",
-    hint: "A declaration of something",
-  },
-  {
-    word: "second",
-    hint: "One-sixtieth of a minute",
-  },
-  {
-    word: "library",
-    hint: "Place containing collection of books",
+    name: "Tech Company",
+    targetColor: "#00BFFF",
+    correctPaletteOptions: [
+      "#00BFFF",
+      "#9B30FF",
+      "#00FF00",
+      "#CCCCCC",
+      "#FF3333",
+      "#FF9900",
+    ],
+    incorrectPaletteOptions: ["#FF6600", "#FF0066", "#990000", "#009999"],
   },
 ];
-
-export default words;
+export default themes;
