@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col items-center md:p-0.5 p-4 md:justify-center tracking-wider"
+    class="flex flex-col items-center justify-center md:p-0.5 px-4 md:justify-center mx-auto"
   >
     <h1 class="pb-2 text-2xl text-center font-extrabold font-serif text-black">
       Thanks you for your reponses
@@ -18,18 +18,26 @@
       Riddle Challenge:
     </h1>
 
-    <div class="grid md:grid-cols-2 gap-4 place-items-center">
-      <div class="m-auto flex justify-center">
-        <img class="w-1/2 md:w-full" src="/riddle.jpg" />
+    <div class="text-center">
+      <div class="flex justify-center">
+        <img class="" src="/riddle.jpg" />
       </div>
 
-      <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center pt-2">
         <p
           class="text-base md:text-xl text-center md:text-left font-extrabold font-serif text-yellow-600"
         >
-          For this challenge you will receive a bunch of cards. You must solve
-          the riddle on the card before time runs out. Flip the card to reveal
-          the riddle. There will be clues to guide you on your way.
+          For this challenge you will receive a bunch of cards.
+        </p>
+        <p
+          class="text-base md:text-xl text-center md:text-left font-extrabold font-serif text-yellow-600"
+        >
+          Flip the card to reveal the riddle.
+        </p>
+        <p
+          class="text-base md:text-xl text-center md:text-left font-extrabold font-serif text-yellow-600"
+        >
+          There will be clues to guide you on your way.
         </p>
         <button
           class="bg-yellow-500 hover:bg-yellow-700 rounded mt-4 py-4 px-10 text-white text-lg font-bold capitalize"
