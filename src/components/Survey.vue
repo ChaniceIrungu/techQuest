@@ -11,13 +11,15 @@
         </div>
       </div>
 
-      <!-- <mark>Checked items: {{ selectedChoices }}</mark> -->
       <!-- Survey goes here -->
       <div id="surv" class="bg-[#F3F3F3] border border-rounded-md my-4">
         <div class="p-4" v-if="currentQuestion">
           <p class="font-bold md:text-2xl text-xl">
             {{ currentQuestion.attributes.question }}
           </p>
+          <div v-if="showError" class="text-red-500 text-left">
+            Input required/Select a choice
+          </div>
           <div class="p-4" v-if="currentQuestion.attributes.type === 'input'">
             <input
               type="text"
@@ -27,6 +29,7 @@
               v-model="userInput"
             />
           </div>
+
           <div v-else class="cursor-pointer">
             <div
               class="py-2 text-left"
@@ -56,7 +59,7 @@
           class="hover:bg-yellow-700 p-3 rounded-full"
           @click="nextQuestion"
           :disabled="!userInput"
-          :class="[!userInput ? 'cursor-not-allowed' : '', buttonColor]"
+          :class="[!userInput ? 'cursor-not-allowed ' : '', buttonColor]"
         >
           {{ nextQuestionText }}
         </button>
@@ -74,6 +77,7 @@ import axios from "axios";
 const surveys = ref([]);
 const currentIndex = ref(0);
 const userInput = ref("");
+const showError = ref(false);
 const currentQuestion = ref(null);
 const nextQuestionText = ref("Next Question");
 const responses = ref([]);
@@ -118,10 +122,20 @@ const updateSelectedChoices = (index) => {
     choices.push(index); // Add the new selection
   }
 };
-// Add a computed property to check if userInput is empty
+
 const shouldDisableNextButton = computed(() => {
-  // Check if userInput is empty and the question type is 'input'
-  return userInput.value.trim() === "";
+  // Check if there are no selected choices for checkbox or radio questions
+  if (
+    userInput.value.trim() !== "" &&
+    currentQuestion.value.attributes.type !== "input"
+  ) {
+    // Check if there are no selected choices for checkbox or radio questions
+    if (currentQuestion.value.attributes.multiple) {
+      return selectedChoices.value?.length === 0;
+    } else {
+      return selectedChoices.value?.length === 0;
+    }
+  }
 });
 
 // Computed property to determine the dynamic button class
@@ -141,7 +155,11 @@ const nextQuestion = () => {
 
   // Check if userInput is empty for input type questions
   if (shouldDisableNextButton.value) {
-    // You can display an error message or handle it as needed
+    showError.value = true;
+    setTimeout(() => {
+      // Move to the next round after displaying feedback
+      showError.value = false;
+    }, 1000);
     return;
   }
 
