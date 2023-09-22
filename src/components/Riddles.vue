@@ -1,6 +1,6 @@
 <template>
   <div
-    className="box-border h-screen  2xl:bg-white	md:flex md:flex-col items-center text-sm md:text-lg"
+    className="box-border h-screen  2xl:bg-white	md:flex md:flex-col items-center text-sm md:text-lg md:pt-2"
   >
     <p
       v-if="flipCardAlert"

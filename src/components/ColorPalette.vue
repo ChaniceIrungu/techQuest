@@ -12,7 +12,7 @@
         <h2>
           Design a color palette for:
           <span
-            class="font-bold underline decoration-indigo-500 decoration-dotted"
+            class="font-bold underline decoration-indigo-500 decoration-dotted text-xl"
             >{{ currentTheme.name }}</span
           >
         </h2>
@@ -85,20 +85,8 @@ const allPaletteOptions = computed(() => {
     ...currentTheme.value.correctPaletteOptions.slice(0, 5),
     ...currentTheme.value.incorrectPaletteOptions.slice(0, 3),
   ];
-  const shuffle = (arr) => {
-    var currIndex = arr.length;
-    var tempValue;
-    var randomIndex;
-    while (currIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currIndex);
-      currIndex -= 1;
-      tempValue = arr[currIndex];
-      arr[currIndex] = arr[randomIndex];
-      arr[randomIndex] = tempValue;
-    }
-    return arr;
-  };
-  options;
+
+  shuffleArray(options);
   return options;
 });
 
@@ -145,18 +133,17 @@ const nextRound = () => {
   // Reset the game state for the next round
   selectedColors.value = [];
 
-  if (currentThemeIndex.value < themes.length - 1) {
+  if (currentThemeIndex.value <= themes.length - 1) {
     // If not at the last index, move to the next theme
     currentThemeIndex.value++;
-  } else {
+  }
+  if (currentThemeIndex.value === themes.length) {
     // If at the last index, navigate to the game over page
     setTimeout(() => {
       // Move to the next round after displaying feedback
       router.push({ name: "tech-quest-end" });
     }, 2000);
-    // router.push("/yourGameOverPage");
   }
-
   feedbackMessage.value = "";
 };
 

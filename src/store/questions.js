@@ -10,7 +10,7 @@ const themes = [
       "#F2D6A3",
       "#B38D4A",
     ],
-    incorrectPaletteOptions: ["#FF0000", "#00FF00", "#0000FF", "#FFFF00"],
+    incorrectPaletteOptions: ["#FF6347", "#8A2BE2", "#20B2AA", "#FFD700"],
   },
   {
     name: "A Travel Blog",
@@ -50,7 +50,7 @@ const themes = [
       "#228B22",
       "#00FF7F",
     ],
-    incorrectPaletteOptions: ["#FF0000", "#FF6347", "#FF4500", "#FF8C00"],
+    incorrectPaletteOptions: ["#FF00FF", "#FF6347", "#0000FF", "#FF8C00"],
   },
   {
     name: "A Coffee Shop",
