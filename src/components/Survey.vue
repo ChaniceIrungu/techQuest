@@ -5,7 +5,7 @@
         <div>Progress</div>
 
         <div
-          class="p-1 border-1 border-yellow-700 rounded-full bg-yellow-600 text-white"
+          class="p-1 border-1 border-yellow-700 rounded-full bg-fuchsia-600 text-white"
         >
           {{ currentIndex + 1 }}/{{ surveys.length }}
         </div>
@@ -37,7 +37,7 @@
               :key="index"
             >
               <label
-                class="flex items-center space-x-4 border-2 rounded p-2 hover:bg-yellow-200 cursor-pointer"
+                class="flex items-center space-x-4 border-2 rounded p-2 hover:bg-blue-200 cursor-pointer"
               >
                 <input
                   :type="
@@ -56,7 +56,7 @@
       <!-- end survey -->
       <div class="mt-4 inline">
         <button
-          class="hover:bg-yellow-700 p-3 rounded-full"
+          class="bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:bg-gradient-to-r hover:from-violet-700 hover:to-fuchsia-700 p-3 rounded-full"
           @click="nextQuestion"
           :disabled="!userInput"
           :class="[!userInput ? 'cursor-not-allowed ' : '', buttonColor]"
@@ -145,8 +145,8 @@ const shouldDisableNextButton = computed(() => {
 // Computed property to determine the dynamic button class
 const buttonColor = computed(() => {
   return userInput.value.trim() === ""
-    ? " bg-gray-400 text-gray-600/75 pointer-events-none"
-    : "bg-yellow-500";
+    ? "bg-gradient-to-r from-gray-500 to-gray-500 text-gray-700 pointer-events-none"
+    : "bg-gradient-to-r from-violet-500 to-fuchsia-500";
 });
 
 const saveResponse = () => {

@@ -4,17 +4,13 @@
   >
     <h1 class="pb-2 text-2xl text-center font-extrabold font-serif text-black">
       Thanks you for your reponses
-      <strong class="text-yellow-600 capitalize">{{ userName }}.</strong>
+      <strong class="text-fuchsia-500 capitalize">{{ userName }}.</strong>
     </h1>
-    <h1
-      class="p-2 text-xl text-center font-extrabold font-serif text-black-600"
-    >
+    <h1 class="p-2 text-xl text-center font-extrabold text-black-600">
       Let the Games Begin!
     </h1>
 
-    <h1
-      class="p-1 text-xl text-center font-extrabold font-serif text-black-600"
-    >
+    <h1 class="p-1 text-xl text-center font-extrabold text-black-600">
       Riddle Challenge:
     </h1>
 
@@ -25,25 +21,26 @@
 
       <div class="flex flex-col items-center pt-2">
         <p
-          class="text-base md:text-xl text-center md:text-left font-extrabold font-serif text-yellow-600"
+          class="text-base md:text-xl text-center md:text-left font-extrabold text-fuchsia-700"
         >
           For this challenge you will receive a bunch of cards.
         </p>
         <p
-          class="text-base md:text-xl text-center md:text-left font-extrabold font-serif text-yellow-600"
+          class="text-base md:text-xl text-center md:text-left font-extrabold text-fuchsia-700"
         >
           Flip the card to reveal the riddle.
         </p>
         <p
-          class="text-base md:text-xl text-center md:text-left font-extrabold font-serif text-yellow-600"
+          class="text-base md:text-xl text-center md:text-left font-extrabold text-fuchsia-700"
         >
           There will be clues to guide you on your way.
         </p>
-        <button
-          class="bg-yellow-500 hover:bg-yellow-700 rounded mt-4 py-4 px-10 text-white text-lg font-bold capitalize"
-        >
-          <span class="" @click="showNextGame">START</span>
-        </button>
+
+        <cButton
+          :buttonText="'START'"
+          @click="showNextGame"
+          class="mt-4 py-4"
+        />
       </div>
     </div>
   </div>
@@ -51,6 +48,7 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import cButton from "../components/Button.vue";
 
 const router = useRouter();
 const userName = ref("Human");

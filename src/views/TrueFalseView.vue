@@ -5,7 +5,7 @@
       class="flex flex-col justify-center items-center mx-auto"
     >
       <div class="max-w-md">
-        <p class="text-center text-yellow-600 text-base md:text-xl font-bold">
+        <p class="text-center text-fuchsia-600 text-base md:text-xl font-bold">
           Impressive skills! Now, let's put your memory to the test. Engage in
           this Memory Game pay attention to the statements and unleash your
           memory prowess now!
@@ -16,19 +16,14 @@
       </div>
       <div class="pt-4 md:pt-8">
         <h1
-          class="md:px-2 pt-2 text-center text-yellow-600 text-lg md:text-2xl font-bold"
+          class="md:px-2 pt-2 text-center text-fuchsia-600 text-lg md:text-2xl font-bold"
         >
           Choose if statement is True or False
         </h1>
       </div>
 
       <div class="pt-4 md:pt-8 text-center">
-        <button
-          @click="startShapesGame"
-          class="bg-[#d1951d] hover:bg-[#b99c28] text-white font-bold py-3 px-10 rounded-full"
-        >
-          Continue
-        </button>
+        <cButton :buttonText="' Continue'" @click="startShapesGame" />
       </div>
     </div>
 
@@ -38,7 +33,7 @@
 <script setup>
 import { ref, reactive, computed } from "vue";
 import ShapesMemory from "../components/ShapesMemory.vue";
-
+import cButton from "../components/Button.vue";
 const menuOpen = ref(false);
 const shapeMemoryOpen = ref(false);
 

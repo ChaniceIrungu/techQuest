@@ -84,9 +84,8 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import { useRouter } from "vue-router";
-import FeedBackModal from "../components/riddles/FeedBackModal.vue";
-
 import axios from "axios";
+import FeedBackModal from "../components/riddles/FeedBackModal.vue";
 
 const router = useRouter();
 const riddles = ref([]);

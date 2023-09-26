@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center items-center">
+  <div class="flex flex-col justify-center items-center px-2">
     <div class="pb-3 text-lg">
       <p>
         Your current goal is to :
@@ -38,12 +38,7 @@
     </div>
 
     <div class="pt-2 justify-self-start">
-      <button
-        class="rounded py-3 px-6 bg-yellow-500 float-left"
-        @click="nextRecommendation"
-      >
-        Next
-      </button>
+      <cButton @click="nextRecommendation" :buttonText="' Next'" />
     </div>
   </div>
 </template>
@@ -51,6 +46,7 @@
 import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import recommendations from "../store/recommend.js";
+import cButton from "./Button.vue";
 const emit = defineEmits("openEnd");
 
 const router = useRouter();

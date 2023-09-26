@@ -10,7 +10,7 @@
     </p>
     <p class="pt-2 font-bold text-xl">
       Your score :
-      <span class="text-[#FFB801] font-bold">{{ score || 0 }}</span>
+      <span class="text-blue-500 font-bold">{{ score || 0 }}</span>
     </p>
     <div>
       <h1 class="pt-32 text-center text-xl font-bold">
@@ -20,12 +20,7 @@
     <div class="pt-32 flex flex-col items-center">
       <h1 class="text-center text-xl font-bold">Come on! You can do it!</h1>
       <div class="pt-4 md:pt-8 text-center">
-        <button
-          @click="goToOtherPage()"
-          class="bg-[#d1951d] hover:bg-[#b99c28] text-white font-bold py-3 px-10 rounded-full"
-        >
-          Continue
-        </button>
+        <cButton :buttonText="' Continue'" @click="goToOtherPage()" />
       </div>
     </div>
   </div>
@@ -33,6 +28,7 @@
 <script setup>
 import { ref, defineProps } from "vue";
 import { useRouter } from "vue-router";
+import cButton from "../Button.vue";
 const router = useRouter();
 const { score, correct, wrong, feebackMessage } = defineProps([
   "score",

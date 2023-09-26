@@ -41,14 +41,12 @@
           {{ selectedColors.includes(color) ? "Selected" : "" }}
         </div>
       </div>
-      <div class="flex justify-around">
-        <button
+      <div class="flex justify-around mt-4">
+        <cButton
           :disabled="!selectedColors.length"
-          class="mt-4 bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600"
           @click="checkAnswer"
-        >
-          Submit
-        </button>
+          :buttonText="' Submit'"
+        />
       </div>
     </div>
   </div>
@@ -58,6 +56,7 @@ import { ref, onMounted, computed } from "vue";
 import themes from "../store/questions.js";
 import { useRouter } from "vue-router";
 const router = useRouter();
+import cButton from "./Button.vue";
 
 const currentThemeIndex = ref(0);
 const selectedColors = ref([]);

@@ -6,22 +6,23 @@
       </div>
       <div class="text-center md:text-left place-self-center">
         <h1
-          class="md:pb-10 pb-4 md:text-2xl text-lg text-center md:text-left font-extrabold font-serif text-yellow-600"
+          class="md:pb-10 pb-4 md:text-2xl text-lg text-center md:text-left font-extrabold font-serif text-fuchsia-600"
         >
           {{ HighlightMsg }}
         </h1>
         <h3
-          class="md:pb-10 pb-4 md:text-xl text-sm text-center md:text-left font-extrabold font-serif text-yellow-600 text-wrap"
+          class="md:pb-10 pb-4 md:text-xl text-sm text-center md:text-left font-extrabold font-serif text-blue-600 text-wrap"
         >
           {{ message }}
         </h3>
+        <cButton :buttonText="state.buttonText" @click="onContinueClick" />
 
-        <button
-          class="bg-yellow-500 hover:bg-yellow-700 rounded py-4 px-10 md:px-20 text-white text-lg font-bold capitalize"
+        <!-- <button
+          class="bg-blue-500 hover:bg-blue-700 rounded py-4 px-10 md:px-20 text-white text-lg font-bold capitalize"
           @click="onContinueClick"
         >
           <span class="">{{ state.buttonText }}</span>
-        </button>
+        </button> -->
       </div>
     </div>
   </div>
@@ -30,6 +31,8 @@
 <script setup>
 import { ref, reactive, computed } from "vue";
 import { useRouter } from "vue-router";
+import cButton from "./Button.vue";
+const router = useRouter();
 
 const HighlightMsg = ref(
   "Meet TechQuest!: A Free Gamified Tool to Unleash Your Skills and Find Your Dream Tech Career!"
@@ -39,15 +42,13 @@ const message = ref(
 );
 
 const state = reactive({
-  image: "OneLogo",
+  image: "OneLogo2",
   buttonText: "CONTINUE",
 });
 
 const imageSrc = computed(() => {
   return `/${state.image}.jpg`;
 });
-
-const router = useRouter();
 
 // Your original HTML string
 const htmlString =

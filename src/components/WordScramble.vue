@@ -17,7 +17,7 @@
           Refresh Word
         </button>
         <button
-          class="check-word bg-yellow-500 hover:bg-yellow-700 rounded py-4 px-20 text-white text-lg font-bold capitalize"
+          class="check-word bg-blue-500 hover:bg-blue-700 rounded py-4 px-20 text-white text-lg font-bold capitalize"
         >
           Check Word
         </button>

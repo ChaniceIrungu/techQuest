@@ -34,7 +34,7 @@
             <li
               v-for="(item, Idx) in dropAreaData"
               :key="Idx"
-              class="character-box h-12 w-12 md:h-20 md:w-20 bg-yellow-400"
+              class="character-box h-12 w-12 md:h-20 md:w-20 bg-blue-400"
               :class="[
                 'character-box',
                 { inactive: !item.isActive, active: item.isActive },
@@ -87,7 +87,7 @@
           v-if="showHowToPlayModal === true"
           class="how-to-play absolute top-0 h-full w-[90%] bg-[#ffffffde] p-8"
         >
-          <h3 class="text-center text-yellow-600 font-bold text-2xl pb-2">
+          <h3 class="text-center text-fuchsia-700 font-bold text-2xl pb-2">
             How To Play
           </h3>
           <p class="py-2">
@@ -106,12 +106,7 @@
           </p>
 
           <p style="text-align: center" class="py-4">
-            <button
-              class="start-btn bg-yellow-500 hover:bg-yellow-700 rounded py-2 px-20 text-white text-lg font-bold"
-              @click="generateQuestion"
-            >
-              Start
-            </button>
+            <cButton :buttonText="'Start'" @click="generateQuestion" />
           </p>
         </div>
       </div>
@@ -121,7 +116,7 @@
 
 <script setup>
 import { computed, defineAsyncComponent, ref, onMounted } from "vue";
-import Velocity from "velocity-animate";
+import cButton from "../components/Button.vue";
 import Scores from "../components/Score.vue";
 import { useRouter } from "vue-router";
 import words from "../store/questions.js";
@@ -507,6 +502,6 @@ ul li.animating {
 }
 
 .start-btn {
-  background: linear-gradient(#f1f176, #dea624);
+  background: linear-gradient(#76ecf1, #2459de);
 }
 </style>

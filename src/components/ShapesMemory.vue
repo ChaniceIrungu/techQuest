@@ -330,7 +330,7 @@ const getRandomIndex = (item) => {
 <style>
 #progress {
   height: 15px;
-  background-color: lightslategrey;
+  background-color: rgb(32, 98, 164);
   margin-bottom: 20px;
 }
 </style>
