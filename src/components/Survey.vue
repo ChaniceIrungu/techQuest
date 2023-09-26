@@ -176,20 +176,11 @@ const nextQuestion = () => {
   if (currentIndex.value <= surveys.value.length - 1) {
     // Save the responses for the current question before clearing selectedChoices
     saveResponse();
-    console.log("question response", responses.value);
+    // console.log("question response", responses.value);
     // Clear selectedChoices for the current question when moving to the next question
     selectedChoices.value = [];
     currentIndex.value++;
     currentQuestion.value = surveys.value[currentIndex.value];
-    // Clear selectedChoices when moving to the next question
-
-    console.log("selected choice:", selectedChoices.value);
-    // responses.value.push(selectedChoices.value);
-
-    // Clear selectedChoices for the current question when moving to the next question
-
-    // responses.value = [];
-    // selectedChoices.value = [];
   }
 
   if (currentIndex.value === surveys.value.length - 1) {
