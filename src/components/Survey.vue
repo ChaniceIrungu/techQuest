@@ -44,7 +44,7 @@
                     currentQuestion.attributes.multiple ? 'checkbox' : 'radio'
                   "
                   :checked="isSelected(index)"
-                  @change="updateSelectedChoices(index)"
+                  @change="updateSelectedChoices(index, choice)"
                   class="rounded-full h-4 w-4"
                 />
                 <span class="p-0.5 md:p-2">{{ choice }}</span>
@@ -102,10 +102,14 @@ const isSelected = (index) => {
 };
 
 // Function to update selectedChoices array
-const updateSelectedChoices = (index) => {
+const updateSelectedChoices = (index, input) => {
   // const currentIndexValue = currentIndex.value;
   const choices = selectedChoices.value;
 
+  // const questionResponse = {
+  //   questionNumber: currentQuestion.value.id, // Store the question number
+  //   choice: choices,
+  // };
   // If it's a multiple-choice question, toggle selection
   if (currentQuestion.value.attributes.multiple) {
     const choiceIndex = choices.indexOf(index);
@@ -119,7 +123,7 @@ const updateSelectedChoices = (index) => {
   } else {
     // For single-choice questions, replace the selection
     choices.length = 0; // Clear the array
-    choices.push(index); // Add the new selection
+    choices.push(index); // Add the new selections
   }
 };
 
@@ -146,7 +150,13 @@ const buttonColor = computed(() => {
 });
 
 const saveResponse = () => {
-  console.log("responses:", responses.value);
+  // Object to store the question number and selected choices
+  const questionResponse = {
+    questionNumber: currentQuestion.value.id,
+    choicesIdx: [...selectedChoices.value], // Create a copy of the selected choices
+  };
+  localStorage.setItem("responses", JSON.stringify(responses.value));
+  responses.value.push(questionResponse);
 };
 
 // Next and previous question handlers
@@ -164,12 +174,15 @@ const nextQuestion = () => {
   }
 
   if (currentIndex.value <= surveys.value.length - 1) {
+    // Save the responses for the current question before clearing selectedChoices
+    saveResponse();
+    console.log("question response", responses.value);
     // Clear selectedChoices for the current question when moving to the next question
     selectedChoices.value = [];
     currentIndex.value++;
     currentQuestion.value = surveys.value[currentIndex.value];
     // Clear selectedChoices when moving to the next question
-    console.log("the question", currentQuestion.value);
+
     console.log("selected choice:", selectedChoices.value);
     // responses.value.push(selectedChoices.value);
 
