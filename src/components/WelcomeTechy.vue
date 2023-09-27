@@ -4,14 +4,14 @@
       <div class="p-4 md:p-0.5 md:place-self-center">
         <img class="h-96 w-auto" :src="imageSrc" />
       </div>
-      <div class="text-center md:text-left place-self-center">
+      <div class="text-center md:text-left place-self-center flex-1">
         <h1
           class="md:pb-10 pb-4 md:text-2xl text-lg text-center md:text-left font-extrabold font-serif text-fuchsia-600 break-words"
         >
           {{ HighlightMsg }}
         </h1>
         <h3
-          class="md:pb-10 pb-4 md:text-xl text-sm text-center md:text-left font-extrabold font-serif text-blue-600 text-wrap"
+          class="md:pb-10 pb-4 md:text-xl text-sm text-center md:text-left font-extrabold font-serif text-blue-600 text-wrap break-words"
         >
           {{ message }}
         </h3>
