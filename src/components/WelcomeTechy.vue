@@ -6,7 +6,7 @@
       </div>
       <div class="text-center md:text-left place-self-center">
         <h1
-          class="md:pb-10 pb-4 md:text-2xl text-lg text-center md:text-left font-extrabold font-serif text-fuchsia-600"
+          class="md:pb-10 pb-4 md:text-2xl text-lg text-center md:text-left font-extrabold font-serif text-fuchsia-600 break-words"
         >
           {{ HighlightMsg }}
         </h1>
