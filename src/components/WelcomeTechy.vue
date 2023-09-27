@@ -1,8 +1,8 @@
 <template>
   <div class="md:flex justify-center h-screen items-center md:px-6">
     <div class="grid md:grid-cols-2 px-4">
-      <div class="p-4 md:p-0.5">
-        <img :src="imageSrc" />
+      <div class="p-4 md:p-0.5 md:place-self-center">
+        <img class="h-96 w-auto" :src="imageSrc" />
       </div>
       <div class="text-center md:text-left place-self-center">
         <h1
