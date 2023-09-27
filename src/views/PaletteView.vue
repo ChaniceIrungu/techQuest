@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center">
+  <div class="flex items-center justify-center px-2">
     <div v-if="!menuOpen" class="flex items-center flex-col">
       <h1 class="text-3xl font-semibold mb-3 text-blue-600">
         Color Palette Game

@@ -51,7 +51,7 @@ const emit = defineEmits("openEnd");
 
 const router = useRouter();
 
-const userName = ref("" || "human");
+const userName = ref("human");
 const responses = ref([]);
 
 onMounted(async () => {
