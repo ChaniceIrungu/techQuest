@@ -84,8 +84,8 @@ function onContinueClick() {
 
 <style>
 h3 {
-  white-space: pre;
-  text-wrap: wrap;
-  list-style-type: none;
+  /* white-space: pre; */
+  /* text-wrap: wrap; */
+  /* list-style-type: none; */
 }
 </style>
