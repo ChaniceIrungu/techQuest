@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col justify-center items-center px-2">
-    <div class="pb-3 text-lg">
+    <div class="pb-2 md:pb-10 text-lg">
       <p>
         Your current goal is to :
         <span class="font-bold">{{ recommendation.goal }}</span>
@@ -10,8 +10,8 @@
         <span class="text-xl capitalize font-extrabold"> {{ userName }}:</span>
       </p>
     </div>
-    <div class="grid md:grid-cols-2 md:gap-x-4 gap-y-4 place-content-center">
-      <div class="max-w-sm rounded overflow-hidden shadow-lg">
+    <div class="grid md:flex md:gap-x-4 gap-y-4 place-content-center">
+      <div class="max-w-sm rounded overflow-hidden shadow-xl">
         <div class="px-6 py-4">
           <div class="font-bold text-xl mb-2">What to Study</div>
           <p class="text-gray-700 text-base">
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <div class="pt-2 justify-self-start">
+    <div class="pt-2 md:pt-6 justify-self-start">
       <cButton @click="nextRecommendation" :buttonText="' Next'" />
     </div>
   </div>

@@ -136,7 +136,7 @@ const nextRound = () => {
     // If not at the last index, move to the next theme
     currentThemeIndex.value++;
   }
-  if (currentThemeIndex.value === themes.length) {
+  if (currentThemeIndex.value >= themes.length) {
     // If at the last index, navigate to the game over page
     setTimeout(() => {
       // Move to the next round after displaying feedback
