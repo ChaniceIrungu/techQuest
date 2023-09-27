@@ -2,13 +2,7 @@
   <div class="h-full text-center md:pb-2 pb-12">
     <div class="w-full p-2">
       <div class="pb-2">
-        <div>Progress</div>
-
-        <!-- <div
-          class="p-1 border-1 border-yellow-700 rounded-full bg-fuchsia-600 text-white"
-        >
-          {{ currentIndex + 1 }}/{{ surveys.length }}
-        </div> -->
+        <div class="font-bold">Progress</div>
 
         <div class="p-1 border-1 border-yellow-700 rounded-full bg-gray-200">
           <div
