@@ -4,10 +4,19 @@
       <div class="pb-2">
         <div>Progress</div>
 
-        <div
+        <!-- <div
           class="p-1 border-1 border-yellow-700 rounded-full bg-fuchsia-600 text-white"
         >
           {{ currentIndex + 1 }}/{{ surveys.length }}
+        </div> -->
+
+        <div class="p-1 border-1 border-yellow-700 rounded-full bg-gray-200">
+          <div
+            :style="{ width: progressBarWidth }"
+            class="rounded-full bg-fuchsia-600 text-white h-6"
+          >
+            {{ currentIndex + 1 }}/{{ surveys.length }}
+          </div>
         </div>
       </div>
 
@@ -92,6 +101,15 @@ onMounted(async () => {
   );
   surveys.value = res.data.data;
   currentQuestion.value = surveys.value[currentIndex.value];
+});
+
+// Computed property to calculate the width of the progress bar
+const progressBarWidth = computed(() => {
+  if (surveys.value.length === 0) {
+    return "0%";
+  }
+  const progress = ((currentIndex.value + 1) / surveys.value.length) * 100;
+  return `${progress}%`;
 });
 
 // Function to check if a choice is selected
