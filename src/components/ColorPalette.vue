@@ -1,13 +1,13 @@
 <template>
   <div class="bg-gray-200 md:min-h-screen md:py-8 py-2">
     <div class="container mx-auto px-4">
-      <h3 class="text-2xl font-semibold mb-4">
+      <h3 class="md:text-2xl text-xl font-semibold mb-4 text-center">
         Select all the colors that match the given website theme.
       </h3>
 
       <!-- game board -->
       <div
-        class="game-board bg-white rounded-lg md:p-6 p-4 shadow-lg tracking-wide"
+        class="game-board bg-white rounded-lg md:p-6 p-4 shadow-lg tracking-wide text-center"
       >
         <h2>
           Design a color palette for:
