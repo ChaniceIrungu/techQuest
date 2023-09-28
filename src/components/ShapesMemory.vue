@@ -138,8 +138,8 @@ const statementTemplates = [
   "I'm pretty sure it a {color} {Shape}",
 ];
 let timer;
-const timeLeft = ref(45); // start the timer at 60 seconds
-const duration = ref(45);
+const timeLeft = ref(30); // start the timer at 60 seconds
+const duration = ref(30);
 
 // Use a computed property to generate the hearts array based on the number of lives
 const hearts = computed(() => {
