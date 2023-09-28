@@ -38,7 +38,7 @@ const HighlightMsg = ref(
   "Meet TechQuest!: A Free Gamified Tool to Unleash Your Skills and Find Your Dream Tech Career!"
 );
 const message = ref(
-  "Here the tool will assess your skills and preferences through a series of mini-games "
+  "Here the tool will assess your skills and preferences through a series of mini-games. "
 );
 
 const state = reactive({
@@ -53,9 +53,9 @@ const imageSrc = computed(() => {
 // Your original HTML string
 const htmlString =
   '<ol type="1">' +
-  "<li>Fill in A Survey</li>" +
-  "<li>Play Some games</li>" +
-  "<li>Receive yout total Score, an analysis of your skills and a tech career recommendations</li>" +
+  "<li>Fill in a survey</li>" +
+  "<li>Play some games</li>" +
+  "<li>Receive your total score, an analysis of your skills and a tech career recommendations.</li>" +
   "</ol>";
 
 // Create a temporary element to parse the HTML
