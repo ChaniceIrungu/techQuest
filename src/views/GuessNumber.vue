@@ -52,7 +52,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const randomNum = ref(Math.floor(Math.random() * 100));
-const chances = ref(5);
+const chances = ref(7);
 const round = ref(1);
 const inputValue = ref("");
 const guessText = ref("");
