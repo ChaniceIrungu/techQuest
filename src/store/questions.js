@@ -10,7 +10,7 @@ const themes = [
       "#F2D6A3",
       "#B38D4A",
     ],
-    incorrectPaletteOptions: ["#FF6347", "#8A2BE2", "#20B2AA", "#FFD700"],
+    incorrectPaletteOptions: ["#FAF494", "#262A56", "#42032C", "#FFD700"],
   },
   {
     name: "A Travel Blog",
@@ -50,7 +50,7 @@ const themes = [
       "#228B22",
       "#00FF7F",
     ],
-    incorrectPaletteOptions: ["#FF00FF", "#FF6347", "#0000FF", "#FF8C00"],
+    incorrectPaletteOptions: ["#4AA79C", "#248179", "#D3D4D5", "#FF8C00"],
   },
   {
     name: "A Coffee Shop",
@@ -63,7 +63,7 @@ const themes = [
       "#F4A460",
       "#DEB887",
     ],
-    incorrectPaletteOptions: ["#FF00FF", "#800080", "#FF1493", "#C71585"],
+    incorrectPaletteOptions: ["#E2BCB7", "#8D7B68", "#E5E5CB", "#C71585"],
   },
   {
     name: "Tech Company",

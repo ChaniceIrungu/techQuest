@@ -4,6 +4,10 @@
       <h3 class="md:text-2xl text-xl font-semibold mb-4 text-center">
         Select all the colors that match the given website theme.
       </h3>
+      <h3 class="md:text-base text-sm mb-4 text-center">
+        Click <span class="font-semibold">SUBMIT</span> once satisfied with your
+        answer
+      </h3>
 
       <!-- game board -->
       <div
@@ -13,7 +17,7 @@
           Design a color palette for:
           <span
             class="font-bold underline decoration-indigo-500 decoration-dotted text-xl"
-            >{{ currentTheme.name }}</span
+            >{{ currentTheme?.name }}</span
           >
         </h2>
         <div
@@ -59,20 +63,24 @@ const router = useRouter();
 import cButton from "./Button.vue";
 
 const currentThemeIndex = ref(0);
+const gameThemes = ref([]);
 const selectedColors = ref([]);
 const score = ref(0);
 const correctColor = ref(false);
 const feedbackMessage = ref("");
 
-onMounted(() => {});
+onMounted(() => {
+  console.log(gameThemes.value);
+});
 
 const currentTheme = computed(() => {
   shuffleArray(themes);
-  return themes[currentThemeIndex.value];
+  gameThemes.value = themes.slice(0, 4);
+  return gameThemes.value && gameThemes.value[currentThemeIndex.value];
 });
 
 const targetColorClass = computed(() => {
-  return currentTheme.value.targetColor;
+  return currentTheme.value?.targetColor;
 });
 const feedbackColor = computed(() => {
   return correctColor.value ? "text-green-500" : "text-red-500";
@@ -81,8 +89,8 @@ const feedbackColor = computed(() => {
 const allPaletteOptions = computed(() => {
   // Merge correct and incorrect palette options and shuffle them
   const options = [
-    ...currentTheme.value.correctPaletteOptions.slice(0, 5),
-    ...currentTheme.value.incorrectPaletteOptions.slice(0, 3),
+    ...currentTheme.value?.correctPaletteOptions.slice(0, 5),
+    ...currentTheme.value?.incorrectPaletteOptions.slice(0, 3),
   ];
 
   shuffleArray(options);
@@ -101,17 +109,24 @@ const clickedColor = (color) => {
 
 const checkAnswer = () => {
   correctColor.value = false;
-  const correctColors = currentTheme.value.correctPaletteOptions;
-  const incorrectColors = currentTheme.value.incorrectPaletteOptions;
+  const correctColors = currentTheme.value?.correctPaletteOptions;
+  const incorrectColors = currentTheme.value?.incorrectPaletteOptions;
 
   const isCorrectPalette = selectedColors.value.every((color) =>
     correctColors.includes(color)
   );
 
   if (isCorrectPalette) {
-    score.value++;
     correctColor.value = true;
-    feedbackMessage.value = "Great job! Your color palette matches the theme!.";
+    if (selectedColors.value.length > 3) {
+      score.value++;
+
+      feedbackMessage.value =
+        "Great job! Your color palette matches the theme.";
+    } else {
+      feedbackMessage.value =
+        "The palette colors are correct but there needs to be more than 3 colors.";
+    }
   } else if (
     selectedColors.value.some((color) => incorrectColors.includes(color))
   ) {
@@ -132,11 +147,11 @@ const nextRound = () => {
   // Reset the game state for the next round
   selectedColors.value = [];
 
-  if (currentThemeIndex.value <= themes.length - 1) {
+  if (currentThemeIndex.value <= gameThemes.value.length - 1) {
     // If not at the last index, move to the next theme
     currentThemeIndex.value++;
   }
-  if (currentThemeIndex.value >= themes.length) {
+  if (currentThemeIndex.value === gameThemes.value.length) {
     // If at the last index, navigate to the game over page
     setTimeout(() => {
       // Move to the next round after displaying feedback
