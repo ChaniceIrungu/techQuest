@@ -55,6 +55,11 @@ const router = createRouter({
       name: "test",
       component: () => import("../components/test.vue"),
     },
+    // Catch-all route to redirect to the home route
+    {
+      path: "/:catchAll(.*)",
+      redirect: { name: "home" }, // Redirect to the "home" route
+    },
   ],
 });
 
