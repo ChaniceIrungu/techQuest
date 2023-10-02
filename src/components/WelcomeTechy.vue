@@ -11,10 +11,24 @@
           {{ HighlightMsg }}
         </h1>
         <h3
+          v-if="!message2"
           class="md:pb-10 pb-4 md:text-xl text-sm text-center md:text-left font-extrabold font-serif text-blue-600 text-wrap break-words flex-1"
         >
           {{ message }}
         </h3>
+        <div
+          v-if="message2"
+          class="md:pb-10 pb-4 md:text-xl text-sm font-extrabold font-serif text-blue-600 text-wrap break-words"
+        >
+          <ol class="list-decimal text-left">
+            <li>Fill in a survey</li>
+            <li>Play some games</li>
+            <li>
+              Receive your total score, an analysis of your skills and a tech
+              career recommendations.
+            </li>
+          </ol>
+        </div>
         <cButton :buttonText="state.buttonText" @click="onContinueClick" />
 
         <!-- <button
@@ -37,6 +51,7 @@ const router = useRouter();
 const HighlightMsg = ref(
   "Meet TechQuest!: A Free Gamified Tool to Unleash Your Skills and Find Your Dream Tech Career!"
 );
+const message2 = ref(false);
 const message = ref(
   "Here the tool will assess your skills and preferences through a series of mini-games. "
 );
@@ -73,8 +88,8 @@ listItems.forEach((li, index) => {
 function onContinueClick() {
   if (state.buttonText === "CONTINUE") {
     state.image = "plainLogo";
-    message.value = extractedText;
     HighlightMsg.value = "Your journey will take place in 3 phases ";
+    message2.value = true;
     state.buttonText = "Begin Survey";
   } else if (state.buttonText === "Begin Survey") {
     router.push("/survey");

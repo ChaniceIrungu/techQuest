@@ -215,7 +215,7 @@ const finishRiddle = () => {
   // Perform any actions needed when finishing the survey
   // For example, save the survey responses or navigate to another page
   // In this case, we navigate to the "riddles" page
-  router.push({ name: "scramble-view" });
+  router.push({ name: "scramble" });
 };
 
 // Convert the index to a letter (A, B, C, D, ...)

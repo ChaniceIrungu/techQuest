@@ -24,14 +24,10 @@ const router = createRouter({
       name: "riddles-1",
       component: () => import("../components/Riddles.vue"),
     },
+
     {
       path: "/scramble",
       name: "scramble",
-      component: () => import("../components/WordScramble.vue"),
-    },
-    {
-      path: "/scramble-view",
-      name: "scramble-view",
       component: () => import("../views/ScrambleView.vue"),
     },
     {
