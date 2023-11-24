@@ -65,7 +65,7 @@ import cButton from "./Button.vue";
 const currentThemeIndex = ref(0);
 const gameThemes = ref([]);
 const selectedColors = ref([]);
-const score = ref(0);
+const correct = ref(0);
 const correctColor = ref(false);
 const feedbackMessage = ref("");
 
@@ -82,6 +82,7 @@ const currentTheme = computed(() => {
 const targetColorClass = computed(() => {
   return currentTheme.value?.targetColor;
 });
+
 const feedbackColor = computed(() => {
   return correctColor.value ? "text-green-500" : "text-red-500";
 });
@@ -119,7 +120,7 @@ const checkAnswer = () => {
   if (isCorrectPalette) {
     correctColor.value = true;
     if (selectedColors.value.length > 3) {
-      score.value++;
+      correct.value++;
 
       feedbackMessage.value =
         "Great job! Your color palette matches the theme.";
@@ -146,20 +147,27 @@ const checkAnswer = () => {
 const nextRound = () => {
   // Reset the game state for the next round
   selectedColors.value = [];
-
-  if (currentThemeIndex.value <= gameThemes.value.length - 1) {
-    // If not at the last index, move to the next theme
-    currentThemeIndex.value++;
-  }
-  if (currentThemeIndex.value === gameThemes.value.length) {
-    // If at the last index, navigate to the game over page
-    setTimeout(() => {
-      // Move to the next round after displaying feedback
-      router.push({ name: "tech-quest-end" });
-    }, 2000);
-  }
   feedbackMessage.value = "";
+
+  if (currentThemeIndex.value < gameThemes.value.length - 1) {
+    // Increment the index to move to the next theme
+    currentThemeIndex.value++;
+  } else {
+    // If at the last index, navigate to the game over page
+    localStorage.setItem("paletteScore", pallettePercentage.value);
+    router.push({ name: "tech-quest-end" });
+    return; // Exit function to prevent further execution
+  }
+
+  // Wait for a brief period before moving to the next round
+  setTimeout(() => {
+    feedbackMessage.value = "";
+  }, 2000);
 };
+
+const pallettePercentage = computed(() => {
+  return Math.round((correct.value / 2) * 100);
+});
 
 // Function to shuffle an array randomly (Fisher-Yates shuffle algorithm)
 const shuffleArray = (arr) => {
