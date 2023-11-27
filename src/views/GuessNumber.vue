@@ -54,6 +54,7 @@ const router = useRouter();
 const randomNum = ref(Math.floor(Math.random() * 100));
 const chances = ref(7);
 const round = ref(1);
+const correct = ref(0);
 const inputValue = ref("");
 const guessText = ref("");
 const buttonText = ref("Check");
@@ -81,43 +82,76 @@ const checkGuess = () => {
 
   if (inputValue.value == randomNum.value) {
     // If the guess is correct
-    guessText.value = "Congratulations!!";
+    correct.value++;
+    guessText.value = `Congratulations!! Answer is ${randomNum.value}`;
+    gameOver.value = true;
+
     if (round.value < 2) {
-      // If the game is over, and less than 2 games have been played, reset the game
+      // If less than 2 games have been played, reset the game
       setTimeout(() => {
         resetGame();
-      }, 1000); // Delay in milliseconds (3 seconds)
+      }, 1000);
     } else {
-      gameOver.value = true;
       buttonText.value = "Game Over";
-      // If two games have been played, redirect to the "tech-quest-end" page
+      localStorage.setItem("numbersScore", numbersPercentage.value);
+
       setTimeout(() => {
         router.push({ name: "palette-game" });
-      }, 2000); // Delay in milliseconds (3 seconds)
+      }, 2000);
     }
   } else if (inputValue.value > randomNum.value && inputValue.value < 100) {
-    // If the guess is too high
     guessText.value = "Your guess is high";
+    if (chances.value === 0) {
+      // When the last chance is a high guess
+      gameOver.value = true;
+      guessText.value = `You lost the game!! Answer is ${randomNum.value}`;
+      if (round.value < 2) {
+        setTimeout(() => {
+          resetGame();
+        }, 1800);
+      } else {
+        gameOver.value = true;
+        buttonText.value = "Game Over";
+        setTimeout(() => {
+          router.push({ name: "palette-game" });
+        }, 2000);
+      }
+    }
   } else if (inputValue.value < randomNum.value && inputValue.value > 0) {
     guessText.value = "Your guess is low";
+    if (chances.value === 0) {
+      // When the last chance is a low guess
+      gameOver.value = true;
+      guessText.value = `You lost the game!! Answer is ${randomNum.value}`;
+      if (round.value < 2) {
+        setTimeout(() => {
+          resetGame();
+        }, 1800);
+      } else {
+        gameOver.value = true;
+        buttonText.value = "Game Over";
+        setTimeout(() => {
+          router.push({ name: "palette-game" });
+        }, 2000);
+      }
+    }
   } else {
     guessText.value = "Your number is invalid";
-  }
-
-  if (chances.value === 0) {
-    guessText.value = "You lost the game";
-    if (round.value < 2) {
-      // If the game is over, and less than 2 games have been played, reset the game
-      setTimeout(() => {
-        resetGame();
-      }, 1800); // Delay in milliseconds (3 seconds)
-    } else {
+    if (chances.value === 0) {
+      // When the last chance is an invalid guess
       gameOver.value = true;
-      buttonText.value = "Game Over";
-      // If two games have been played, redirect to the "tech-quest-end" page
-      setTimeout(() => {
-        router.push({ name: "palette-game" });
-      }, 2000); // Delay in milliseconds (3 seconds)
+      guessText.value = `You lost the game!! Answer is ${randomNum.value}`;
+      if (round.value < 2) {
+        setTimeout(() => {
+          resetGame();
+        }, 1800);
+      } else {
+        gameOver.value = true;
+        buttonText.value = "Game Over";
+        setTimeout(() => {
+          router.push({ name: "palette-game" });
+        }, 2000);
+      }
     }
   }
 };
@@ -138,6 +172,10 @@ const guessTextColorClass = computed(() => {
   } else {
     return "text-green-600"; // Default color for other messages
   }
+});
+
+const numbersPercentage = computed(() => {
+  return Math.round((correct.value / 2) * 100);
 });
 </script>
 <style scoped>
