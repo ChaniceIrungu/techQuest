@@ -9,8 +9,11 @@
   },
   "dependencies": {
     "axios": "^1.4.0",
+    "chart.js": "^3.9.1",
+    "pinia": "^2.1.7",
     "velocity-animate": "^1.5.2",
     "vue": "^3.3.4",
+    "vue-chartjs": "^5.2.0",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
