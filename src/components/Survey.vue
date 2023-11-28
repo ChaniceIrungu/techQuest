@@ -36,8 +36,9 @@
           <div v-else class="cursor-pointer">
             <div
               class="py-2 text-left"
-              v-for="(choice, key, index) in currentQuestion.attributes.choices"
-              :key="index"
+              v-for="(choice, key) in currentQuestion.attributes.survey_options
+                .data"
+              :key="key"
             >
               <label
                 class="flex items-center space-x-4 border-2 rounded p-2 hover:bg-blue-200 cursor-pointer"
@@ -46,11 +47,11 @@
                   :type="
                     currentQuestion.attributes.multiple ? 'checkbox' : 'radio'
                   "
-                  :checked="isSelected(index)"
-                  @change="updateSelectedChoices(index, choice)"
+                  :checked="isSelected(choice)"
+                  @change="updateSelectedChoices(key, choice)"
                   class="rounded-full h-4 w-4"
                 />
-                <span class="p-0.5 md:p-2">{{ choice }}</span>
+                <span class="p-0.5 md:p-2">{{ choice.attributes.option }}</span>
               </label>
             </div>
           </div>
@@ -95,6 +96,7 @@ onMounted(async () => {
   );
   surveys.value = res.data.data;
   currentQuestion.value = surveys.value[currentIndex.value];
+  // console.log("the Questisons", surveys.value);
 });
 
 // Computed property to calculate the width of the progress bar
@@ -107,9 +109,9 @@ const progressBarWidth = computed(() => {
 });
 
 // Function to check if a choice is selected
-const isSelected = (index) => {
+const isSelected = (choice) => {
   if (selectedChoices.value.length) {
-    return selectedChoices.value.includes(index);
+    return selectedChoices.value.includes(choice);
   }
 };
 
@@ -118,16 +120,12 @@ const updateSelectedChoices = (index, input) => {
   // const currentIndexValue = currentIndex.value;
   const choices = selectedChoices.value;
 
-  // const questionResponse = {
-  //   questionNumber: currentQuestion.value.id, // Store the question number
-  //   choice: choices,
-  // };
   // If it's a multiple-choice question, toggle selection
   if (currentQuestion.value.attributes.multiple) {
-    const choiceIndex = choices.indexOf(index);
+    const choiceIndex = choices.indexOf(input);
     // If the choice is not already selected (not found in the array)
     if (choiceIndex === -1) {
-      choices.push(index);
+      choices.push(input);
     } else {
       // If the choice is already selected (found in the array)
       choices.splice(choiceIndex, 1);
@@ -135,7 +133,7 @@ const updateSelectedChoices = (index, input) => {
   } else {
     // For single-choice questions, replace the selection
     choices.length = 0; // Clear the array
-    choices.push(index); // Add the new selections
+    choices.push(input); // Add the new selections
   }
 };
 
@@ -163,17 +161,26 @@ const buttonColor = computed(() => {
 
 const saveResponse = () => {
   // Object to store the question number and selected choices
+
   const questionResponse = {
     questionNumber: currentQuestion.value.id,
     choicesIdx: [...selectedChoices.value], // Create a copy of the selected choices
   };
-  localStorage.setItem("responses", JSON.stringify(responses.value));
+
+  // Check if techRole is not null and add it to the questionResponse
+  // if (techRole.value !== null) {
+  //   questionResponse.techRole = techRole.value;
+  // }
   responses.value.push(questionResponse);
+  localStorage.setItem("responses", JSON.stringify(responses.value));
+  // console.log("questionResponse", responses.value);
 };
 
 // Next and previous question handlers
 const nextQuestion = () => {
   localStorage.setItem("name", userInput.value);
+
+  // console.log("surv options:", currentQuestion.value.attributes.survey_options);
 
   // Check if userInput is empty for input type questions
   if (shouldDisableNextButton.value) {
