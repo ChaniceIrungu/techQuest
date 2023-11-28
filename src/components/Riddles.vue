@@ -88,11 +88,14 @@ import axios from "axios";
 import FeedBackModal from "../components/riddles/FeedBackModal.vue";
 
 const router = useRouter();
+const getRiddles = ref([]);
 const riddles = ref([]);
 const currentIndex = ref(0);
 const currentRiddle = ref(null);
 const currentOptions = ref([]);
 
+const riddlesCorrect = ref(0);
+const totalRiddles = ref(4);
 const isFlipped = ref(false);
 const flipCardAlert = ref(false);
 const showFeedback = ref(false);
@@ -107,10 +110,9 @@ onMounted(async () => {
     `${import.meta.env.VITE_API_ENDPOINT}/riddle-questions?populate=*`
   );
 
-  riddles.value = res.data.data;
-  shuffle(riddles.value);
-  console.log(riddles.value);
-  riddles.value.splice(0, 4);
+  getRiddles.value = shuffle(res.data.data);
+
+  riddles.value = getRiddles.value.slice(0, 4);
 
   currentRiddle.value = riddles.value[currentIndex.value].attributes;
   currentOptions.value = [
@@ -154,6 +156,7 @@ const checkAnswer = (choice) => {
   }
 
   if (choice === true) {
+    riddlesCorrect.value++;
     handleFeedBackModal("correct");
   } else {
     handleFeedBackModal("wromg");
@@ -169,18 +172,16 @@ const numColumns = computed(() => {
 const nextQuestion = () => {
   isFlipped.value = false;
 
-  if (currentIndex.value <= riddles.value.length - 1) {
+  // Check if there are more riddles to display
+  if (currentIndex.value < riddles.value.length - 1) {
     currentIndex.value++;
-
-    // go to next game once all questions are done
-    if (currentIndex.value > riddles.value.length - 1) {
-      finishRiddle();
-      return;
-    }
 
     currentRiddle.value = riddles.value[currentIndex.value].attributes;
     currentOptions.value =
       riddles.value[currentIndex.value].attributes.options.data;
+  } else {
+    // Display the last riddle and then end the game
+    finishRiddle();
   }
 };
 
@@ -211,8 +212,18 @@ const flipTheRiddleCard = () => {
   }, 1400);
 };
 
+// Computed property to calculate the percentage
+const riddlePercentage = computed(() => {
+  if (totalRiddles.value === 0) {
+    return 0; // Avoid division by zero error
+  }
+  return (riddlesCorrect.value / totalRiddles.value) * 100;
+});
+
 const finishRiddle = () => {
   // Perform any actions needed when finishing the survey
+  localStorage.setItem("riddleScore", riddlePercentage.value);
+
   // For example, save the survey responses or navigate to another page
   // In this case, we navigate to the "riddles" page
   router.push({ name: "scramble" });

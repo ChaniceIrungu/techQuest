@@ -138,8 +138,8 @@ const statementTemplates = [
   "I'm pretty sure it a {color} {Shape}",
 ];
 let timer;
-const timeLeft = ref(30); // start the timer at 60 seconds
-const duration = ref(30);
+const timeLeft = ref(40); // start the timer at 60 seconds
+const duration = ref(40);
 
 // Use a computed property to generate the hearts array based on the number of lives
 const hearts = computed(() => {
@@ -215,7 +215,7 @@ const checkAnswer = (response) => {
       //   console.log("Incorrect (should have clicked false)");
       updateScore("wrong");
     } else {
-      console.log("true,  Correct");
+      // console.log("true,  Correct");
       updateScore("right");
     }
   }
@@ -237,7 +237,7 @@ const checkAnswer = (response) => {
       //   console.log("true,  Correct");
       updateScore("right");
     } else {
-      console.log("Incorrect (should have clicked true)");
+      // console.log("Incorrect (should have clicked true)");
       updateScore("wrong");
     }
   }
@@ -270,6 +270,8 @@ const reduceLives = () => {
 
   if (hearts.value.length === 0) {
     feebackMessage.value = " OOPs! You Lost All Your Lives!";
+    clearInterval(timer); // Stop the timer when the player loses all lives
+    localStorage.setItem("memoryScore", memoryPercentageScore.value);
     showEndOfGame.value = true;
   }
 };
@@ -295,12 +297,23 @@ const startTimer = () => {
 
     if (timeLeft.value <= 0) {
       clearInterval(timer); // stop the timer when it reaches 0
-      console.log("times up");
+      // console.log("times up");
       feebackMessage.value = "Times up!";
+      localStorage.setItem("memoryScore", memoryPercentageScore.value);
       showEndOfGame.value = true;
     }
   }, 1000); // run the timer every 1000 milliseconds (1 second)
 };
+
+// Computed property to calculate the total number of questions answered
+const totalQuestionsAnswered = computed(() => {
+  return correct.value + wrong.value;
+});
+
+// Computed property to calculate the total percentage score
+const memoryPercentageScore = computed(() => {
+  return Math.round((correct.value / totalQuestionsAnswered.value) * 100);
+});
 
 const shuffle = (array) => {
   let currentIndex = array.length,

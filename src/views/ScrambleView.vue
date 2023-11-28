@@ -130,7 +130,9 @@ const ScrambleMenu = defineAsyncComponent(() =>
 );
 const router = useRouter();
 
+const shuffledData = ref([]);
 const getData = ref([]);
+const totalData = ref(4);
 const currentQuestion = ref({});
 
 const gameData = ref({});
@@ -148,6 +150,7 @@ const showTimeUpModal = ref(false);
 const hideMenu = ref(false);
 
 const level = ref(0);
+const totalCorrect = ref(0);
 const timerText = ref(10);
 const score = ref(0);
 const alertBox = ref({
@@ -161,8 +164,8 @@ let timerInterval;
 onMounted(async () => {
   // fetch data from
   const res = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/scrambles`);
-  getData.value = shuffle([...res.data.data]);
-  getData.value.slice(0, 4);
+  shuffledData.value = shuffle([...res.data.data]);
+  getData.value = shuffledData.value.slice(0, totalData.value);
   // console.log("currentQuestion", currentQuestion.value);
 });
 
@@ -189,6 +192,7 @@ const generateQuestion = () => {
 
       // go to next game once all questions are done
       if (questionIdx.value > getData.value.length - 1) {
+        localStorage.setItem("scrambleScore", scramblePercentage.value);
         router.push({ name: "true-false" });
         // console.log("gameFinished");
         return;
@@ -409,6 +413,7 @@ const handleModalOk = (alert) => {
     alertBox.value.title = "Oops!";
     alertBox.value.message = `${userAnswers} is not the correct word`;
   } else if (alert === "correct") {
+    totalCorrect.value++;
     alertBox.value.title = "Congrats!";
     alertBox.value.message = `${correctWord.value.toUpperCase()} is the correct word`;
   } else {
@@ -442,6 +447,14 @@ const initTimer = (maxTime) => {
 const toggleHint = () => {
   showHint.value = !showHint.value;
 };
+
+const scramblePercentage = computed(() => {
+  // localStorage.setItem("scramblecore", scramblePercentage.value);
+  if (totalData.value === 0) {
+    return 0; // Avoid division by zero error
+  }
+  return (totalCorrect.value / totalData.value) * 100;
+});
 </script>
 
 <style>

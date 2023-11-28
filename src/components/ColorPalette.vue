@@ -166,7 +166,7 @@ const nextRound = () => {
 };
 
 const pallettePercentage = computed(() => {
-  return Math.round((correct.value / 2) * 100);
+  return Math.round((correct.value / 4) * 100);
 });
 
 // Function to shuffle an array randomly (Fisher-Yates shuffle algorithm)
