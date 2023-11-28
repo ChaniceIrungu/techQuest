@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "axios": "^1.4.0",
-    "chart.js": "^3.9.1",
+    "chart.js": "^4.4.0",
     "pinia": "^2.1.7",
     "velocity-animate": "^1.5.2",
     "vue": "^3.3.4",
