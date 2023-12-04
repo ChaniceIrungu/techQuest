@@ -5,8 +5,8 @@
     @after-leave="handleModalHidden"
   >
     <div class="modal rounded border-box">
-      <div class="w-[120px] h-[80px] flex items-center">
-        <p class="text-xl font-semibold" :class="messageTextColor">
+      <div class="w-[140px] h-[120px] flex items-center">
+        <p class="text-lg font-medium font-serif" :class="messageTextColor">
           {{ message }}
         </p>
       </div>

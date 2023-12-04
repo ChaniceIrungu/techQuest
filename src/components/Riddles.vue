@@ -107,10 +107,11 @@ const selectedChoices = ref([]);
 // Fetch the survey data
 onMounted(async () => {
   const res = await axios.get(
-    `${import.meta.env.VITE_API_ENDPOINT}/riddle-questions?populate=*`
+    `${import.meta.env.VITE_API_ENDPOINT}/riddles?populate=*`
   );
 
   getRiddles.value = shuffle(res.data.data);
+  // console.log(res.data.data);
 
   riddles.value = getRiddles.value.slice(0, 4);
 
@@ -118,6 +119,16 @@ onMounted(async () => {
   currentOptions.value = [
     ...riddles.value[currentIndex.value].attributes.options.data,
   ];
+});
+// Computed property to calculate the width of the progress bar
+const trueFeedback = computed(() => {
+  let trueeeet = currentRiddle.value.feedbackTrue;
+  return trueeeet;
+});
+// Computed property to calculate the width of the progress bar
+const feebackFalse = computed(() => {
+  let trueeeet = currentRiddle.value.feebackFalse;
+  return trueeeet;
 });
 
 const shuffle = (array) => {
@@ -189,10 +200,10 @@ const handleFeedBackModal = (type) => {
   showFeedback.value = true;
 
   if (type === "correct") {
-    feedbackMessage.value = "Correct! Well done!";
+    feedbackMessage.value = trueFeedback.value;
     feedbackColor.value = "text-green-400";
   } else {
-    feedbackMessage.value = "Oops! That's not correct.";
+    feedbackMessage.value = feebackFalse.value;
     feedbackColor.value = "text-red-400";
   }
 

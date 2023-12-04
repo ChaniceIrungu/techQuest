@@ -51,7 +51,7 @@
                   @change="updateSelectedChoices(key, choice)"
                   class="rounded-full h-4 w-4"
                 />
-                <span class="p-0.5 md:p-2">{{ choice.attributes.option }}</span>
+                <span class="p-0.5 md:p-2">{{ choice.attributes.choice }}</span>
               </label>
             </div>
           </div>
