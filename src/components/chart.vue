@@ -23,7 +23,9 @@ onMounted(async () => {
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 const data = {
-  labels: pieChartRoles,
+  labels: pieChartRoles.map(
+    (role, index) => `${role} (${recommendedRolesArray[index]}%)`
+  ),
   datasets: [
     {
       backgroundColor: [
@@ -41,5 +43,14 @@ const data = {
 const options = {
   responsive: true,
   maintainAspectRatio: true,
+  plugins: {
+    tooltip: {
+      callbacks: {
+        label: function (context) {
+          return `${context.formattedValue}%`;
+        },
+      },
+    },
+  },
 };
 </script>

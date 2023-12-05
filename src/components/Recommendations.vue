@@ -186,15 +186,21 @@ const recommendedRoles = {
 
 // Convert recommendedRoles object to an array of key-value pairs
 const recommendedRolesArray = computed(() => {
-  const rolesCount = Object.values(recommendedRoles);
-  console.log("rolesCOUNT", rolesCount);
-  const totalCount = rolesCount.length;
+  // arr of the total no, of times a role is recommended
+  const totalTimesRecommended = Object.values(recommendedRoles);
+  console.log("rolesCOUNT", totalTimesRecommended);
 
-  // Check if totalCount is zero, if it is, set percentages as an array of zeros or handle the scenario appropriately
-  const percentages =
-    totalCount !== 0 || NaN
-      ? rolesCount.map((count) => Math.round((count / totalCount) * 100))
-      : rolesCount.map(() => 0);
+  // Filter out NaN values and sum non-zero elements
+  const nonZeroValues = totalTimesRecommended.filter(
+    (value) => !isNaN(value) && value !== 0
+  );
+  const totalCount = nonZeroValues.reduce((total, count) => total + count, 0);
+
+  // Calculate percentages
+  const percentages = nonZeroValues.map((count) => {
+    return isNaN(count) ? 0 : Math.round((count / totalCount) * 100);
+  });
+
   console.log("recommendedRoles", percentages);
 
   return percentages;
