@@ -4,7 +4,9 @@
       <div class="pb-2">
         <div class="font-bold">Progress</div>
 
-        <div class="p-1 border-1 border-yellow-700 rounded-full bg-gray-200">
+        <div
+          class="p-1 border-1 border-yellow-700 rounded-full bg-gray-200 px-4"
+        >
           <div
             :style="{ width: progressBarWidth }"
             class="rounded-full bg-fuchsia-600 text-white h-6"

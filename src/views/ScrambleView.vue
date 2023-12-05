@@ -16,13 +16,13 @@
         <AlertModal
           :title="alertBox.title"
           :message="alertBox.message"
-          :showTimeUpModal="showTimeUpModal"
-          @close="handleModalOk"
+          :showTimeUpModal="showFeedbackModal"
+          @close="closeModal"
         />
 
         <Scores :level="level" :score="score" />
         <div class="main-menu-btn float-right text-blue-400 text-sm">
-          <span class="text-black"> Hint:</span>
+          <span class="text-black"> Hint : </span>
           <span v-if="showHint">{{ currentQuestion.hint }}</span>
           <button v-if="!showHint" @click="toggleHint">
             <img src="/question-min.png" alt="Question Mark" />
@@ -146,12 +146,12 @@ const isActive = ref(false);
 const isGameStarted = ref(false);
 const showHint = ref(false);
 const showHowToPlayModal = ref(false);
-const showTimeUpModal = ref(false);
+const showFeedbackModal = ref(false);
 const hideMenu = ref(false);
 
 const level = ref(0);
 const totalCorrect = ref(0);
-const timerText = ref(10);
+const timerText = ref(20);
 const score = ref(0);
 const alertBox = ref({
   title: "",
@@ -162,11 +162,10 @@ let timerInterval;
 
 // Fetch the scramble data
 onMounted(async () => {
-  // fetch data from
   const res = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/scrambles`);
-  shuffledData.value = shuffle([...res.data.data]);
+  shuffledData.value = shuffle(res.data.data);
   getData.value = shuffledData.value.slice(0, totalData.value);
-  // console.log("currentQuestion", currentQuestion.value);
+  // console.log("currentQuestion", shuffledData.value);
 });
 
 const initGame = () => {
@@ -184,26 +183,14 @@ const generateQuestion = () => {
       showHowToPlayModal.value = false;
     }
 
-    initTimer(20);
     clearAction();
-
-    if (questionIdx.value <= getData.value.length - 1) {
-      questionIdx.value++;
-
-      // go to next game once all questions are done
-      if (questionIdx.value > getData.value.length - 1) {
-        localStorage.setItem("scrambleScore", scramblePercentage.value);
-        router.push({ name: "true-false" });
-        // console.log("gameFinished");
-        return;
-      }
-
-      // generate next question
+    // Check if there are more words(gameData) to display
+    if (questionIdx.value < getData.value.length) {
+      level.value++; // Increment the level
+      // Generate next question
       currentQuestion.value = getData.value[questionIdx.value].attributes;
-      // console.log("currentQuestion after next", currentQuestion.value);
       // Store the correct word separately
       correctWord.value = currentQuestion.value.correctWord;
-
       // Create a shuffled version of the word
       const shuffledWord = shuffle([...currentQuestion.value.word]);
 
@@ -216,7 +203,7 @@ const generateQuestion = () => {
           qAreaIdxHolder: qAreaIdxHolder.value,
         })
       );
-      // console.log("dropAreaData after next", dropAreaData.value);
+
       // Set the game data for the current question
       gameData.value = {
         word: shuffledWord,
@@ -225,8 +212,15 @@ const generateQuestion = () => {
         correctWord: correctWord.value,
       };
 
-      level.value = level.value + 1;
-      // showHowToPlayModal.value = level.value <= 1;
+      // Increment question index for the next question
+      questionIdx.value++;
+
+      // Start the timer after setting up the question data
+      initTimer(20);
+    } else {
+      // Displayed all questions, end the game
+      localStorage.setItem("scrambleScore", scramblePercentage.value);
+      router.push({ name: "true-false" });
     }
   }
 };
@@ -400,13 +394,14 @@ const checkAnswer = () => {
 };
 
 const handleModalOk = (alert) => {
-  if (alert === "timeUp" && showTimeUpModal.value === true) {
+  clearInterval(timerInterval);
+
+  if (alert && showFeedbackModal.value === true) {
     // Don't show the modal if it's already showing
+    // closeModal();
     return;
   }
-  clearInterval(timerInterval);
-  showTimeUpModal.value = true;
-
+  showFeedbackModal.value = true;
   let userAnswers = gameData.value.userAnswers.join("");
 
   if (alert === "wrong") {
@@ -424,23 +419,29 @@ const handleModalOk = (alert) => {
   // Hide the modal after a delay
   setTimeout(() => {
     generateQuestion();
-    showTimeUpModal.value = false;
+    closeModal();
+    // showFeedbackModal.value = false;
   }, 2100);
+};
+
+const closeModal = () => {
+  showFeedbackModal.value = !showFeedbackModal.value;
 };
 
 const initTimer = (maxTime) => {
   if (isGameStarted.value && hideMenu.value) {
     clearInterval(timerInterval);
     timerInterval = setInterval(() => {
-      if (maxTime > 0) {
-        maxTime--;
-        // Format the timerText in "00" format
-        return (timerText.value = maxTime.toString().padStart(2, "0"));
+      if (maxTime >= 0) {
+        // Change condition to include 0 seconds
+        // Ensure the timer starts at 20 seconds instead of 19
+        timerText.value = maxTime.toString().padStart(2, "0");
+        maxTime--; // Decrement the timer after updating the display
       } else {
         clearInterval(timerInterval);
         handleModalOk("timeUp");
       }
-    }, 1400);
+    }, 1000); // Set interval to 1 second (1000 milliseconds)
   }
 };
 
