@@ -163,9 +163,9 @@ let timerInterval;
 // Fetch the scramble data
 onMounted(async () => {
   const res = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/scrambles`);
-  shuffledData.value = shuffle([...res.data.data]);
+  shuffledData.value = shuffle(res.data.data);
   getData.value = shuffledData.value.slice(0, totalData.value);
-  // console.log("currentQuestion", currentQuestion.value);
+  // console.log("currentQuestion", shuffledData.value);
 });
 
 const initGame = () => {
@@ -184,24 +184,13 @@ const generateQuestion = () => {
     }
 
     clearAction();
-
-    if (questionIdx.value <= getData.value.length - 1) {
-      questionIdx.value++;
-
-      // go to next game once all questions are done
-      if (questionIdx.value > getData.value.length - 1) {
-        localStorage.setItem("scrambleScore", scramblePercentage.value);
-        router.push({ name: "true-false" });
-        // console.log("gameFinished");
-        return;
-      }
-
-      // generate next question
+    // Check if there are more words(gameData) to display
+    if (questionIdx.value < getData.value.length) {
+      level.value++; // Increment the level
+      // Generate next question
       currentQuestion.value = getData.value[questionIdx.value].attributes;
-      // console.log("currentQuestion after next", currentQuestion.value);
       // Store the correct word separately
       correctWord.value = currentQuestion.value.correctWord;
-
       // Create a shuffled version of the word
       const shuffledWord = shuffle([...currentQuestion.value.word]);
 
@@ -214,7 +203,7 @@ const generateQuestion = () => {
           qAreaIdxHolder: qAreaIdxHolder.value,
         })
       );
-      // console.log("dropAreaData after next", dropAreaData.value);
+
       // Set the game data for the current question
       gameData.value = {
         word: shuffledWord,
@@ -223,10 +212,16 @@ const generateQuestion = () => {
         correctWord: correctWord.value,
       };
 
-      level.value = level.value + 1;
-      // showHowToPlayModal.value = level.value <= 1;
+      // Increment question index for the next question
+      questionIdx.value++;
+
+      // Start the timer after setting up the question data
+      initTimer(20);
+    } else {
+      // Displayed all questions, end the game
+      localStorage.setItem("scrambleScore", scramblePercentage.value);
+      router.push({ name: "true-false" });
     }
-    initTimer(20);
   }
 };
 
@@ -431,15 +426,16 @@ const initTimer = (maxTime) => {
   if (isGameStarted.value && hideMenu.value) {
     clearInterval(timerInterval);
     timerInterval = setInterval(() => {
-      if (maxTime > 0) {
-        maxTime--;
-        // Format the timerText in "00" format
-        return (timerText.value = maxTime.toString().padStart(2, "0"));
+      if (maxTime >= 0) {
+        // Change condition to include 0 seconds
+        // Ensure the timer starts at 20 seconds instead of 19
+        timerText.value = maxTime.toString().padStart(2, "0");
+        maxTime--; // Decrement the timer after updating the display
       } else {
         clearInterval(timerInterval);
         handleModalOk("timeUp");
       }
-    }, 1400);
+    }, 1000); // Set interval to 1 second (1000 milliseconds)
   }
 };
 
