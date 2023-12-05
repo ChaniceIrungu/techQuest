@@ -23,6 +23,15 @@ const { recommendedRolesArray, pieChartRoles } = defineProps([
   "pieChartRoles",
 ]);
 
+const shuffleColors = [
+  "#00D8FF",
+  "#E46651",
+  "#DD1B16",
+  "#41B883",
+  "#f87979",
+  "#E46651",
+]; /// Use the shuffled colors array
+
 onMounted(async () => {
   // console.log("chart roles", recommendedRolesArray);
 });

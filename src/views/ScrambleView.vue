@@ -380,7 +380,7 @@ const clearAction = () => {
 
 const checkAnswer = () => {
   // console.log("userss Answer", gameData.value.userAnswers.join(""));
-
+  clearInterval(timerInterval);
   let correctWord = gameData.value.correctWord;
   //  if array convert to string
   // if (Array.isArray(correctWord)) {
