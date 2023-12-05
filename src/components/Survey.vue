@@ -167,10 +167,6 @@ const saveResponse = () => {
     choicesIdx: [...selectedChoices.value], // Create a copy of the selected choices
   };
 
-  // Check if techRole is not null and add it to the questionResponse
-  // if (techRole.value !== null) {
-  //   questionResponse.techRole = techRole.value;
-  // }
   responses.value.push(questionResponse);
   localStorage.setItem("responses", JSON.stringify(responses.value));
   console.log("questionResponse", responses.value);

@@ -18,8 +18,17 @@ const { recommendedRolesArray, pieChartRoles } = defineProps([
 ]);
 
 onMounted(async () => {
-  console.log("chart roles", recommendedRolesArray);
+  // console.log("chart roles", recommendedRolesArray);
+  shuffle(colors);
 });
+const colors = [
+  "#41B883",
+  "#f87979",
+  "#E46651",
+  "#00D8FF",
+  "#DD1B16",
+  "#E46651",
+]; // Shuffle the colors array
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 const data = {
@@ -29,13 +38,13 @@ const data = {
   datasets: [
     {
       backgroundColor: [
-        "#41B883",
-        "#E46651",
         "#00D8FF",
+        "#E46651",
         "#DD1B16",
+        "#41B883",
         "#f87979",
         "#E46651",
-      ],
+      ], /// Use the shuffled colors array
       data: recommendedRolesArray,
     },
   ],
@@ -52,5 +61,25 @@ const options = {
       },
     },
   },
+};
+
+const shuffle = (array) => {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
 };
 </script>
