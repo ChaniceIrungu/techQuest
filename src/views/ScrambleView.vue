@@ -22,7 +22,7 @@
 
         <Scores :level="level" :score="score" />
         <div class="main-menu-btn float-right text-blue-400 text-sm">
-          <span class="text-black"> Hint:</span>
+          <span class="text-black"> Hint : </span>
           <span v-if="showHint">{{ currentQuestion.hint }}</span>
           <button v-if="!showHint" @click="toggleHint">
             <img src="/question-min.png" alt="Question Mark" />
@@ -151,7 +151,7 @@ const hideMenu = ref(false);
 
 const level = ref(0);
 const totalCorrect = ref(0);
-const timerText = ref(10);
+const timerText = ref(20);
 const score = ref(0);
 const alertBox = ref({
   title: "",
@@ -162,7 +162,6 @@ let timerInterval;
 
 // Fetch the scramble data
 onMounted(async () => {
-  // fetch data from
   const res = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/scrambles`);
   shuffledData.value = shuffle([...res.data.data]);
   getData.value = shuffledData.value.slice(0, totalData.value);
@@ -184,7 +183,6 @@ const generateQuestion = () => {
       showHowToPlayModal.value = false;
     }
 
-    initTimer(20);
     clearAction();
 
     if (questionIdx.value <= getData.value.length - 1) {
@@ -228,6 +226,7 @@ const generateQuestion = () => {
       level.value = level.value + 1;
       // showHowToPlayModal.value = level.value <= 1;
     }
+    initTimer(20);
   }
 };
 
