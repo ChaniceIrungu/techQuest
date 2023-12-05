@@ -187,13 +187,15 @@ const recommendedRoles = {
 // Convert recommendedRoles object to an array of key-value pairs
 const recommendedRolesArray = computed(() => {
   const rolesCount = Object.values(recommendedRoles);
+  console.log("rolesCOUNT", rolesCount);
+  const totalCount = rolesCount.length;
 
-  const totalCount = rolesCount.reduce((total, count) => total + count, 0);
-
-  const percentages = rolesCount.map((count) =>
-    Math.round((count / totalCount) * 100)
-  );
-  console.log("papa", percentages);
+  // Check if totalCount is zero, if it is, set percentages as an array of zeros or handle the scenario appropriately
+  const percentages =
+    totalCount !== 0 || NaN
+      ? rolesCount.map((count) => Math.round((count / totalCount) * 100))
+      : rolesCount.map(() => 0);
+  console.log("recommendedRoles", percentages);
 
   return percentages;
 });

@@ -173,7 +173,7 @@ const saveResponse = () => {
   // }
   responses.value.push(questionResponse);
   localStorage.setItem("responses", JSON.stringify(responses.value));
-  // console.log("questionResponse", responses.value);
+  console.log("questionResponse", responses.value);
 };
 
 // Next and previous question handlers
