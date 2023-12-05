@@ -201,7 +201,7 @@ const recommendedRolesArray = computed(() => {
 });
 const pieChartRoles = computed(() => {
   const filteredRoles = Object.entries(recommendedRoles)
-    .filter(([role, value]) => value !== 0)
+    .filter(([role, value]) => value !== 0 && !isNaN(value))
     .map(([role]) => role);
 
   console.log("roleschart", filteredRoles);
