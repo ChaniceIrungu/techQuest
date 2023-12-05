@@ -8,7 +8,13 @@
 </template>
 
 <script setup>
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  Colors,
+} from "chart.js";
 import { Pie } from "vue-chartjs";
 import { ref, defineProps, onMounted } from "vue";
 
@@ -19,32 +25,16 @@ const { recommendedRolesArray, pieChartRoles } = defineProps([
 
 onMounted(async () => {
   // console.log("chart roles", recommendedRolesArray);
-  shuffle(colors);
 });
-const colors = [
-  "#41B883",
-  "#f87979",
-  "#E46651",
-  "#00D8FF",
-  "#DD1B16",
-  "#E46651",
-]; // Shuffle the colors array
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend, Colors);
 const data = {
   labels: pieChartRoles.map(
     (role, index) => `${role} (${recommendedRolesArray[index]}%)`
   ),
   datasets: [
     {
-      backgroundColor: [
-        "#00D8FF",
-        "#E46651",
-        "#DD1B16",
-        "#41B883",
-        "#f87979",
-        "#E46651",
-      ], /// Use the shuffled colors array
+      // backgroundColor: Colors,
       data: recommendedRolesArray,
     },
   ],
