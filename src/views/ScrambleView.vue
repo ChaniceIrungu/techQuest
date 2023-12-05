@@ -16,8 +16,8 @@
         <AlertModal
           :title="alertBox.title"
           :message="alertBox.message"
-          :showTimeUpModal="showTimeUpModal"
-          @close="handleModalOk"
+          :showTimeUpModal="showFeedbackModal"
+          @close="closeModal"
         />
 
         <Scores :level="level" :score="score" />
@@ -146,7 +146,7 @@ const isActive = ref(false);
 const isGameStarted = ref(false);
 const showHint = ref(false);
 const showHowToPlayModal = ref(false);
-const showTimeUpModal = ref(false);
+const showFeedbackModal = ref(false);
 const hideMenu = ref(false);
 
 const level = ref(0);
@@ -394,13 +394,14 @@ const checkAnswer = () => {
 };
 
 const handleModalOk = (alert) => {
-  if (alert === "timeUp" && showTimeUpModal.value === true) {
+  clearInterval(timerInterval);
+
+  if (alert && showFeedbackModal.value === true) {
     // Don't show the modal if it's already showing
+    // closeModal();
     return;
   }
-  clearInterval(timerInterval);
-  showTimeUpModal.value = true;
-
+  showFeedbackModal.value = true;
   let userAnswers = gameData.value.userAnswers.join("");
 
   if (alert === "wrong") {
@@ -418,8 +419,13 @@ const handleModalOk = (alert) => {
   // Hide the modal after a delay
   setTimeout(() => {
     generateQuestion();
-    showTimeUpModal.value = false;
+    closeModal();
+    // showFeedbackModal.value = false;
   }, 2100);
+};
+
+const closeModal = () => {
+  showFeedbackModal.value = !showFeedbackModal.value;
 };
 
 const initTimer = (maxTime) => {
