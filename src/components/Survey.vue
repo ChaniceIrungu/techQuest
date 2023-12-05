@@ -11,6 +11,8 @@
           >
             {{ currentIndex + 1 }}/{{ surveys.length }}
           </div>
+          <!-- Loader -->
+          <LoadingAnimation v-if="isLoading" />
         </div>
       </div>
 
@@ -75,6 +77,7 @@
 <script setup>
 import { ref, onMounted, computed, watch } from "vue";
 import { useRouter } from "vue-router";
+import LoadingAnimation from "../components/LoadingAnimation.vue";
 
 import axios from "axios";
 
@@ -88,15 +91,28 @@ const responses = ref([]);
 const router = useRouter();
 // Initialize selectedChoices as an array of arrays to store selections for each question
 const selectedChoices = ref([]);
+const isLoading = ref(false);
 
-// Fetch the survey data
-onMounted(async () => {
-  const res = await axios.get(
-    `${import.meta.env.VITE_API_ENDPOINT}/surveys?populate=*`
-  );
-  surveys.value = res.data.data;
-  currentQuestion.value = surveys.value[currentIndex.value];
-  // console.log("the Questisons", surveys.value);
+// fetch survey data
+const fetchData = async () => {
+  isLoading.value = true;
+  try {
+    const res = await axios.get(
+      `${import.meta.env.VITE_API_ENDPOINT}/surveys?populate=*`
+    );
+    surveys.value = res.data.data;
+    currentQuestion.value = surveys.value[currentIndex.value];
+    // Handle loading completion e.g update UI
+  } catch (error) {
+    console.error("Error fetching surveys:", error);
+    // Handle errors here
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+onMounted(() => {
+  fetchData();
 });
 
 // Computed property to calculate the width of the progress bar
