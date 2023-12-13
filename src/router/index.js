@@ -50,11 +50,11 @@ const router = createRouter({
       name: "palette-game",
       component: () => import("../views/PaletteView.vue"),
     },
-    // {
-    //   path: "/login",
-    //   name: "login",
-    //   component: () => import("../views/Login.vue"),
-    // },
+    {
+      path: "/login",
+      name: "login",
+      component: () => import("../views/Login.vue"),
+    },
     {
       path: "/test",
       name: "test",
