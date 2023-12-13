@@ -51,15 +51,20 @@ const router = createRouter({
       component: () => import("../views/PaletteView.vue"),
     },
     {
+      path: "/login",
+      name: "login",
+      component: () => import("../views/Login.vue"),
+    },
+    {
       path: "/test",
       name: "test",
       component: () => import("../components/test.vue"),
     },
     // Catch-all route to redirect to the home route
-    {
-      path: "/:catchAll(.*)",
-      redirect: { name: "home" }, // Redirect to the "home" route
-    },
+    // {
+    //   path: "/:catchAll(.*)",
+    //   redirect: { name: "home" }, // Redirect to the "home" route
+    // },
   ],
 });
 
