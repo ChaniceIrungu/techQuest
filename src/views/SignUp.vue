@@ -1,8 +1,20 @@
 <template>
   <div class="main-container flex justify-center flex-col">
+    <p v-show="error" class="text-sm text-red-500 flex items-center">
+      {{ errorMsg }}
+    </p>
     <form>
       <div class="box-container">
-        <h2 class="heading">Sign In</h2>
+        <h2 class="heading">Sign Up</h2>
+        <div class="form-fields">
+          <input
+            id="name"
+            v-model="name"
+            name="name"
+            type="text"
+            placeholder="User Name"
+          />
+        </div>
         <div class="form-fields">
           <input
             id="email"
@@ -21,48 +33,17 @@
             placeholder="Password"
           />
         </div>
+        <!-- Loader -->
+        <LoadingAnimation v-if="isSaving" message="Saving" />
         <div class="form-fields">
           <button
             class="signIn"
             name="commit"
             type="submit"
-            @click="handleLogin"
+            @click="registerUser"
           >
-            Sign In
+            Sign Up
           </button>
-        </div>
-        <div class="login-choice"><span>or Sign In with</span></div>
-        <div class="signup-buttons">
-          <a href="#" class="google-signup" @click.prevent="loginWithGoogle">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
-              aria-hidden="true"
-            >
-              <title>Google</title>
-              <g fill="none" fill-rule="evenodd">
-                <path
-                  fill="#4285F4"
-                  d="M17.64 9.2045c0-.6381-.0573-1.2518-.1636-1.8409H9v3.4814h4.8436c-.2086 1.125-.8427 2.0782-1.7959 2.7164v2.2581h2.9087c1.7018-1.5668 2.6836-3.874 2.6836-6.615z"
-                ></path>
-                <path
-                  fill="#34A853"
-                  d="M9 18c2.43 0 4.4673-.806 5.9564-2.1805l-2.9087-2.2581c-.8059.54-1.8368.859-3.0477.859-2.344 0-4.3282-1.5831-5.036-3.7104H.9574v2.3318C2.4382 15.9832 5.4818 18 9 18z"
-                ></path>
-                <path
-                  fill="#FBBC05"
-                  d="M3.964 10.71c-.18-.54-.2822-1.1168-.2822-1.71s.1023-1.17.2823-1.71V4.9582H.9573A8.9965 8.9965 0 0 0 0 9c0 1.4523.3477 2.8268.9573 4.0418L3.964 10.71z"
-                ></path>
-                <path
-                  fill="#EA4335"
-                  d="M9 3.5795c1.3214 0 2.5077.4541 3.4405 1.346l2.5813-2.5814C13.4632.8918 11.426 0 9 0 5.4818 0 2.4382 2.0168.9573 4.9582L3.964 7.29C4.6718 5.1627 6.6559 3.5795 9 3.5795z"
-                ></path>
-              </g>
-            </svg>
-            Google
-          </a>
         </div>
       </div>
     </form>
@@ -73,6 +54,7 @@
 </template>
 <script setup>
 import { ref, computed, onMounted } from "vue";
+import LoadingAnimation from "../components/LoadingAnimation.vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
@@ -81,42 +63,38 @@ const name = ref("");
 const email = ref("");
 const password = ref("");
 const error = ref(false);
-const errorMsg = `An Error occurred, please try again`;
+const isSaving = ref(false);
+const errorMsg = ref(`An Error occurred, please try again`);
 
-const handleLogin = async (e) => {
+const registerUser = async (e) => {
+  isSaving.value = true;
   try {
     e.preventDefault();
     const responseData = await axios.post(
-      `${import.meta.env.VITE_API_ENDPOINT}/auth/local`,
+      `${import.meta.env.VITE_API_ENDPOINT}/auth/local/register`,
       {
-        identifier: email.value,
+        username: name.value,
         password: password.value,
+        email: email.value,
       }
     );
-    const { jwt, user } = responseData.data;
-    window.localStorage.setItem("jwt", jwt);
-    window.localStorage.setItem("userData", JSON.stringify(user));
-    const res2 = await axios.get(
-      `${import.meta.env.VITE_API_ENDPOINT}/users/${user.id}?populate=*`,
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
-    // window.localStorage.setItem(
-    //   "bookmarks",
-    //   JSON.stringify(res2?.data?.bookmarks || [])
-    // );
-    router.push("/");
-
     // console.log(responseData.data);
-    // router.push("/login");
+    router.push("/login");
   } catch (e) {
-    console.log("not woring");
+    errorMsg.value = e.response.data.error.message;
+    // console.log("not woring", e.response.data.error.message);
     error.value = true;
     email.value = "";
+  } finally {
+    isSaving.value = false;
+    // error.value = false;
   }
+};
+
+const clearData = () => {
+  error.value = false;
+  email.value = "";
+  password.value = "";
 };
 
 // const logout = () => {
@@ -126,52 +104,52 @@ const handleLogin = async (e) => {
 
 <style>
 /* body {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  background: #0069ff;
-} */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    background: #0069ff;
+  } */
 /* Style the tab */
 /* .tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-} */
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  } */
 /* Style the buttons inside the tab */
 /* .tab a {
-  background-color: inherit;
-  float: right;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-  text-decoration: none;
-  border: 1px solid;
-} */
+    background-color: inherit;
+    float: right;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    text-decoration: none;
+    border: 1px solid;
+  } */
 /* Change background color of buttons on hover */
 /* .tab a:hover {
-  background-color: #ddd;
-} */
+    background-color: #ddd;
+  } */
 /* Create an active/current tablink class */
 /* .tab a.active {
-  background-color: #ccc;
-} */
+    background-color: #ccc;
+  } */
 /* Style the tab content */
 /* .tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-} */
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  } */
 /* .loginsuccess-container {
-  padding: 20px;
-  margin: 0 auto;
-  width: 80%;
-  box-shadow: beige;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background: #fff;
-  word-break: break-all;
-} */
+    padding: 20px;
+    margin: 0 auto;
+    width: 80%;
+    box-shadow: beige;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    word-break: break-all;
+  } */
 .main-container {
   /* margin-top: 10%; */
 }
