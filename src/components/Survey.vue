@@ -14,7 +14,7 @@
             {{ currentIndex + 1 }}/{{ surveys.length }}
           </div>
           <!-- Loader -->
-          <LoadingAnimation v-if="isLoading" />
+          <LoadingAnimation v-if="isLoading" message="Loading" />
         </div>
       </div>
 
