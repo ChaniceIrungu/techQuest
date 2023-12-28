@@ -54,7 +54,7 @@ const users = ref([]);
 
 onMounted(() => {
   userData.value = JSON.parse(window.localStorage.getItem("userData"));
-  console.log(userData.value.username);
+  // console.log(userData.value.username);
   username.value = userData.value.username;
   setChatRoom();
 });
@@ -107,7 +107,7 @@ watchEffect(() => {
     // If the message doesn't exist, push it to the messages array
     if (!messageExists) {
       messages.value.push(data);
-      console.log("responseData", data);
+      // console.log("responseData", data);
     }
   });
 });
