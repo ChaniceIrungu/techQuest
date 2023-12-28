@@ -66,29 +66,53 @@ const error = ref(false);
 const isSaving = ref(false);
 const errorMsg = ref(`An Error occurred, please try again`);
 
+const registrationUrl = `${
+  import.meta.env.VITE_API_ENDPOINT
+}/auth/local/register`;
+const confirmationUrl = `${
+  import.meta.env.VITE_API_ENDPOINT
+}/auth/email-confirmation`;
+
 const registerUser = async (e) => {
   isSaving.value = true;
+  const userData = {
+    username: name.value,
+    password: password.value,
+    email: email.value,
+  };
+
   try {
+    // register user
     e.preventDefault();
-    const responseData = await axios.post(
-      `${import.meta.env.VITE_API_ENDPOINT}/auth/local/register`,
-      {
-        username: name.value,
-        password: password.value,
-        email: email.value,
-      }
-    );
-    // console.log(responseData.data);
+    // const responseData = await axios.post(registrationUrl, userData);
+    const responseData = await axios.post(registrationUrl, userData);
+    console.log("Successful registration");
     router.push("/login");
   } catch (e) {
-    errorMsg.value = e.response.data.error.message;
-    // console.log("not woring", e.response.data.error.message);
-    error.value = true;
+    setError(error);
     email.value = "";
   } finally {
     isSaving.value = false;
     // error.value = false;
   }
+
+  // try {
+  //   // send confirmation email
+  //   await axios.post(confirmationUrl, { email: userData.email });
+  //   router.push("/chat");
+  // } catch (error) {
+  //   setError(error);
+  //   setSubmitting(false);
+  // } finally {
+  //   // Handle success.
+  //   console.log("Your user received an email");
+  //   //  router.push("/chat");
+  // }
+};
+
+const setError = (err) => {
+  error.value = true;
+  errorMsg.value = err.response.data.error.message;
 };
 
 const clearData = () => {

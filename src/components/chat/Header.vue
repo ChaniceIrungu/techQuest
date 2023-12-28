@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center justify-between bg-blue-500 rounded-t-lg h-16 w-full"
+    class="flex items-center justify-between bg-fuchsia-500 rounded-t-lg h-16 w-full"
   >
     <div class="flex items-center flex-1 ml-5 text-white">
       <div class="text-green-500 mr-2">

@@ -4,39 +4,20 @@
       <span class="bg-green-500 w-4 h-4 rounded-full self-center"></span>
       <h4 class="w-full text-xl font-bold">Active Users</h4>
     </div>
-
-    <!-- <div
-      class="rounded-xl border-slate-100 text-sm mt-2 pl-3 pr-3 border-[1px]"
-    >
-      <span
-        class="bg-green-500 w-4 h-4 rounded-full mt-0.5 inline-block"
-      ></span>
-      <h4 class="w-full text-xl font-bold mb-4 ml-4">Active Users</h4>
-    </div> -->
-
     <div class=" ">
-      <div v-for="(user, index) in users" :key="index" class="">
+      <div v-for="(user, index) in users.data" :key="index" class="">
         <div class="flex pb-4">
           <img
             class="w-10 h-10 mr-4 rounded-full ring-2 ring-gray-300"
             src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
           />
 
-          <h4 class="text-2xl text-blue-600">{{ user.username }}</h4>
+          <h4 class="text-2xl text-fuchsia-600">
+            {{ user.attributes.users }}
+          </h4>
         </div>
       </div>
     </div>
-
-    <!-- <AntdList :item-layout="itemLayout" :dataSource="users">
-        <template v-slot:renderItem="user">
-          <AntdList-Item>
-            <AntdList-Item-Meta
-              :avatar="getUserAvatar()"
-              :title="getUserLink(user.username)"
-            />
-          </AntdList-Item>
-        </template>
-      </AntdList> -->
   </div>
 </template>
 <script setup>
