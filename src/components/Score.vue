@@ -11,7 +11,7 @@
 
 <script setup>
 import { computed, ref } from "vue";
-import Store from "../store/index.js"; // Import your store path here
+// import Store from "../store/index.js"; // Import your store path here
 
 const props = defineProps(["level", "score"]);
 </script>
