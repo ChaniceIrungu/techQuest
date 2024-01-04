@@ -25,7 +25,7 @@
 
 <script setup>
 import Velocity from "velocity-animate";
-import Store from "../../store/index.js";
+// import Store from "../../store/index.js";
 import { computed, ref, onMounted } from "vue";
 
 const props = defineProps(["currentQuestion", "dropAreaData"]);
@@ -57,17 +57,17 @@ const submitAction = () => {
   emit("checkAnswer");
 };
 
-const lastWord = () => {
-  var arr = Store.gameData.word.split("");
-  for (var i = 0; i < arr.length; i++) {
-    $emit(
-      "bringDownAll",
-      document.querySelector("#q-area li[data-id=" + arr[i] + "]"),
-      "letterUp",
-      arr[i]
-    );
-  }
-};
+// const lastWord = () => {
+//   var arr = Store.gameData.word.split("");
+//   for (var i = 0; i < arr.length; i++) {
+//     $emit(
+//       "bringDownAll",
+//       document.querySelector("#q-area li[data-id=" + arr[i] + "]"),
+//       "letterUp",
+//       arr[i]
+//     );
+//   }
+// };
 
 const shuffleQuestion = () => {
   const shuffledWord = shuffle(currentWord.value);

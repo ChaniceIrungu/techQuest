@@ -1,5 +1,8 @@
 <template>
   <div class="main-container flex justify-center flex-col">
+    <p v-show="error" class="text-sm text-red-500 flex items-center">
+      {{ errorMsg }}
+    </p>
     <form>
       <div class="box-container">
         <h2 class="heading">Sign In</h2>
@@ -67,7 +70,7 @@
       </div>
     </form>
     <div class="footer text-red-500">
-      <p>Don't have an account? <a href="/signup"> Create one now</a></p>
+      <p>Don't have an account? <a href="/register"> Create one now</a></p>
     </div>
   </div>
 </template>
@@ -93,30 +96,36 @@ const handleLogin = async (e) => {
         password: password.value,
       }
     );
+    console.log(`jwt ${responseData.data}`);
     const { jwt, user } = responseData.data;
+    console.log(`jwt ${jwt}, user ${user}`);
     window.localStorage.setItem("jwt", jwt);
     window.localStorage.setItem("userData", JSON.stringify(user));
-    const res2 = await axios.get(
-      `${import.meta.env.VITE_API_ENDPOINT}/users/${user.id}?populate=*`,
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
+    // const res2 = await axios.get(
+    //   `${import.meta.env.VITE_API_ENDPOINT}/users/${user.id}?populate=*`,
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${jwt}`,
+    //     },
+    //   }
+    // );
     // window.localStorage.setItem(
     //   "bookmarks",
     //   JSON.stringify(res2?.data?.bookmarks || [])
     // );
-    router.push("/");
+    router.push("/chat");
 
     // console.log(responseData.data);
     // router.push("/login");
   } catch (e) {
-    console.log("not woring");
-    error.value = true;
-    email.value = "";
+    console.log("not woring", e);
+    setError(e);
   }
+};
+
+const setError = (err) => {
+  error.value = true;
+  errorMsg.value = err.response.data.error.message;
 };
 
 // const logout = () => {

@@ -8,9 +8,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
+    "@fortawesome/fontawesome-free": "^6.5.1",
     "axios": "^1.4.0",
     "chart.js": "^4.4.0",
     "pinia": "^2.1.7",
+    "socket.io-client": "^4.7.2",
     "velocity-animate": "^1.5.2",
     "vue": "^3.3.4",
     "vue-chartjs": "^5.2.0",
