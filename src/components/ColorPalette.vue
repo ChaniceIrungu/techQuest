@@ -70,7 +70,7 @@ const correctColor = ref(false);
 const feedbackMessage = ref("");
 
 onMounted(() => {
-  console.log(gameThemes.value);
+  // console.log(gameThemes.value);
 });
 
 const currentTheme = computed(() => {
