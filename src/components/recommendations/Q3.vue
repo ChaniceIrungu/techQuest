@@ -4,7 +4,7 @@
       Tech Challenges That Bother You Most
     </p>
   </div>
-  <div class="grid md:grid-cols-3 md:gap-x-2 gap-y-4">
+  <div class="grid md:flex md:gap-x-2 gap-y-4 place-content-center">
     <div
       class="max-w-sm rounded overflow-hidden shadow-xl"
       v-for="(recommendation, index) in questionThreeRec"
