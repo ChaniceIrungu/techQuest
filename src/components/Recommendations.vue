@@ -2,7 +2,8 @@
   <div class="flex flex-col justify-center items-center p-2 m-2">
     <div v-if="showQ2Recs">
       <q2Component :questionTwo="questionTwoRec" />
-      <otherQs :questionThreeRec="questionThreeRec" />
+      <q3Component :questionThreeRec="questionThreeRec" />
+      <q4Component :questionFourRec="questionFourRec" />
     </div>
 
     <div v-if="showTechRoles">
@@ -64,7 +65,8 @@
 import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import q2Component from "../components/recommendations/Q2.vue";
-import otherQs from "../components/recommendations/otherQs.vue";
+import q3Component from "../components/recommendations/Q3.vue";
+import q4Component from "../components/recommendations/Q4.vue";
 import recommendations from "../store/recommend.js";
 import Chart from "./chart.vue";
 import cButton from "./Button.vue";
@@ -229,10 +231,23 @@ const questionTwoRec = computed(() => {
 
 const questionThreeRec = computed(() => {
   const questionThree = surveyAnswers.value.find(
+    (answer) => answer.questionNumber === 3
+  );
+
+  // Loop through choicesIdx array and extract choice indices
+  // const choiceIndices = questionThree.choicesIdx.map((choice) => choice);
+
+  console.log("questionThree", questionThree);
+  // return null or handle as needed if dont exist
+  return questionThree ? questionThree.choicesIdx : [];
+});
+
+const questionFourRec = computed(() => {
+  const questionFour = surveyAnswers.value.find(
     (answer) => answer.questionNumber === 4
   );
   // return null or handle as needed if dont exist
-  return questionThree ? questionThree.choicesIdx[0].attributes : {};
+  return questionFour ? questionFour.choicesIdx[0].attributes : {};
 });
 
 const questionSevenTech = computed(() => {

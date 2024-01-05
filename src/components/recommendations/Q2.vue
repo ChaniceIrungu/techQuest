@@ -1,7 +1,7 @@
 <template>
   <div class="pb-2 md:pb-10 md:text-lg text-base">
-    <p>
-      Your current goal is to :
+    <p class="underline">
+      Your current goal is to:
 
       <span class="font-bold">{{ questionTwo?.slug }}</span>
     </p>
