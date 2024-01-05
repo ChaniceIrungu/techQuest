@@ -11,7 +11,7 @@
       :key="index"
     >
       <div class="px-6 py-4">
-        <span class="font-bold text-xl text-fuchsia-500">{{ index }} </span>
+        <span class="font-bold text-xl text-fuchsia-500">{{ index + 1 }} </span>
         <div class="font-bold text-xl mb-2">
           {{ recommendation.attributes.choice }}
         </div>
