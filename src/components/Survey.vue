@@ -27,22 +27,28 @@
           <div v-if="showError" class="text-red-500 text-left">
             Input required/Select a choice
           </div>
+
           <div class="p-4" v-if="currentQuestion.attributes.type === 'input'">
             <input
               type="text"
-              class="input p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+              class="input p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 border border-black"
               name=""
               placeholder="Enter preferred name"
               v-model="userInput"
             />
           </div>
 
-          <div v-else class="cursor-pointer">
+          <div
+            v-else
+            class="cursor-pointer"
+            v-for="(choice, key) in currentQuestion.attributes.survey_options
+              .data"
+            :key="key"
+          >
             <div
-              class="py-2 text-left"
-              v-for="(choice, key) in currentQuestion.attributes.survey_options
-                .data"
-              :key="key"
+              class="customT py-2 text-left"
+              :style="{ 'animation-delay': `${key * 0.2}s` }"
+              :key="choice.id"
             >
               <label
                 class="flex items-center space-x-4 border-2 rounded p-2 hover:bg-blue-200 cursor-pointer"
@@ -241,7 +247,20 @@ const prevQuestion = () => {
 
 <style>
 #surv {
-  /* max-width: 40rem; */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.customT {
+  animation-name: customT;
+  animation-duration: 1s;
+}
+
+@keyframes customT {
+  from {
+    transform: translateY(10px);
+  }
+  to {
+    /* transform: translateY(0px); */
+  }
 }
 </style>
