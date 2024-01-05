@@ -1,9 +1,9 @@
 <template>
-  <div class="pb-2 md:pb-10 md:text-lg text-base pt-4">
-    <p>
-      Tech Challenges That Bother You Most:
+  <div class="pb-2 md:pb-10 md:text-lg text-base pt-4 md:pt-8">
+    <p class="underline">
+      Your Experience Level is:
 
-      <span class="font-bold">{{ questionThreeRec?.choice }}</span>
+      <span class="font-bold">{{ questionFourRec?.choice }}</span>
     </p>
     <p>
       Here is a recomendation for you
@@ -15,11 +15,11 @@
   <div class="grid md:flex md:gap-x-4 gap-y-4 place-content-center">
     <div class="max-w-sm rounded overflow-hidden shadow-xl">
       <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">What to do</div>
+        <div class="font-bold text-xl mb-2">{{ questionFourRec?.choice }}</div>
         <p class="text-gray-700 text-base">
           {{
-            questionThreeRec.recommendations
-              ? questionThreeRec.recommendations.whatToDo
+            questionFourRec.recommendations
+              ? questionFourRec.recommendations.whatToDo
               : "No recommendation available"
           }}
         </p>
@@ -32,7 +32,7 @@ import { ref, defineProps, onMounted } from "vue";
 import { useRouter } from "vue-router";
 const userName = ref("human");
 const router = useRouter();
-const { questionThreeRec } = defineProps(["questionThreeRec"]);
+const { questionFourRec } = defineProps(["questionFourRec"]);
 
 onMounted(async () => {
   userName.value = localStorage.getItem("name");
