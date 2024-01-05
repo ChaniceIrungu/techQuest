@@ -55,7 +55,7 @@
         />
       </div>
     </div>
-
+    <GameExplain v-if="showExplanation" />
     <div class="pt-2 md:pt-6 justify-self-start">
       <cButton @click="nextRecommendation" :buttonText="' Next'" />
     </div>
@@ -67,18 +67,17 @@ import { useRouter } from "vue-router";
 import q2Component from "../components/recommendations/Q2.vue";
 import q3Component from "../components/recommendations/Q3.vue";
 import q4Component from "../components/recommendations/Q4.vue";
+import GameExplain from "../components/recommendations/explanation.vue";
 import recommendations from "../store/recommend.js";
 import Chart from "./chart.vue";
 import cButton from "./Button.vue";
 const emit = defineEmits("openEnd");
-
 const router = useRouter();
-
 const userName = ref("human");
 const surveyAnswers = ref([]);
 const showQ2Recs = ref(true);
 const showTechRoles = ref(false);
-
+const showExplanation = ref(false);
 const gameScores = {};
 const totalCalculatedScores = ref({});
 
@@ -101,19 +100,20 @@ const calculateRoleScores = (gameScores, selectedRole) => {
       if (!roleScores[techRole]) {
         roleScores[techRole] = 0;
       }
-
       // if the user's score meets or exceeds the threshold, it assigns a full score of threshold.
       const aggregateScore = userScore >= threshold ? threshold : 0; // Adjust based on proportion to threshold
       roleScores[techRole] += aggregateScore;
     }
   }
-
-  // Add survey response contribution to roles
-  roleScores[selectedRole] = roleScores[selectedRole]
+  roleScores[selectedRole] !== undefined
     ? roleScores[selectedRole] + 15
-    : 0;
+    : roleScores[selectedRole];
+  // Add survey response contribution to roles
+  // if (roleScores[selectedRole] !== undefined) {
+  //   roleScores[selectedRole] += 15;
+  // }
+
   totalCalculatedScores.value = roleScores;
-  // console.log("aggregateScore33", roleScores);
 };
 
 // Thresholds for recommending roles based on scores
@@ -186,7 +186,6 @@ const getGameResults = () => {
   //selected Role
   surveyAnswers.value = JSON.parse(localStorage.getItem("responses"));
   calculateRoleScores(gameScores.value, questionSevenTech.value.techRole);
-  console.log(" gameScores.value", gameScores.value);
 };
 
 // Rank roles based on how frequently they are recommended
@@ -195,8 +194,8 @@ const rankRoles = () => {
     return totalCalculatedScores.value[b] - totalCalculatedScores.value[a];
   });
 
-  // console.log("Ranked Roles:", sortedRoles.value);
-  return sortedRoles.value;
+  // console.log("Ranked Roles:", totalCalculatedScores.value);
+  // return sortedRoles.value;
 };
 
 // Get the sorted roles to display in the template
@@ -212,11 +211,10 @@ const roleFeedback = {
     "Your scores suggest a good understanding of design principles and user experience.",
   "Data Scientist":
     "Your scores show an analytical mindset and ability to work with complex data.",
-  "Back-End Engineer":
+  "Back-End Developer":
     "You demonstrated skills related to data processing and management.",
   "Front-End Developer":
     "Your performance indicates a good grasp of front-end development concepts.",
-  // Add feedback for other roles here
 };
 
 const questionTwoRec = computed(() => {
@@ -233,11 +231,6 @@ const questionThreeRec = computed(() => {
   const questionThree = surveyAnswers.value.find(
     (answer) => answer.questionNumber === 3
   );
-
-  // Loop through choicesIdx array and extract choice indices
-  // const choiceIndices = questionThree.choicesIdx.map((choice) => choice);
-
-  console.log("questionThree", questionThree);
   // return null or handle as needed if dont exist
   return questionThree ? questionThree.choicesIdx : [];
 });
@@ -262,9 +255,18 @@ const questionSevenTech = computed(() => {
   return {};
 });
 
+const count = ref(0);
 const nextRecommendation = () => {
-  showQ2Recs.value = !showQ2Recs.value;
-  showTechRoles.value = !showTechRoles.value;
-  // emit("openEnd");
+  // Show the third view
+  count.value++;
+  showQ2Recs.value = false;
+  showTechRoles.value = true;
+  if (count.value === 2) {
+    showTechRoles.value = false; // Hide explanation view
+    showExplanation.value = true; // Hide explanation view
+  }
+  if (count.value === 3) {
+    emit("openEnd");
+  }
 };
 </script>

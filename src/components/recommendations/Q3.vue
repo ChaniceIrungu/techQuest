@@ -4,14 +4,14 @@
       Tech Challenges That Bother You Most
     </p>
   </div>
-  <div class="grid md:grid-cols-3 md:gap-x-2 gap-y-4">
+  <div class="grid md:flex md:gap-x-2 gap-y-4 place-content-center">
     <div
       class="max-w-sm rounded overflow-hidden shadow-xl"
       v-for="(recommendation, index) in questionThreeRec"
       :key="index"
     >
       <div class="px-6 py-4">
-        <span class="font-bold text-xl text-fuchsia-500">{{ index }} </span>
+        <span class="font-bold text-xl text-fuchsia-500">{{ index + 1 }} </span>
         <div class="font-bold text-xl mb-2">
           {{ recommendation.attributes.choice }}
         </div>
