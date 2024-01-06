@@ -3,7 +3,9 @@
     <div class="font-bold">
       Based on your results from the games these are the top roles
     </div>
-    <div class="h-96 w-96"><Pie :data="data" :options="options" /></div>
+    <div class="h-96 w-96 text-black">
+      <Pie :data="data" :options="options" class="text-black" />
+    </div>
   </div>
 </template>
 

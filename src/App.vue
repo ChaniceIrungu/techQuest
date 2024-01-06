@@ -13,7 +13,7 @@ import contacts from "./components/Footer.vue";
     </header> -->
 
     <RouterView
-      class="font-serif md:bg-white relative flex-1 min-h-screen w-full"
+      class="welcomePage font-serif md:bg-white relative flex-1 min-h-screen w-full"
     />
   </div>
 </template>
@@ -24,6 +24,34 @@ import contacts from "./components/Footer.vue";
     /* display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2); */
+  }
+}
+
+.welcomePage {
+  /* height: 100vh; */
+  animation: gradient 15s ease infinite;
+  background: linear-gradient(
+    -45deg,
+    rgba(238, 119, 82, 0.7),
+    rgba(231, 60, 126, 0.7),
+    rgba(35, 166, 213, 0.7),
+    rgba(35, 213, 171, 0.7)
+  );
+  background-size: 400% 400%;
+  transition-duration: 0.5s;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 </style>
