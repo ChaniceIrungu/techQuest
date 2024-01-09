@@ -30,13 +30,22 @@ import contacts from "./components/Footer.vue";
 .welcomePage {
   /* height: 100vh; */
   animation: gradient 15s ease infinite;
-  background: linear-gradient(
+  /* background: linear-gradient(
     -45deg,
     rgba(238, 119, 82, 0.7),
     rgba(231, 60, 126, 0.7),
     rgba(35, 166, 213, 0.7),
     rgba(35, 213, 171, 0.7)
+  ); */
+
+  background: linear-gradient(
+    -45deg,
+    rgba(62, 59, 58, 0.7),
+    rgba(183, 121, 145, 0.7),
+    rgba(35, 166, 213, 0.7),
+    rgba(35, 213, 171, 0.7)
   );
+
   background-size: 400% 400%;
   transition-duration: 0.5s;
   transition-property: all;
