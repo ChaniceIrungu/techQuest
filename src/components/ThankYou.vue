@@ -29,7 +29,7 @@
       </p>
 
       <p class="text-2xl font-extrabold text-purple-600">
-        Go forth an Conquer!
+        Go forth and Conquer!
       </p>
     </div>
   </div>
