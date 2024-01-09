@@ -5,8 +5,8 @@
         Select all the colors that match the given website theme.
       </h3>
       <h3 class="md:text-base text-sm mb-4 text-center">
-        Click <span class="font-semibold">SUBMIT</span> once satisfied with your
-        answer
+        Click <span class="font-semibold">SUBMIT</span> once satisfied with
+        atleast three of your answers
       </h3>
 
       <!-- game board -->
