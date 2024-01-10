@@ -8,7 +8,10 @@
 
     <div v-if="showTechRoles">
       <div class="pb-2 md:pb-14 md:text-lg text-base">
-        <p>Your interests in tech are most in the following areas:</p>
+        <p>
+          From the results of your sruvey your interests in tech are most in the
+          following areas:
+        </p>
         <div class="flex flex-col items-center pb-4">
           <div
             class="flex place-content-center px-4"
