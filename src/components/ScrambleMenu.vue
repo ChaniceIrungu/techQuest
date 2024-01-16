@@ -1,8 +1,10 @@
 <template>
-  <div class="game-container max-w-md mx-auto text-center p-2 h-full pb-4">
+  <div
+    class="game-container max-w-md mx-auto text-center p-2 h-full pb-4 text-white"
+  >
     <p class="font-semibold pt-4 md:text-lg">
       Well done, Riddle Master
-      <strong class="text-blue-600 capitalize">{{ userName }}!</strong> Your
+      <strong class="text-sky capitalize">{{ userName }}!</strong> Your
       intellect shines brightly. Now, embrace the Word Scramble challenge and
       unravel hidden words in the next thrilling challenge. Onward to the
       adventure!
@@ -19,7 +21,7 @@
         <cButton
           :buttonText="' Play'"
           @click="$emit('init-game')"
-          class="mt-4 py-4"
+          class="mt-4 py-4 px-16"
         />
       </li>
       <!-- <li>
@@ -69,7 +71,7 @@ onMounted(async () => {
 
   50% {
     opacity: 0.8;
-    color: red; /* Change to red color halfway through */
+    color: rgb(30, 255, 0); /* Change to red color halfway through */
   }
 
   100% {

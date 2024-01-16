@@ -87,7 +87,7 @@
           v-if="showHowToPlayModal === true"
           class="how-to-play absolute top-0 h-full w-[90%] bg-[#ffffffde] p-8"
         >
-          <h3 class="text-center text-fuchsia-700 font-bold text-2xl pb-2">
+          <h3 class="text-center text-blue-700 font-bold text-2xl pb-2">
             How To Play
           </h3>
           <p class="py-2">

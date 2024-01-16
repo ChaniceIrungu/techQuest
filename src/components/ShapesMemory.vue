@@ -4,9 +4,9 @@
       <!-- display the timer and progress bar -->
       <div class="mt-2" id="progress" :style="{ width: progressWidth }"></div>
 
-      <div class="flex flex-row justify-between">
+      <div class="flex flex-row justify-between text-white">
         <!-- Display Health -->
-        <div class="font-bold text-base inline-flex md:pl-4">
+        <div class="font-semibold text-lg inline-flex md:pl-4">
           <span class="md:pr-4">Health :</span>
           <span v-for="heart in hearts" :key="heart">
             <img class="h-6 w-6" src="/heart.png" />
@@ -14,12 +14,12 @@
         </div>
 
         <!-- Score -->
-        <div class="font-bold text-base">Score : {{ score }}</div>
+        <div class="font-semibold text-lg">Score : {{ score }}</div>
       </div>
 
       <div class="flex flex-col justify-center items-center">
         <!-- display the Statements here-->
-        <div class="pb-6 pt-4">
+        <div class="pb-6 pt-4 text-white">
           <h3 id="statement-container" class="text-xl text-center font-bold">
             {{ currentStatement }}
           </h3>
@@ -343,7 +343,7 @@ const getRandomIndex = (item) => {
 <style>
 #progress {
   height: 15px;
-  background-color: rgb(32, 98, 164);
+  background-color: rgb(20, 209, 222);
   margin-bottom: 20px;
 }
 </style>

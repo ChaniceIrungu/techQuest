@@ -2,14 +2,12 @@
   <div class="h-full text-center md:pb-2 pb-12">
     <div class="w-full p-2">
       <div class="pb-2">
-        <div class="font-bold">Progress</div>
+        <div class="font-normal text-white">Progress</div>
 
-        <div
-          class="p-1 border-1 border-yellow-700 rounded-full bg-gray-200 px-4"
-        >
+        <div class="p-1 border-1 border-yellow-700 rounded-full bg-white px-4">
           <div
             :style="{ width: progressBarWidth }"
-            class="rounded-full bg-fuchsia-600 text-white h-6"
+            class="rounded-full bg-sky text-white h-6"
           >
             {{ currentIndex + 1 }}/{{ surveys.length }}
           </div>
@@ -31,7 +29,7 @@
           <div class="p-4" v-if="currentQuestion.attributes.type === 'input'">
             <input
               type="text"
-              class="input p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 border border-black"
+              class="input p-2 focus:outline-none focus:border-sky focus:ring-1 focus:ring-sky border border-black"
               name=""
               placeholder="Enter preferred name"
               v-model="userInput"
@@ -68,9 +66,9 @@
         </div>
       </div>
       <!-- end survey -->
-      <div class="mt-4 inline">
+      <div class="mt-4 inline text-white font-normal">
         <button
-          class="bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:bg-gradient-to-r hover:from-violet-700 hover:to-fuchsia-700 p-3 rounded-full"
+          class="bg-gradient-to-r from-blue-500 to-green-500 hover:bg-gradient-to-r hover:from-blue-700 hover:to-green-700 py-3 px-8 rounded-lg"
           @click="nextQuestion"
           :disabled="!userInput"
           :class="[!userInput ? 'cursor-not-allowed ' : '', buttonColor]"

@@ -134,56 +134,6 @@ const setError = (err) => {
 </script>
 
 <style>
-/* body {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  background: #0069ff;
-} */
-/* Style the tab */
-/* .tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-} */
-/* Style the buttons inside the tab */
-/* .tab a {
-  background-color: inherit;
-  float: right;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-  text-decoration: none;
-  border: 1px solid;
-} */
-/* Change background color of buttons on hover */
-/* .tab a:hover {
-  background-color: #ddd;
-} */
-/* Create an active/current tablink class */
-/* .tab a.active {
-  background-color: #ccc;
-} */
-/* Style the tab content */
-/* .tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-} */
-/* .loginsuccess-container {
-  padding: 20px;
-  margin: 0 auto;
-  width: 80%;
-  box-shadow: beige;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background: #fff;
-  word-break: break-all;
-} */
-.main-container {
-  /* margin-top: 10%; */
-}
 .box-container {
   padding: 20px;
   margin: 0 auto;

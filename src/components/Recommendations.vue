@@ -1,15 +1,15 @@
 <template>
-  <div class="flex flex-col justify-center items-center p-2 m-2">
-    <div v-if="showQ2Recs">
+  <div class="flex flex-col justify-center items-center p-2 text-white">
+    <div v-if="showQ2Recs" class="text-white">
       <q2Component :questionTwo="questionTwoRec" />
       <q3Component :questionThreeRec="questionThreeRec" />
       <q4Component :questionFourRec="questionFourRec" />
     </div>
 
     <div v-if="showTechRoles">
-      <div class="pb-2 md:pb-14 md:text-lg text-base">
+      <div class="pb-2 md:pb-4 md:text-lg text-base">
         <p>
-          From the results of your sruvey your interests in tech are most in the
+          From the results of your survey your interests in tech are most in the
           following areas:
         </p>
         <div class="flex flex-col items-center pb-4">
@@ -18,9 +18,9 @@
             v-for="(role, key) in questionSevenTech.techRole"
             :key="key"
           >
-            <div class="max-w-sm rounded overflow-hidden shadow-xl">
+            <div class="max-w-sm rounded overflow-hidden shadow-xl bg-white">
               <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2">Role:</div>
+                <div class="font-bold text-xl mb-2 text-black">Role:</div>
                 <p class="text-gray-700 text-base">
                   {{ role }}
                 </p>
@@ -59,7 +59,7 @@
       </div>
     </div>
     <GameExplain v-if="showExplanation" />
-    <div class="pt-2 md:pt-6 justify-self-start">
+    <div class="pt-2 md:pt-4 justify-self-start">
       <cButton @click="nextRecommendation" :buttonText="' Next'" />
     </div>
   </div>
