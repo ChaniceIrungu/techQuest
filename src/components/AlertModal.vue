@@ -3,7 +3,7 @@
     <div class="modal">
       <h2>{{ title }}</h2>
       <p>{{ message }}</p>
-      <button class="rounded bg-blue-300 p-2" @click="handleModalOk">OK</button>
+      <!-- <button class="rounded bg-blue-300 p-2" @click="handleModalOk"></button> -->
     </div>
   </transition>
 </template>

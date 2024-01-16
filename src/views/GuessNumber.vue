@@ -6,12 +6,12 @@
         v-if="round === 2"
       >
         Round
-        <span class="text-black text-2xl border-4 rounded-lg p-1">{{
+        <span class="text-black text-2xl border-4 rounded-lg px-2">{{
           round
         }}</span>
       </h1>
       <header class="text-lg md:text-xl font-semibold">
-        Guess a number from 1 to 100
+        Guess a number between 1 to 100
       </header>
       <p
         class="guess text-lg md:text-lg font-medium"
@@ -25,7 +25,7 @@
           v-model="inputValue"
           :disabled="gameOver"
           @input="handleInput"
-          class="focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+          class="focus:outline-none focus:border-sky focus:ring-1 focus:ring-sky"
         />
         <button
           :class="buttonColor"

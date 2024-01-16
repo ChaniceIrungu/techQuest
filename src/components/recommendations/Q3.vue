@@ -1,6 +1,6 @@
 <template>
   <div class="pb-2 md:pb-3 md:text-lg text-base pt-4 md:pt-8">
-    <p class="text-black font-extrabold underline">
+    <p class="text-white font-extrabold">
       Tech Challenges That Bother You Most
     </p>
   </div>
@@ -10,12 +10,14 @@
       v-for="(recommendation, index) in questionThreeRec"
       :key="index"
     >
-      <div class="px-6 py-4">
-        <span class="font-bold text-xl text-fuchsia-500">{{ index + 1 }} </span>
+      <div class="px-6 py-4 bg-white text-black">
+        <span class="font-bold text-xl border rounded-full px-2"
+          >{{ index + 1 }}.
+        </span>
         <div class="font-bold text-xl mb-2">
           {{ recommendation.attributes.choice }}
         </div>
-        <p class="text-gray-700 text-base">
+        <p class="text-base">
           {{
             recommendation.attributes.recommendations.whatToDo
               ? recommendation.attributes.recommendations.whatToDo

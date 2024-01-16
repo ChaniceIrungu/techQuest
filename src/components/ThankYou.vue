@@ -1,10 +1,9 @@
 <template>
   <div class="flex flex-col justify-center border-box text-center md:py-8 py-2">
     <div class="mx-auto max-w-full mb-8">
-      <p class="text-2xl font-extrabold text-blue-600">
+      <p class="text-2xl font-extrabold text-white">
         Thank you for your participation
-        <span class="capitalize text-purple-800">
-          {{ userName || "Human" }}</span
+        <span class="capitalize text-sky"> {{ userName || "Human" }}</span
         >!!
       </p>
     </div>
@@ -23,14 +22,12 @@
       </video>
     </div>
     <div class="mx-auto max-w-full mt-4 text-center">
-      <p class="text-2xl font-extrabold text-blue-600">
-        <span class="capitalize text-purple-800"> {{ userName }}</span> !! THE
-        TECH SPACE AWAITS YOUR BRILLIANCE
+      <p class="text-2xl font-extrabold text-white">
+        <span class="capitalize text-sky"> {{ userName }}</span> !! THE TECH
+        SPACE AWAITS YOUR BRILLIANCE
       </p>
 
-      <p class="text-2xl font-extrabold text-purple-600">
-        Go forth and Conquer!
-      </p>
+      <p class="text-2xl font-extrabold text-sky">Go forth and Conquer!</p>
     </div>
   </div>
 </template>

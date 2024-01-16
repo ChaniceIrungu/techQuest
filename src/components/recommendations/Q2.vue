@@ -1,7 +1,7 @@
 <template>
-  <div class="pb-2 md:pb-10 md:text-lg text-base">
+  <div class="pb-2 md:pb-8 md:text-lg text-base">
     <p class="underline">
-      Your current goal is to:
+      Your goal is to:
 
       <span class="font-bold">{{ questionTwo?.slug }}</span>
     </p>
@@ -13,10 +13,10 @@
     </p>
   </div>
   <div class="grid md:flex md:gap-x-4 gap-y-4 place-content-center">
-    <div class="max-w-sm rounded overflow-hidden shadow-xl">
-      <div class="px-6 py-4">
+    <div class="max-w-sm rounded overflow-hidden shadow-xl bg-white">
+      <div class="px-6 py-4 text-black">
         <div class="font-bold text-xl mb-2">What to Study</div>
-        <p class="text-gray-700 text-base">
+        <p class="text-base">
           {{
             questionTwo.recommendations
               ? questionTwo.recommendations.whatToStudy
@@ -25,10 +25,10 @@
         </p>
       </div>
     </div>
-    <div class="max-w-sm rounded overflow-hidden shadow-lg">
-      <div class="px-6 py-4">
+    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+      <div class="px-6 py-4 text-black">
         <div class="font-bold text-xl mb-2">Type of Course</div>
-        <p class="text-gray-700 text-base">
+        <p class="text-base">
           {{
             questionTwo.recommendations
               ? questionTwo.recommendations.course
@@ -37,10 +37,10 @@
         </p>
       </div>
     </div>
-    <div class="max-w-sm rounded overflow-hidden shadow-lg">
-      <div class="px-6 py-4">
+    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+      <div class="px-6 py-4 text-black">
         <div class="font-bold text-xl mb-2">Where to Find a Job:</div>
-        <p class="text-gray-700 text-base">
+        <p class="text-base">
           {{
             questionTwo.recommendations
               ? questionTwo.recommendations.job

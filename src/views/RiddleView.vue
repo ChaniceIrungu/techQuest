@@ -2,15 +2,15 @@
   <div
     class="flex flex-col items-center justify-center md:p-0.5 px-4 md:justify-center mx-auto"
   >
-    <h1 class="pb-2 text-2xl text-center font-extrabold font-serif text-black">
+    <h1 class="pb-2 text-2xl text-center font-extrabold font-serif text-white">
       Thanks you for your reponses
-      <strong class="text-fuchsia-500 capitalize">{{ userName }}.</strong>
+      <strong class="text-sky capitalize">{{ userName }}.</strong>
     </h1>
-    <h1 class="p-2 text-xl text-center font-extrabold text-black-600">
+    <h1 class="p-2 text-xl text-center font-extrabold text-white">
       Let the Games Begin!
     </h1>
 
-    <h1 class="p-1 text-xl text-center font-extrabold text-black-600">
+    <h1 class="p-1 text-xl text-center font-extrabold text-white">
       Riddle Challenge:
     </h1>
 
@@ -21,17 +21,17 @@
 
       <div class="flex flex-col items-center pt-2">
         <p
-          class="text-base md:text-xl text-center md:text-left font-extrabold text-fuchsia-700"
+          class="text-base md:text-lg text-center md:text-left font-semibold text-white"
         >
           For this challenge you will receive a bunch of cards.
         </p>
         <p
-          class="text-base md:text-xl text-center md:text-left font-extrabold text-fuchsia-700"
+          class="text-base md:text-lg text-center md:text-left font-semibold text-white"
         >
           Flip the card to reveal the riddle.
         </p>
         <p
-          class="text-base md:text-xl text-center md:text-left font-extrabold text-fuchsia-700"
+          class="text-base md:text-lg text-center md:text-left font-semibold text-white"
         >
           There will be clues to guide you on your way.
         </p>

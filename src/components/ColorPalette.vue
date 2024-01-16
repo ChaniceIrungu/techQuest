@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-gray-200 md:min-h-screen md:py-8 py-2">
+  <div class="md:min-h-screen md:py-8 py-2">
     <div class="container mx-auto px-4">
-      <h3 class="md:text-2xl text-xl font-semibold mb-4 text-center">
+      <h3 class="md:text-2xl text-xl font-semibold mb-4 text-center text-white">
         Select all the colors that match the given website theme.
       </h3>
-      <h3 class="md:text-base text-sm mb-4 text-center">
+      <h3 class="md:text-base text-sm mb-4 text-center text-white">
         Click <span class="font-semibold">SUBMIT</span> once satisfied with
         atleast three of your answers
       </h3>
@@ -28,17 +28,19 @@
         </div>
       </div>
       <!-- Feedback -->
-      <div class="feedback mt-4" v-if="feedbackMessage">
+      <div class="feedback mt-4 bg-gray-200 p-1" v-if="feedbackMessage">
         <p class="font-semibold text-lg" :class="feedbackColor">
           {{ feedbackMessage }}
         </p>
       </div>
       <!-- color pallete section -->
-      <div class="color-palette mt-6 grid grid-cols-3 gap-4">
+      <div
+        class="color-palette mt-6 grid grid-cols-3 gap-4 p-2 md:p-4 bg-gray-200 rounded-md"
+      >
         <div
           v-for="color in allPaletteOptions"
           :key="color"
-          class="palette-color p-4 rounded-lg cursor-pointer h-12 w-30 border border-black font-semi-bold text-white"
+          class="palette-color p-4 rounded-lg cursor-pointer h-12 w-30 border border-black font-semi-bold text-black"
           :style="{ backgroundColor: color }"
           @click="clickedColor(color)"
         >

@@ -13,9 +13,7 @@
       v-if="currentRiddle"
     >
       <div class="">
-        <h1 class="font-extrabold text-purple-700 my-1 md:my-4">
-          Find the RIDDLE
-        </h1>
+        <h1 class="font-extrabold text-white my-1 md:my-4">Find the RIDDLE</h1>
         <div
           class="flip-card md:w-72 h-[250px] md:h-5/6 md:hover:scale-100 shadow-xl"
           @click="flipCard"
@@ -40,7 +38,7 @@
       </div>
 
       <div class="mt-2 md:mt-2">
-        <h1 class="font-extrabold text-purple-700 md:my-4 my-2">
+        <h1 class="font-extrabold text-white md:my-4 my-2">
           Click any of the choices you think are correct
         </h1>
         <!-- Answer Choices -->
@@ -60,10 +58,10 @@
           >
             <div class="card p-4 text-left">
               <div>
-                <h2 class="text-purple-600">
-                  Option {{ getAnswerLetter(idx) }}:
-                </h2>
-                <p v-if="isFlipped">{{ option.attributes.choice }}</p>
+                <h2 class="text-white">Option {{ getAnswerLetter(idx) }}:</h2>
+                <p v-if="isFlipped" class="text-white">
+                  {{ option.attributes.choice }}
+                </p>
               </div>
             </div>
           </li>
@@ -272,11 +270,11 @@ const getAnswerLetter = (idx) => {
 }
 
 .front {
-  background-color: #feca34;
+  background-color: #39443c;
 }
 
 .back {
-  background-color: #800e80;
+  background-color: #0f7d96;
   /* backface-visibility: visible; */
 }
 

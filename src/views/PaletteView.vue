@@ -1,13 +1,11 @@
 <template>
   <div class="flex items-center justify-center px-2">
     <div v-if="!menuOpen" class="flex items-center flex-col">
-      <h1 class="text-3xl font-semibold mb-3 text-blue-600">
-        Color Palette Game
-      </h1>
+      <h1 class="text-3xl font-semibold mb-3 text-white">Color Palette Game</h1>
       <div class="pb-4 md:pb-8">
         <img src="/color_palette_game.png" class="" />
       </div>
-      <div class="pb-2 text-blue-600">
+      <div class="pb-2 text-white">
         <p>
           In this color palette game, you will be tasked with creating a color
           palette for a website design

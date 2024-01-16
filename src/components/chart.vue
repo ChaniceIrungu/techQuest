@@ -3,8 +3,8 @@
     <div class="font-bold">
       Based on your results from the games these are the top roles
     </div>
-    <div class="h-96 w-96 text-black">
-      <Pie :data="data" :options="options" class="text-black" />
+    <div class="h-96 w-96 text-white">
+      <Pie :data="data" :options="options" class="text-white" />
     </div>
   </div>
 </template>
@@ -46,6 +46,8 @@ const data = {
   datasets: [
     {
       // backgroundColor: Colors,
+      // hoverBackgroundColor: "grey",
+      hoverBorderColor: "blue",
       data: recommendedRolesArray,
     },
   ],
@@ -54,6 +56,15 @@ const options = {
   responsive: true,
   maintainAspectRatio: true,
   plugins: {
+    legend: {
+      labels: {
+        color: "white", // not 'fontColor:' anymore
+        font: {
+          size: 12, // 'size' now within object 'font {}'
+        },
+      },
+    },
+
     tooltip: {
       callbacks: {
         label: function (context) {

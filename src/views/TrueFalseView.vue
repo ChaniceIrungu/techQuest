@@ -5,7 +5,7 @@
       class="flex flex-col justify-center items-center mx-auto"
     >
       <div class="max-w-md">
-        <p class="text-center text-fuchsia-600 text-base md:text-xl font-bold">
+        <p class="text-center text-white text-base md:text-xl font-semibold">
           Impressive skills! Now, let's put your memory to the test. Engage in
           this Memory Game pay attention to the statements and unleash your
           memory prowess now!
@@ -16,7 +16,7 @@
       </div>
       <div class="pt-4 md:pt-8">
         <h1
-          class="md:px-2 pt-2 text-center text-fuchsia-600 text-lg md:text-2xl font-bold"
+          class="md:px-2 pt-2 text-center text-white text-lg md:text-2xl font-semibold"
         >
           Choose if statement is True or False
         </h1>

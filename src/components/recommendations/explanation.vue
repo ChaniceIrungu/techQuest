@@ -1,5 +1,5 @@
 <template>
-  <div class="flow-root max-w-md shadow-lg tracking-wide">
+  <div class="flow-root max-w-md shadow-lg tracking-wide bg-white rounded-md">
     <p class="text-xl text-black underline font-bold">
       EXPLANATION OF THE GAMES
     </p>
@@ -14,11 +14,11 @@
             <!-- circle -->
             <div>
               <span
-                class="h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white"
+                class="h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-green-200"
               >
                 <!-- circle -->
                 <div
-                  class="h-8 w-8 animate-spin rounded-full border-4 border-solid border-current motion-reduce:animate-[spin_1.5s_linear_infinite] text-fuchsia-600"
+                  class="h-8 w-8 animate-spin rounded-full border-4 border-solid border-current motion-reduce:animate-[spin_1.5s_linear_infinite] text-blue-600"
                 ></div>
               </span>
             </div>
@@ -41,11 +41,11 @@
             <!-- circle -->
             <div>
               <span
-                class="h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white"
+                class="h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-green-200"
               >
                 <!-- circle -->
                 <div
-                  class="h-8 w-8 animate-spin rounded-full border-4 border-solid border-current motion-reduce:animate-[spin_1.5s_linear_infinite] text-fuchsia-600"
+                  class="h-8 w-8 animate-spin rounded-full border-4 border-solid border-current motion-reduce:animate-[spin_1.5s_linear_infinite] text-blue-600"
                 ></div>
               </span>
             </div>
@@ -70,11 +70,11 @@
             <!-- circle -->
             <div>
               <span
-                class="h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white"
+                class="h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-green-200"
               >
                 <!-- circle -->
                 <div
-                  class="h-8 w-8 animate-spin rounded-full border-4 border-solid border-current motion-reduce:animate-[spin_1.5s_linear_infinite] text-fuchsia-600"
+                  class="h-8 w-8 animate-spin rounded-full border-4 border-solid border-current motion-reduce:animate-[spin_1.5s_linear_infinite] text-blue-600"
                 ></div>
               </span>
             </div>
@@ -96,11 +96,11 @@
             <!-- circle -->
             <div>
               <span
-                class="h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white"
+                class="h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-green-200"
               >
                 <!-- circle -->
                 <div
-                  class="h-8 w-8 animate-spin rounded-full border-4 border-solid border-current motion-reduce:animate-[spin_1.5s_linear_infinite] text-fuchsia-600"
+                  class="h-8 w-8 animate-spin rounded-full border-4 border-solid border-current motion-reduce:animate-[spin_1.5s_linear_infinite] text-blue-600"
                 ></div>
               </span>
             </div>
@@ -124,11 +124,11 @@
             <!-- circle -->
             <div>
               <span
-                class="h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white"
+                class="h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-green-200"
               >
                 <!-- circle -->
                 <div
-                  class="h-8 w-8 animate-spin rounded-full border-4 border-solid border-current motion-reduce:animate-[spin_1.5s_linear_infinite] text-fuchsia-600"
+                  class="h-8 w-8 animate-spin rounded-full border-4 border-solid border-current motion-reduce:animate-[spin_1.5s_linear_infinite] text-blue-600"
                 ></div>
               </span>
             </div>

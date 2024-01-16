@@ -1,7 +1,7 @@
 <template>
   <div class="pb-2 md:pb-10 md:text-lg text-base pt-4 md:pt-8">
-    <p class="underline">
-      Your Experience Level is:
+    <p class="">
+      Experience Level :
 
       <span class="font-bold">{{ questionFourRec?.choice }}</span>
     </p>
@@ -13,10 +13,10 @@
     </p>
   </div>
   <div class="grid md:flex md:gap-x-4 gap-y-4 place-content-center">
-    <div class="max-w-sm rounded overflow-hidden shadow-xl">
+    <div class="max-w-sm rounded overflow-hidden shadow-xl bg-white text-black">
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{ questionFourRec?.choice }}</div>
-        <p class="text-gray-700 text-base">
+        <p class="text-base">
           {{
             questionFourRec.recommendations
               ? questionFourRec.recommendations.whatToDo
